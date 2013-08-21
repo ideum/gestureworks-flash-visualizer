@@ -22,11 +22,11 @@ package
 			
 	public class Away3DScene extends TouchContainer
 	{
-		public var motionEnabled:Boolean = true;
+		public var motionEnabled:Boolean = true; // temporary - motion and touch should work simultaneously
+		public var gestureObject:Away3DTouchObject;
 		
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var ts:Away3DTouchObject;
 		private var view:View3D;
 		private var lightPicker:StaticLightPicker;
 		private var cameraController:HoverController;
@@ -53,15 +53,9 @@ package
 			view = new View3D();
 			scene = view.scene;
 
-			view.backgroundColor = 0x000000;
-			//view.width = WIDTH * GestureWorks.application.stageWidth / 1920;
-			//view.height = HEIGHT * GestureWorks.application.stageWidth / 1920;
-			//view.height = HEIGHT * GestureWorks.application.stageHeight / 1080;
-			//view.x = 12 * view.width/WIDTH;
-			//view.y = 60 * view.width/HEIGHT;			
-			
 			view.width = GestureWorks.application.stageWidth;
 			view.height = GestureWorks.application.stageHeight;
+			view.backgroundColor = 0x000000;			
 			view.antiAlias = 4;
 			view.camera.lens.far = 15000;
 			view.forceMouseMove = true;
@@ -87,24 +81,24 @@ package
 			scene.addChild(cube);
 
 			away = new Away3DTouchManager(view);
-			ts = away.registerTouchObject(cube);
-			ts.activated = true;
-
-			ts.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
-			ts.nativeTransform = true;
-			ts.gestureReleaseInertia = true;
-			ts.gestureEvents = true;
-			ts.motion3d = false; //input			
-			ts.transform3d = true; //output
-			ts.debugDisplay = true;
+			gestureObject = away.registerTouchObject(cube);
+			gestureObject.activated = true;
+			gestureObject.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
+			gestureObject.nativeTransform = true;
+			gestureObject.gestureReleaseInertia = true;
+			gestureObject.gestureEvents = true;
+			gestureObject.motion3d = motionEnabled; //input			
+			gestureObject.transform3d = true; //output
+			gestureObject.debugDisplay = true;
 				
 			vis3d = new Away3DMotionVisualizer();
 			vis3d.init();
-			vis3d.cO = ts.cO;
-			vis3d.trO = ts.trO;
+			vis3d.cO = gestureObject.cO;
+			vis3d.trO = gestureObject.trO;
 			scene.addChild(vis3d);	
 		}
 	
+		
 		
 		public function addView(tab:String, motion:Boolean=false):void
 		{
@@ -160,7 +154,6 @@ package
 		{		
 			vis3d.updateDisplay();
 			light.position = view.camera.position;
-			light.lookAt(cube.transform.position);
 			view.render();			
 		}
 

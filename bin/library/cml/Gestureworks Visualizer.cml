@@ -22,9 +22,6 @@
 		<Text id="tpnts-text" class="status-txt" text="0" />
 		<Text id="tp-text" class="status-txt" text="TOUCHPOINTS" />
 	</Container>
-
-	<!-- 3D SCENE -->
-	<Away3DScene id="away3d" />	
 	
 	<!-- TOUCH OBJECT -->
 	<Graphic id="touch-object" class="left-panel" mouseChildren="false">
@@ -42,6 +39,9 @@
 		</TabbedContainer>
 	</Drawer>
 
+	<!-- 3D SCENE -->
+	<Away3DScene id="away3d" />		
+	
 	<!-- GESTURE OBJECT -->
 	<Graphic id="gesture-object" gestureReleaseInertia="true" x="385.5" y="300" rotation="0" scale="1" mouseChildren="false">
 		<Gesture ref="n-drag" gestureOn="true" />

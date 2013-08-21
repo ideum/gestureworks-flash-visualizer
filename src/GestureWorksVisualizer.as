@@ -26,6 +26,7 @@ package
 		private var touchObject:TouchContainer;		
 		private var gestureObject:TouchContainer;
 		private var away3DScene:Away3DScene;
+		private var gestureObject3D:TouchSprite;
 		
 		private var toggle:Array;
 		private var tpntsText:Text;
@@ -94,7 +95,8 @@ package
 			setupToggles();
 			setupGraph();
 			setupDataNumbers();	
-			setup3DScene();			
+			setup3DScene();
+			setupVisualizer(gestureObject3D);
 			setupListeners();			
 		}
 		
@@ -173,6 +175,7 @@ package
 			gestureObjectIndex = getChildIndex(gestureObject);				
 			add3DScene();
 		}
+		
 		
 		private function setupVisualizer(ts0:TouchSprite):void
 		{		
@@ -301,7 +304,7 @@ package
 			
 			for (gId in gList) {
 				on = gList[gId];
-				if (!on)
+				if (!on) 
 					Button( document.getElementById(gId) ).runToggle();
 			}			
 			
@@ -341,6 +344,7 @@ package
 			away3DSceneIndex = getChildIndex(away3DScene);			
 			remove3DScene();
 			add2DScene();
+			gestureObject3D = away3DScene.gestureObject;
 		}
 		
 		private function setupDataNumbers():void
@@ -425,10 +429,8 @@ package
 					break;		
 				case "leap 3d": 
 					gw.leap3D = e.value;
-					if (gw.leap3D) { 
+					if (gw.leap3D)
 						gw.leap2D = false;
-						motion = true;
-					}
 					break;
 				
 					
@@ -621,14 +623,14 @@ package
 		
 		private function add2DScene():void
 		{
-			addChildAt(touchObject, touchObjectIndex);						
+			//addChildAt(touchObject, touchObjectIndex);						
 			addChildAt(gestureObject, gestureObjectIndex);
 			showTab(currentTab);
 		}
 		
 		private function remove2DScene():void
 		{
-			removeChild(touchObject);
+			//removeChild(touchObject);
 			removeChild(gestureObject);
 		}			
 		
@@ -689,7 +691,6 @@ package
 					
 				case "cluster":
 					if (currentView == "2D") {					
-						touchObject.visible = true;
 						touchObject.visualizer.pointDisplay = true;
 						touchObject.visualizer.clusterDisplay = true;										
 						touchObject.visualizer.gestureDisplay = false;					
@@ -762,7 +763,6 @@ package
 				case "gesture":
 					if (currentView == "2D") {	
 						StateUtils.loadState(gestureObject, 0);	
-						touchObject.visible = false;					
 						gestureObject.visible = true;
 						gestureObject.visualizer.gestureDisplay = true;							
 					}
@@ -795,10 +795,7 @@ package
 				
 		private function updatePointCnt():void
 		{
-			if (gestureObject.visible)
-				tpntsText.text = String(gestureObject.pointArray.length);			
-			else
-				tpntsText.text = String(touchObject.pointArray.length);			
+			tpntsText.text = String(gestureObject.pointArray.length + touchObject.pointArray.length);			
 		}
 		
 		private function updatePointData():void

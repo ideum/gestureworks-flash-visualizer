@@ -1,2 +1,2 @@
-gestureworks-flash-visualizer-
+gestureworks-flash-visualizer
 ==============================

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+
+<Tab id="mode" class="tab" title="MODE" mouseChildren="true">
+	
+	<Container class="tab-container">
+		
+		<!-- SIMULATOR -->
+		<Graphic class="panel-graphic" height="100">
+			<Container class="panel-text-container">
+				<Container class="sub-input">
+					<Toggle id="simulator" class="check-box" value="false">
+						<Text id="simluator" class="panel-text" text="SIMULATOR" />
+					</Toggle>
+				</Container>
+			</Container>
+			<Text class="input-category-text" text="MOUSE" />
+		</Graphic>
+		
+		
+		<!-- TOUCH -->
+		<Graphic class="panel-graphic" height="200">
+			<Container class="sub-input">
+				<Container class="panel-text-container">
+					<Toggle id="tuio" class="check-box">
+						<Text class="panel-text" text="TUIO" />
+					</Toggle>
+				</Container>
+				<Container class="panel-text-container">
+					<Toggle id="leap2D" class="check-box" >
+						<Text class="panel-text" text="LEAP 2D" />
+					</Toggle>
+				</Container>
+				<Container class="panel-text-container">
+					<Toggle id="native" class="check-box" value="false">
+						<Text class="panel-text" text="NATIVE" />
+					</Toggle>
+				</Container>
+				<Layout classRef="ListLayout" useMargins="true" marginY="25" type="vertical" />
+			</Container>
+			<Text class="input-category-text" text="TOUCH" />
+		</Graphic>
+
+		
+		<!-- MOTION -->		
+		<Graphic class="panel-graphic" height="100">
+			<Container class="sub-input">
+				<Container class="panel-text-container">
+					<Toggle id="leap3D" class="check-box" >
+						<Text class="panel-text" text="LEAP 3D" />
+					</Toggle>
+				</Container>
+				<Layout classRef="ListLayout" useMargins="true" marginY="25" type="vertical" />
+			</Container>
+			<Text class="input-category-text" text="MOTION" />
+		</Graphic>		
+		
+
+		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+		
+	</Container>
+</Tab>
+
+</cml>

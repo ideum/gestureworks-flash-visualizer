@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+
+<Graphic id="data-panel" class="data-panel">
+	<Container id="labels" class="label-c">
+		
+		<Graphic class="data-txt-bg-a">
+			<Text class="data-txt" stateId="point" text="ID"/>
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">
+			<Text class="data-txt" stateId="point" text="x">
+				<State stateId="cluster" text="n"/>	
+			</Text>	
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-a">
+			<Text class="data-txt" stateId="point" text="y">
+				<State stateId="cluster" text="radius"/>	
+			</Text>					
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">	
+			<Text class="data-txt" stateId="point" text="dx">
+				<State stateId="cluster" text="position"/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-a">	
+			<Text class="data-txt" stateId="point" text="dy">
+				<State stateId="cluster" text="delta-position"/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">	
+			<Text class="data-txt" stateId="point" text="DX">
+				<State stateId="cluster" text="delta-scale"/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-a">	
+			<Text class="data-txt" stateId="point" text="DY">
+				<State stateId="cluster" text="rotation"/>	
+			</Text>			
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">	
+			<Text class="data-txt" stateId="point" text="P">
+				<State stateId="cluster" text="seperation"/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-a">	
+			<Text class="data-txt" stateId="point" text="w">
+				<State stateId="cluster" text=""/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">	
+			<Text class="data-txt" stateId="point" text="h">
+				<State stateId="cluster" text=""/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-a">
+			<Text class="data-txt" stateId="point" text="r">
+				<State stateId="cluster" text=""/>	
+			</Text>				
+		</Graphic>
+		
+		<Graphic class="data-txt-bg-b">
+			<Text class="data-txt" stateId="point" text="">
+				<State stateId="cluster" text=""/>	
+			</Text>					
+		</Graphic>		
+		
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>
+	
+	<Include src="library/cml/includes/Data Containers.cml" />			
+</Graphic>
+
+</cml>

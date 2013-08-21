@@ -1,0 +1,634 @@
+#touch-object {
+	alpha:0.0;
+}
+
+
+#gesture-object {
+	shape:square;
+	color:0x555555;
+	width:400;
+	height:400;
+	alpha:0.5;
+}
+
+
+/** left side **/
+
+#logo-spacer {  
+	shape:line;
+	lineColor:0xd7d7da; 
+	lineStroke:2;
+	height:40; 	
+}
+
+#vis-txt {
+	color:0xFFFFFF;
+	font-size:28;
+	font:OpenSansRegular;
+	selectable:false;
+	autoSize:left;
+}
+
+/**
+.left-panel {
+	x:12;
+	y:60;
+	shape:roundRectangleComplex;
+	color:0xd7d7da; 
+	color:0xFFFFFF;
+	lineStroke:0;
+	width:1247;
+	height:1010;
+	topLeftRadius:5;
+	bottomLeftRadius:10;    
+}
+**/
+
+.left-panel {
+	x:0;
+	y:0;
+	shape:roundRectangleComplex;
+	lineStroke:0;
+	width:1920;
+	height:1080;
+	topLeftRadius:5;
+	bottomLeftRadius:10;    
+}
+
+
+/** right side **/
+
+#drawer {
+	labelFontSize:25;
+	bkgColor:0x000000;
+	handleColor:0x2E2D2D;
+}
+
+#mode-txt {
+	x:1397;
+	y:17;
+	color:0x292626;
+	font-size:15;
+	font:OpenSansBold;
+	width:300;
+	height:16;
+	text-align:left;
+	selectable:false;
+}
+
+.view-btns {
+	fontAlpha:0;
+	x:22;
+	y:50;
+}
+
+.con1 {
+	width:95;
+	height:30;
+}
+.con2 {
+	width:115;
+	height:30;
+}
+
+
+#touch-bg{
+	width:95;
+}
+
+#cluster-bg{
+	width:115;
+}
+
+#gesture-bg{
+	width:115;
+}
+
+
+.btn-bg {
+	shape:roundRectangle;
+	color:0xFFFFFF; 
+	lineStroke:1;
+	lineColor:0xd7d7da;
+	height:30;
+	cornerWidth:10;
+	cornerHeight:10; 
+}
+
+.btn-bg-up {
+	shape:roundRectangle;
+	color:0x8e1d21; 
+	lineStroke:1;
+	lineColor:0xd7d7da;
+	height:30;
+	cornerWidth:10;
+	cornerHeight:10; 
+}
+
+.btn-txt {
+	color:0x292626;
+	font-size:19;
+	font:OpenSansRegular;
+	height:25;
+	text-align:center;
+	selectable:false;
+}
+.btn-txt-up {
+	color:0xFFFFFF;
+	font-size:19;
+	font:OpenSansRegular;
+	height:25;
+	text-align:center;
+	selectable:false;	
+}
+
+#touch-txt {
+	width:95;
+	selectable:false;	
+}
+#cluster-txt {
+	width:115;
+	selectable:false;	
+}
+#gesture-txt {
+	width:115;
+	selectable:false;	
+}
+
+#tabs {
+	/*x:1268*/;
+	/*x:0;
+	y:12;*/
+	backgroundAlpha:0;
+	width:640;
+	height:1100;
+	spacing:0;
+	backgroundColor:0x000000;
+}
+
+.tab {
+	displayColor:0x000000;
+	tabHeight:43;
+	tabWidth:159;
+	spacing:0;
+	tabFontSize:22;
+	displayBottomRightRadius:5;
+	tabLeftRadius:8;
+	tabRightRadius:8;
+}
+
+
+
+.data-panel {
+	x:0;
+	y:14;
+	shape:rectangle;
+	color:0x0f0f0f;
+	alpha:1;
+	lineStroke:0;
+	width:600;
+	height:650;
+	cornerWidth:10;
+	cornerHeight:10;    
+}
+
+
+
+#data-title {
+	x:8;
+	y:8;
+	color:0x292626;
+	font-size:15;
+	font:OpenSansBold;
+	width:300;
+	height:16;
+	letterSpacing:1;
+	text-align:left;
+}
+
+#labels {
+	x:0;
+}
+
+
+/****************************/
+/****************************/
+/****** feedback data ********/
+/****************************/
+/****************************/
+
+.data-txt-bg-a {
+	shape:rectangle;
+	color:0x000000; 
+	lineStroke:0;
+	width:557;
+	height:30;
+	fillAlpha:1;
+}
+
+.data-txt-bg-b {
+	shape:rectangle;
+	color:0x111111; 
+	lineStroke:0;
+	width:557;
+	height:30;
+	fillAlpha:.9;	
+}
+
+.data-txt {
+	y:2.5;
+	color:0xffffff;
+	font-size:15;
+	font:OpenSansBold;
+	width:300;
+	height:30;
+	letterSpacing:1;
+	text-align:left;
+	selectable:false;	
+}
+.data-num {
+	y:2.5;
+	x:4;
+	color:0x107591;
+	font-size:15;
+	width:300;
+	height:30;
+	letterSpacing:1;
+	text-align:left;
+	font:OpenSansBold;
+}
+
+
+/********************/
+/********************/
+/****** graph ********/
+/********************/
+/********************/
+
+#data-graph {
+	shape:roundRectangle;
+	color:0x000000; 
+	lineStroke:0;
+	width:556;
+	height:200;
+	cornerWidth:10;
+	cornerHeight:10;
+    
+}
+
+#graph-axis {
+	y:100;
+	shape:line;
+	width:500;
+	fill:none;
+	lineStroke:2;
+	lineColor:0x107591;
+	alpha:.1;
+	visible:true;
+}
+
+#graph-btns {
+	x:500;
+	y:0;
+	shape:roundRectangleComplex;
+	width:57;
+	height:200;
+	fill:color;
+	color:0x333333;
+	lineStroke:0;
+	lineColor:0xFFFFFF;
+	topRightRadius:4;		
+	bottomRightRadius:4;		
+}
+
+.graph-txt-active {
+	color:0xFFFFFF;
+	font-size:15;
+	font:OpenSansBold;
+	width:57;
+	height:25;
+	letterSpacing:1;
+	text-align:center;
+	selectable:false;	
+}
+
+.graph-txt-inactive {
+	color:0xFFFFFF;
+	font-size:15;
+	font:OpenSansBold;
+	width:57;
+	height:25;
+	letterSpacing:1;
+	text-align:center;
+	selectable:false;	
+	alpha:.5;
+}
+
+.graph-path {
+	y:100;
+	shape:path;
+	width:500;
+	fill:none;
+	lineStroke:2;
+	lineColor:0x107591;
+	alpha:.5
+}
+
+.data-tab-container {
+	backgroundAlpha:0;
+	width:600;
+	height:650;
+	spacing:0;
+	tabLeftRadius:8;
+	tabRightRadius:8	
+}
+
+
+.data-tab {
+	tabFont:OpenSansBold;
+	displayColor:0x0f0f0f;
+	tabHeight:35;
+	tabWidth:0;
+	spacing:0;
+	tabFontSize:18;
+	tabLeftRadius:8;
+	tabRightRadius:8;	
+}
+
+
+.graph-btn-active-top {
+	shape:roundRectangleComplex;
+	color:0x333333; 
+	lineStroke:0;
+	width:57;
+	height:30;
+	topRightRadius:6;
+}
+
+.graph-btn-inactive-top {
+	shape:roundRectangleComplex;
+	color:0x333333; 
+	lineStroke:0;
+	width:57;
+	height:30;
+	topRightRadius:6;
+}
+
+.graph-btn-active {
+	shape:rectangle;
+	color:0x333333; 
+	lineStroke:0;
+	width:57;
+	height:30;
+}
+
+.graph-btn-inactive {
+	shape:rectangle;
+	color:0x333333; 
+	lineStroke:0;
+	width:57;
+	height:30;
+}
+
+
+.panel-graphic-gesture {
+	shape:roundRectangle;
+	color:0x0f0f0f; 
+	lineStroke:0;
+	width:605;
+	cornerWidth:10;
+	cornerHeight:10;  
+	mouseChildren:true;
+	lineColor:0x107591;
+	lineAlpha:.5;
+	fillAlpha:1; 
+	mouseChildren:true;
+}
+
+.panel-graphic-gesture-event {
+	shape:roundRectangle;
+	color:0x000000; 
+	lineStroke:0;
+	width:556;
+	cornerWidth:10;
+	cornerHeight:10;
+	mouseChildren:true;
+	lineColor:0x107591;
+	lineAlpha:.5;
+	fillAlpha:1; 
+	mouseChildren:true;
+	
+}
+
+
+.panel-graphic {
+	shape:roundRectangle;
+	color:0x0f0f0f; 
+	lineStroke:0;
+	width:605;
+	cornerWidth:10;
+	cornerHeight:10;  
+	mouseChildren:true;
+	lineColor:0x107591;
+	lineAlpha:1;
+	fillAlpha:1;
+}
+
+.panel-graphic-2 {
+	shape:roundRectangle;
+	color:0x0f0f0f; 
+	lineStroke:0;
+	width:605;
+	cornerWidth:10;
+	cornerHeight:10;  
+	mouseChildren:true;
+	lineColor:0x107591;
+	lineAlpha:.5;
+	fillAlpha:1;
+	mouseChildren:true;
+}
+
+.sub-input {
+	y:10;
+}
+
+.input-category-graphic {
+	shape:roundRectangle;
+	color:0xAAAAAA; 
+	lineStroke:0;
+	height:30;
+	cornerWidth:7;
+	cornerHeight:7;  
+	mouseChildren:true;
+}
+
+.input-category-text {
+	x:20;
+	y:10;
+	autoSize:left;
+	fontSize:18;
+	color:0xFFFFFF;
+	selectable:false;
+	font:OpenSansBold;
+}
+
+.tab-container {
+	x:15;
+	y:67;	
+}
+#gesture-view {
+	x:15;
+	y:67;	
+}
+
+
+.panel-text {
+	x:38;
+	y:0;
+	autoSize:left;
+	fontSize:16;
+	color:0xFFFFFF;
+	selectable:false;
+}
+
+
+.panel-text-container {
+	x:22;
+	y:40;
+}
+
+
+.check-box {
+	width:25;
+	height:25;
+	backgroundLineStoke:5;
+	backgroundLineColor:0x555555;
+	backgroundColor:0x555555;
+	toggleColor:0xFFAE1F;
+	toggleLineStoke:1.5;
+	toggleLineStoke:1.5;
+}
+
+
+
+
+
+.label-c {
+	y:20;
+}
+
+#status {
+	x:27;
+	y:1035;
+}
+
+#rate-text {
+	x:0;
+	font:OpenSansBold;
+	color:0xFFFFFF;
+}
+#proc-text {
+	x:25;
+	font:OpenSansRegular;
+}
+#tpnts-text {
+	x:290;
+	font:OpenSansBold;
+}
+#tp-text {
+	x:310;
+	font:OpenSansRegular;
+}
+
+.status-txt {
+	color:0xFFFFFF;
+	font-size:15;
+	width:500;
+	height:25;
+	letterSpacing:1;
+	text-align:left;
+	autoSize:left;
+	selectable:false;
+}
+
+
+
+/************************/
+/******** gesture *******/
+/***********************/
+
+.gesture-btn {
+	width:103;
+	height:30;
+}
+
+
+.gesture-btn-inactive {
+	shape:roundRectangle;
+	color:0x555555; 
+	lineStroke:0;
+	width:103;
+	height:30;
+	alpha:.3;
+}
+
+
+.gesture-btn-active {
+	shape:roundRectangle;
+	color:0x555555; 
+	lineStroke:0;
+	width:103;
+	height:30;
+}
+
+.gesture-text {
+	color:0xFFFFFF;
+	font-size:18;
+	font:OpenSansRegular;
+	width:103;
+	height:30;
+	letterSpacing:1;
+	text-align:center;
+	selectable:false;
+}
+
+#gesture-gml-text  {
+	autoSize:left;
+	fontSize:11;
+	color:0xFFFFFF;
+	selectable:false;
+	font:OpenSansBold;
+	wordWrap:true;
+	multiline:true;
+}
+
+#gesture-event-text  {
+	autoSize:left;
+	fontSize:12;
+	color:0xFFFFFF;
+	selectable:false;
+	font:OpenSansBold;
+	wordWrap:true;
+	multiline:true;
+}
+
+.gesture-tabs {
+	backgroundColor:0x0f0f0f;
+	backgroundAlpha:0;
+	width:600;
+	spacing:0;
+	tabLeftRadius:8;
+	tabRightRadius:8;	
+}
+
+
+.gesture-tab {
+	tabFont:OpenSansBold;
+	displayColor:0x0f0f0f;
+	tabHeight:35;
+	tabWidth:0;
+	spacing:0;
+	tabFontSize:18;
+	tabLeftRadius:8;
+	tabRightRadius:8;	
+}

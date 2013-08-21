@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+
+	<Text id="id" class="data-num" text="0.0" />
+	<Text id="x" class="data-num" text="0.0" />
+	<Text id="y" class="data-num" text="0.0" />
+	<Text id="dx" class="data-num" text="0.0" />
+	<Text id="dy" class="data-num" text="0.0" />
+	<Text id="DX" class="data-num" text="0.0" />
+	<Text id="DY" class="data-num" text="0.0" />
+	<Text id="P" class="data-num" text="0.0" />
+	<Text id="w" class="data-num" text="0.0" />
+	<Text id="h" class="data-num" text="0.0" />
+	<Text id="r" class="data-num" text="0.0" />
+	
+</cml>

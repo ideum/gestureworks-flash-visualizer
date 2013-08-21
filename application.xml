@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/3.6">
+  <id>GestureworksVizualizer</id>
+  <versionNumber>1.0</versionNumber>
+  <filename>GestureworksVizualizer</filename>
+  <name>GestureworksVizualizer</name>
+  <initialWindow>
+    <title>GestureworksVizualizer</title>
+    <content>GestureworksVizualizer.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <minimizable>false</minimizable>
+    <maximizable>false</maximizable>
+    <resizable>false</resizable>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+  </initialWindow>
+  <!-- 
+	More options:
+	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
+	-->
+  <supportedProfiles>desktop</supportedProfiles>
+</application>

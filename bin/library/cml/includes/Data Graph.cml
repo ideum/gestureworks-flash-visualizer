@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+
+	<Graphic id="data-graph" class="graph-panel" mouseChildren="true" x="0" y="425">
+		<State x="23" y="45" />
+		<Graphic id="graph-axis" />
+		<Container id="graph-paths">
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+			<Graphic class="graph-path" />
+		</Container>
+		
+		<Graphic id="graph-btns" mouseChildren="true">		
+			
+			<Button id="dx" toggle="up">
+				<Graphic id="btn-inactive" class="graph-btn-inactive-top">
+					<Text class="graph-txt-inactive" text="dx" />
+				</Graphic>
+				<Graphic id="btn-active" class="graph-btn-active-top">
+					<Text class="graph-txt-active" text="dx" />
+				</Graphic>	
+			</Button>
+			
+			<Button id="dy" toggle="up" >
+				<Graphic id="btn-inactive" class="graph-btn-inactive">
+					<Text class="graph-txt-inactive" text="dy" />
+				</Graphic>
+				<Graphic id="btn-active" class="graph-btn-active">
+					<Text class="graph-txt-active" text="dy" />
+				</Graphic>	
+			</Button>		
+			
+			<Layout classRef="ListLayout" useMargins="true" marginY="15" type="vertical" />
+			
+		</Graphic>
+		
+	</Graphic>
+
+</cml>

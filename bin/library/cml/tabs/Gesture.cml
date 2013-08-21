@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+
+<Tab id="gesture" class="tab" title="GESTURE" mouseChildren="true">
+	
+	<Container id="gesture-view"  />
+	
+	<Container id="gesture-container" x="15" y="308" mouseChildren="true">
+			
+		<Graphic id="gesture-panel" class="panel-graphic-gesture" height="180">
+			<Text class="input-category-text" text="GESTURES" />				
+			
+			<Container x="22" y="50">
+				
+				<Button id="n-drag" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="DRAG" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="DRAG" />
+					</Graphic>	
+				</Button>
+	
+				<Button id="n-rotate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="ROTATE" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="ROTATE" />
+					</Graphic>	
+				</Button>
+				
+				<Button id="n-scale" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="SCALE" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="SCALE" />
+					</Graphic>	
+				</Button>		
+				
+				<Button id="n-hold" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="HOLD" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="HOLD" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="n-manipulate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="MANIP" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="MANIP" />
+					</Graphic>	
+				</Button>		
+				
+				<Button id="gesture-tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="TAP" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="TAP" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="n-double_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="DTAP" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="DTAP" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="n-triple_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="TTAP" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="TTAP" />
+					</Graphic>	
+				</Button>						
+				
+				<Button id="n-flick" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="FLICK" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="FLICK" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="n-swipe" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="SWIPE" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="SWIPE" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="n-scroll" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="SCROLL" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="SCROLL" />
+					</Graphic>	
+				</Button>							
+				
+				<Button id="1-finger-pivot" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="PIVOT" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="PIVOT" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="3-finger-tilt" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="TILT" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="TILT" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="5-finger-orient" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="ORIENT" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="ORIENT" />
+					</Graphic>	
+				</Button>	
+				
+				<Button id="stroke" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
+						<Text class="gesture-text" text="STROKE" />
+					</Graphic>
+					<Graphic id="gesture-btn-active" class="gesture-btn-active">
+						<Text class="gesture-text" text="STROKE" />
+					</Graphic>	
+				</Button>					
+				
+				<Layout classRef="GridLayout" useMargins="true" rows="3" columns="5" marginX="5" marginY="5" />
+					
+			</Container>	
+			
+		</Graphic>	
+		<Graphic id="gesture-gml-panel" class="panel-graphic-gesture" height="550" mouseChildren="true">
+
+			<TabbedContainer id="gesture-tabs" class="gesture-tabs" mouseChildren="true" height="500" >
+			
+				<Tab id="gesture-tab" class="gesture-tab" title="FEEDBACK" >
+					<Graphic id="gesture-feedback-panel" class="panel-graphic-gesture" height="250"/>
+					<Graphic id="gesture-event-panel" class="panel-graphic-gesture-event" height="265" x="23" y="0">
+						<Text id="gesture-event-text" width="500" />	
+					</Graphic>
+					<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+				</Tab>
+				
+				<Tab id="gesture-tab" class="gesture-tab" title="GML" >
+					<Text class="input-category-text" text="GML" />	
+					<ScrollPane id="gesture-gml-scrollpane" x="25" y="40" width="528" height="450" paneStroke="0" scrollThickness="30" 
+							gestureReleaseInertia="true" mouseChildren="false" scrollOnPane="true">
+						<ScrollBar buttonFill="0x333333" fill="0x303030" thumbFill="0x555555" width="10" railShape="roundRectangle" cornerHeight="5" cornerWidth="5" buttonVisible="false" />
+						<Text id="gesture-gml-text" width="500" cacheAsBitmap="true" />					
+						<Gesture ref="n-drag-scroll-pane" />
+					</ScrollPane>	
+				</Tab>
+						
+			</TabbedContainer>
+		</Graphic>		
+		
+		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+		
+	</Container>
+
+</Tab>
+
+</cml>

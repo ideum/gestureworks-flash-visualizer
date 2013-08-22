@@ -176,6 +176,17 @@ package
 			add3DScene();
 		}
 		
+		private function setupGestureObject3D():void
+		{
+			gestureObject3D.visible = false;	
+			gestureObject3D.nativeTransform = true;						
+			gestureObject3D.debugDisplay = true;
+			gestureObject3D.gestureEvents = true;
+			gestureObject3D.visualizer.pointDisplay = true;
+			gestureObject3D.visualizer.clusterDisplay = true;			
+			gestureObject3D.visualizer.gestureDisplay = true;
+			gestureObject3D.tiO.timelineOn = true;
+		}
 		
 		private function setupVisualizer(ts0:TouchSprite):void
 		{		
@@ -752,13 +763,8 @@ package
 					dataNumCols[3].childList[7].visible = true;		
 					
 					graphPaths.childList[0].visible = true;	
-
-					
 					break;		
 				
-					
-					
-					
 					
 				case "gesture":
 					if (currentView == "2D") {	

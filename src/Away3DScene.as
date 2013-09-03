@@ -39,7 +39,7 @@ package
 		private var away:Away3DTouchManager;
 		private var plane:Mesh;
 		private var seg:SegmentSet;		
-		private var axis:Trident;
+		private var axis:Away3DTrident;
 		private var currentTab:String;
 		private var scene:Scene3D;
 		
@@ -70,7 +70,7 @@ package
 			lightPicker.lights = [ light ];
 			scene.addChild(light);
 			
-			axis = new Trident(120);
+			axis = new Away3DTrident(120, true, lightPicker);
 			scene.addChild(axis);				
 			
 			material = new ColorMaterial(0x555555);
@@ -90,8 +90,9 @@ package
 			gestureObject.motion3d = motionEnabled; //input			
 			gestureObject.transform3d = true; //output
 			gestureObject.debugDisplay = true;
-				
+			
 			vis3d = new Away3DMotionVisualizer();
+			vis3d.lightPicker = lightPicker;
 			vis3d.init();
 			vis3d.cO = gestureObject.cO;
 			vis3d.trO = gestureObject.trO;
@@ -106,13 +107,26 @@ package
 			
 			switch (tab) {
 				case "point":
+					if (motion) {
+						vis3d.drawPoints = true;
+						vis3d.drawClusters = false;
+						vis3d.drawGestures = false;
+						scene.addChild(vis3d);
+					}
 					break;
 				case "cluster": 
+					if (motion) {
+						vis3d.drawClusters = true;
+						vis3d.drawGestures = false;						
+						scene.addChild(vis3d);
+					}
 					break;
 				case "gesture": 
 					scene.addChild(cube);	
-					if (motion) 
+					if (motion) {
+						vis3d.drawGestures = true;
 						scene.addChild(vis3d);
+					}
 					break;
 			}
 			
@@ -154,7 +168,7 @@ package
 		{		
 			vis3d.updateDisplay();
 			light.position = view.camera.position;
-			view.render();			
+			view.render();					
 		}
 
 	}

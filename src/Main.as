@@ -23,6 +23,7 @@ package
 			super();
 			fullscreen = true;
 			auto = true;
+			leap3D = true;
 			cml = "library/cml/GestureWorks Visualizer.cml";
 			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
 		}

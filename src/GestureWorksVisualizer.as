@@ -3,16 +3,21 @@ package
 	import com.gestureworks.away3d.Away3DMotionVisualizer;
 	import com.gestureworks.cml.element.*;
 	import com.gestureworks.cml.events.*;
+	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
+	import com.gestureworks.managers.TUIOManager;
 	import com.gestureworks.objects.*;
 	import com.gestureworks.utils.FrameRate;
 	import com.gestureworks.utils.GMLParser;
+	import com.leapmotion.leap.events.LeapEvent;
 	import flash.display.Bitmap;
 	import flash.events.*;
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
+	import org.tuio.TuioEvent;
+	import org.tuio.TuioTouchEvent;
 	
 	public class GestureWorksVisualizer extends TouchContainer
 	{
@@ -65,7 +70,7 @@ package
 		private var viewBtns:RadioButtons;
 		private var pointArrayHistory:int;
 		private var pointGraphHistory:Vector.<PointObject>;
-		private var iPointGraphHistory:Vector.<InteractionPointObject>;
+		private var iPointGraphHistory:Vector.<MotionPointObject>;
 		private var graphCommands:Vector.<int>;
 		private var graphCoords:Vector.<Number>;
 		private var gestureBtns:Array;
@@ -277,8 +282,14 @@ package
 		
 		private function setupListeners():void
 		{
-			stage.addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin);
+			touchObject.addEventListener(GWTouchEvent.TOUCH_BEGIN, onTouchBegin);
+			gestureObject.addEventListener(GWTouchEvent.TOUCH_BEGIN, onTouchBegin);
+			
+			//TODO: add and test TUIO touch point removal
+			//TODO: add and test LEAP2D touch point removal
+
 			stage.addEventListener(TouchEvent.TOUCH_END, onTouchEnd);
+			stage.addEventListener(MouseEvent.MOUSE_UP, onTouchEnd);
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);	
 			
 			gestureObject.addEventListener(GWGestureEvent.DRAG, onGesture);
@@ -293,7 +304,7 @@ package
 			gestureObject.addEventListener(GWGestureEvent.STROKE, onGesture);			
 			gestureObject.addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
 			gestureObject.addEventListener(GWGestureEvent.SWIPE, onGesture);			
-			
+						
 			tabs.addEventListener(StateEvent.CHANGE, onTabContainer);
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
 			viewBtns.addEventListener(StateEvent.CHANGE, onViewBtns);	
@@ -361,11 +372,12 @@ package
 		
 		private function setupDataNumbers():void
 		{
-			for (var i:int = 1; i < dataNumCols.length; i+=2) {
+			var i:int;
+			for (i = 1; i < dataNumCols.length; i+=2) {
 				for (var j:int = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
 			}	
-			for (var i:int = 1; i < dataNumCols.length; i++) {
+			for (i = 1; i < dataNumCols.length; i++) {
 				dataNumCols[i].state[0]["x"] = dataNumCols[i].x;
 				dataNumCols[i].state[1] = new Dictionary;
 				dataNumCols[i].state[1]["x"] = dataNumCols[i].x + i * 50;
@@ -375,7 +387,7 @@ package
 		private function setupGraph():void
 		{
 			pointGraphHistory = new Vector.<PointObject>();
-			iPointGraphHistory = new Vector.<InteractionPointObject>();
+			iPointGraphHistory = new Vector.<MotionPointObject>();
 			graphCommands = new Vector.<int>(captureLength);			
 			graphCoords = new Vector.<Number>(captureLength*2);
 			
@@ -546,14 +558,12 @@ package
 		{
 			switch (tabName) {			
 				case "touch": 
-					dataTabTouch.addChild(dataTabContainer);
-				break;
-				
+					dataTabTouch.addChild(dataTabContainer); break;
 				case "motion":
-					dataTabMotion.addChild(dataTabContainer);
-				break;
+					dataTabMotion.addChild(dataTabContainer); break;
 			}
-			currentDataTab = tabName;		
+			currentDataTab = tabName;	
+			StateManager.loadState(currentTab + "-" + currentDataTab);			
 		}		
 		
 		private function onTabContainer(e:StateEvent):void
@@ -572,31 +582,15 @@ package
 			}
 		}
 		
-		private function onTouchBegin(e:TouchEvent):void 
+		private function onTouchBegin(e:GWTouchEvent):void 
 		{
-			var i:int = 0;
-			var len:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
-			if (currentTab == "point") {
-				for (i = 0; i < len; i++) {
-					dataNumCols[i].visible = true;	
-					graphPaths.childList[i].visible = true;
-				}
-			}
 			updatePointCnt();
 		}
 				
-		private function onTouchEnd(e:TouchEvent):void 
-		{
-			var i:int = 0;
-			var len:Number = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;			
-			if (currentTab == "point") {
-				for (i = len; i < 10; i++) {
-					dataContainer.childList[i].visible = false;	
-					graphPaths.childList[i].visible = false;
-					graphPaths.childList[i].clear();
-				}
-			}		
+		private function onTouchEnd(e:*):void 
+		{		
 			updatePointCnt();
+			// clear unused points
 		}		
 		
 		private function onGesture(e:GWGestureEvent):void
@@ -691,7 +685,9 @@ package
 							dataNumCols[i].childList[j].font = "OpenSansRegular";			
 					}		
 					graphPaths.childList[0].visible = false;	
-
+					
+					
+					
 					break;
 				
 	
@@ -772,12 +768,13 @@ package
 					}
 					StateUtils.loadState(data, 0);					
 					StateUtils.loadState(dataGraph, 1);						
-					loadState2(tabName);								
+					loadState2(tabName);	
 					gestureFeedbackPanel.addChild(dataGraph);
 					gestureView.addChild(view);
 					break;					
 			}
-			currentTab = tabName;				
+			currentTab = tabName;		
+			StateManager.loadState(currentTab + "-" + currentDataTab);
 		}
 		
 		private function loadState2(state:String):void 
@@ -786,15 +783,13 @@ package
 			var tog:Toggle;
 			for each (txt in panelText)
 				StateUtils.loadStateById(txt, state);
-			for each (txt in dataText)
-				StateUtils.loadStateById(txt, state);
 			for each(tog in toggle)
 				StateUtils.loadStateById(tog, state);
 			
 			StateUtils.loadStateById(view, state);
 		}
 				
-		private function updatePointCnt():void
+		private function updatePointCnt(e:*=null):void
 		{
 			tpntsText.text = String(gestureObject.pointArray.length + touchObject.pointArray.length);			
 		}
@@ -802,22 +797,24 @@ package
 		private function updatePointData():void
 		{
 			var i:int;
-			var j:int;		
+			var j:int;	
+			var ptArrayLength:int;
+			var historyLength:int;
+						
 			switch (currentDataTab) {			
-				case "touch": 							
-					var ptArrayLength:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
-					var historyLength:int;
+				case "touch": 		
+					ptArrayLength = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
 					
 					for (i = 0; i < ptArrayLength; i++) {
 						dataNumCols[i].childList[0].text = String(touchObject.pointArray[i].id);		
-						dataNumCols[i].childList[1].text = String(touchObject.pointArray[i].x);
-						dataNumCols[i].childList[2].text = String(touchObject.pointArray[i].y);
-						dataNumCols[i].childList[3].text = String(touchObject.pointArray[i].dx);
-						dataNumCols[i].childList[4].text = String(touchObject.pointArray[i].dy);
-						dataNumCols[i].childList[5].text = String(touchObject.pointArray[i].DX);
-						dataNumCols[i].childList[6].text = String(touchObject.pointArray[i].DY);
-						dataNumCols[i].childList[7].text = String(touchObject.pointArray[i].w);	
-						dataNumCols[i].childList[8].text = String(touchObject.pointArray[i].h);		
+						dataNumCols[i].childList[1].text = String(int(touchObject.pointArray[i].x));
+						dataNumCols[i].childList[2].text = String(int(touchObject.pointArray[i].y));
+						dataNumCols[i].childList[3].text = String(int(touchObject.pointArray[i].dx));
+						dataNumCols[i].childList[4].text = String(int(touchObject.pointArray[i].dy));
+						dataNumCols[i].childList[5].text = String(int(touchObject.pointArray[i].DX));
+						dataNumCols[i].childList[6].text = String(int(touchObject.pointArray[i].DY));
+						dataNumCols[i].childList[7].text = String(int(touchObject.pointArray[i].w));	
+						dataNumCols[i].childList[8].text = String(int(touchObject.pointArray[i].h));		
 						
 						pointGraphHistory = touchObject.pointArray[i].history;				
 						historyLength = touchObject.pointArray[i].history.length;
@@ -833,25 +830,31 @@ package
 						
 						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 						graphPaths.childList[i].updateGraphic();
+	
+						dataNumCols[i].visible = true;
 					}
+					// clear unused points
+					for (ptArrayLength; i < 10; i++) {
+						dataNumCols[i].visible = false;
+					}					
 				break;	
-				case "motion": 						
-					var ptArrayLength:int = (gestureObject3D.cO.iPointArray.length <= 10) ? gestureObject3D.cO.iPointArray.length : 10;
-					var historyLength:int;
-										
-					for (i = 0; i < 10; i++) {
-						dataNumCols[i].childList[0].text = String(gestureObject3D.cO.iPointArray[i].id);		
-						dataNumCols[i].childList[1].text = String(gestureObject3D.cO.iPointArray[i].handID);
-						dataNumCols[i].childList[2].text = String(gestureObject3D.cO.iPointArray[i].type);
-						dataNumCols[i].childList[3].text = String(gestureObject3D.cO.iPointArray[i].position.x);
-						dataNumCols[i].childList[4].text = String(gestureObject3D.cO.iPointArray[i].position.y);
-						dataNumCols[i].childList[5].text = String(gestureObject3D.cO.iPointArray[i].position.z);
-						dataNumCols[i].childList[6].text = String(gestureObject3D.cO.iPointArray[i].velocity.x);
-						dataNumCols[i].childList[7].text = String(gestureObject3D.cO.iPointArray[i].velocity.y);	
-						dataNumCols[i].childList[8].text = String(gestureObject3D.cO.iPointArray[i].velocity.z);		
-						
-						iPointGraphHistory = gestureObject3D.cO.iPointArray[i].history;				
-						historyLength = gestureObject3D.cO.iPointArray[i].history.length;
+				
+				case "motion":	
+					ptArrayLength = (gestureObject3D.cO.motionArray.length <= 10) ? gestureObject3D.cO.motionArray.length : 10;
+															
+					for (i = 0; i < ptArrayLength; i++) {						
+						dataNumCols[i].childList[0].text = String(gestureObject3D.cO.motionArray[i].id);		
+						dataNumCols[i].childList[1].text = String(gestureObject3D.cO.motionArray[i].handID);
+						dataNumCols[i].childList[2].text = String(gestureObject3D.cO.motionArray[i].type);
+						dataNumCols[i].childList[3].text = String(int(gestureObject3D.cO.motionArray[i].position.x));
+						dataNumCols[i].childList[4].text = String(int(gestureObject3D.cO.motionArray[i].position.y));
+						dataNumCols[i].childList[5].text = String(int(gestureObject3D.cO.motionArray[i].position.z));
+						dataNumCols[i].childList[6].text = String(int(gestureObject3D.cO.motionArray[i].velocity.x));
+						dataNumCols[i].childList[7].text = String(int(gestureObject3D.cO.motionArray[i].velocity.y));	
+						dataNumCols[i].childList[8].text = String(int(gestureObject3D.cO.motionArray[i].velocity.z));		
+																		
+						iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
+						historyLength = gestureObject3D.cO.motionArray[i].history.length;
 						
 						graphCoords.length = 0;
 						
@@ -864,7 +867,14 @@ package
 						
 						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 						graphPaths.childList[i].updateGraphic();
-					}					
+						
+						dataNumCols[i].visible = true;
+					}
+					// clear unused points
+					for (ptArrayLength; i < 10; i++) {
+						dataNumCols[i].visible = false;
+					}
+					
 				break;	
 			}		
 		}
@@ -904,7 +914,6 @@ package
 					dataNumCols[3].childList[7].text = "(z) " + String(touchObject.cO.separationZ.toFixed(2));
 					
 					var j:int;			
-					
 					var historyLength:int = touchObject.cO.history.length;
 					
 					graphCoords.length = 0;

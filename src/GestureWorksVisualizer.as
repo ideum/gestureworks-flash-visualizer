@@ -65,6 +65,7 @@ package
 		private var viewBtns:RadioButtons;
 		private var pointArrayHistory:int;
 		private var pointGraphHistory:Vector.<PointObject>;
+		private var iPointGraphHistory:Vector.<InteractionPointObject>;
 		private var graphCommands:Vector.<int>;
 		private var graphCoords:Vector.<Number>;
 		private var gestureBtns:Array;
@@ -374,6 +375,7 @@ package
 		private function setupGraph():void
 		{
 			pointGraphHistory = new Vector.<PointObject>();
+			iPointGraphHistory = new Vector.<InteractionPointObject>();
 			graphCommands = new Vector.<int>(captureLength);			
 			graphCoords = new Vector.<Number>(captureLength*2);
 			
@@ -607,7 +609,6 @@ package
 		
 		private function onGestureBtns(e:StateEvent):void
 		{
-			trace("gestureBtn", e.value);
 			gList[e.id] = e.value; 
 			updateGestures();
 		}
@@ -650,7 +651,7 @@ package
 			var i:int;
 			var j:int;
 			
-			for each (var item:Toggle in toggle ) 
+			for each (var item:Toggle in toggle) 
 				StateUtils.saveStateById(item, item.stateId);
 			
 			switch (tabName) {			
@@ -801,36 +802,71 @@ package
 		private function updatePointData():void
 		{
 			var i:int;
-			var j:int;			
-			var ptArrayLength:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
-			var historyLength:int;
-			
-			for (i = 0; i < ptArrayLength; i++) {
-				dataNumCols[i].childList[0].text = String(touchObject.pointArray[i].id);		
-				dataNumCols[i].childList[1].text = String(touchObject.pointArray[i].x);
-				dataNumCols[i].childList[2].text = String(touchObject.pointArray[i].y);
-				dataNumCols[i].childList[3].text = String(touchObject.pointArray[i].dx);
-				dataNumCols[i].childList[4].text = String(touchObject.pointArray[i].dy);
-				dataNumCols[i].childList[5].text = String(touchObject.pointArray[i].DX);
-				dataNumCols[i].childList[6].text = String(touchObject.pointArray[i].DY);
-				dataNumCols[i].childList[7].text = String(touchObject.pointArray[i].w);	
-				dataNumCols[i].childList[8].text = String(touchObject.pointArray[i].h);		
-				
-				pointGraphHistory = touchObject.pointArray[i].history;				
-				historyLength = touchObject.pointArray[i].history.length;
-				
-				graphCoords.length = 0;
-				
-				for (j = 0; j < historyLength; j++) {
-					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), pointGraphHistory[j].dx / 2 );		
-				}
-				for (j = historyLength; j < captureLength; j++) {
-					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
-				}			
-				
-				graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
-				graphPaths.childList[i].updateGraphic();
-			}
+			var j:int;		
+			switch (currentDataTab) {			
+				case "touch": 							
+					var ptArrayLength:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
+					var historyLength:int;
+					
+					for (i = 0; i < ptArrayLength; i++) {
+						dataNumCols[i].childList[0].text = String(touchObject.pointArray[i].id);		
+						dataNumCols[i].childList[1].text = String(touchObject.pointArray[i].x);
+						dataNumCols[i].childList[2].text = String(touchObject.pointArray[i].y);
+						dataNumCols[i].childList[3].text = String(touchObject.pointArray[i].dx);
+						dataNumCols[i].childList[4].text = String(touchObject.pointArray[i].dy);
+						dataNumCols[i].childList[5].text = String(touchObject.pointArray[i].DX);
+						dataNumCols[i].childList[6].text = String(touchObject.pointArray[i].DY);
+						dataNumCols[i].childList[7].text = String(touchObject.pointArray[i].w);	
+						dataNumCols[i].childList[8].text = String(touchObject.pointArray[i].h);		
+						
+						pointGraphHistory = touchObject.pointArray[i].history;				
+						historyLength = touchObject.pointArray[i].history.length;
+						
+						graphCoords.length = 0;
+						
+						for (j = 0; j < historyLength; j++) {
+							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), pointGraphHistory[j].dx / 2 );		
+						}
+						for (j = historyLength; j < captureLength; j++) {
+							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
+						}			
+						
+						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
+						graphPaths.childList[i].updateGraphic();
+					}
+				break;	
+				case "motion": 						
+					var ptArrayLength:int = (gestureObject3D.cO.iPointArray.length <= 10) ? gestureObject3D.cO.iPointArray.length : 10;
+					var historyLength:int;
+										
+					for (i = 0; i < 10; i++) {
+						dataNumCols[i].childList[0].text = String(gestureObject3D.cO.iPointArray[i].id);		
+						dataNumCols[i].childList[1].text = String(gestureObject3D.cO.iPointArray[i].handID);
+						dataNumCols[i].childList[2].text = String(gestureObject3D.cO.iPointArray[i].type);
+						dataNumCols[i].childList[3].text = String(gestureObject3D.cO.iPointArray[i].position.x);
+						dataNumCols[i].childList[4].text = String(gestureObject3D.cO.iPointArray[i].position.y);
+						dataNumCols[i].childList[5].text = String(gestureObject3D.cO.iPointArray[i].position.z);
+						dataNumCols[i].childList[6].text = String(gestureObject3D.cO.iPointArray[i].velocity.x);
+						dataNumCols[i].childList[7].text = String(gestureObject3D.cO.iPointArray[i].velocity.y);	
+						dataNumCols[i].childList[8].text = String(gestureObject3D.cO.iPointArray[i].velocity.z);		
+						
+						iPointGraphHistory = gestureObject3D.cO.iPointArray[i].history;				
+						historyLength = gestureObject3D.cO.iPointArray[i].history.length;
+						
+						graphCoords.length = 0;
+						
+						for (j = 0; j < historyLength; j++) {
+							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].velocity.x / 2 );		
+						}
+						for (j = historyLength; j < captureLength; j++) {
+							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
+						}			
+						
+						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
+						graphPaths.childList[i].updateGraphic();
+					}					
+				break;	
+			}		
 		}
 		
 		private function updateClusterData():void

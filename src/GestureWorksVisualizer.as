@@ -852,7 +852,7 @@ package
 					for (i = 0; i < ptArrayLength; i++) {						
 						dataNumCols[i].childList[0].text = String(gestureObject3D.cO.motionArray[i].id);		
 						dataNumCols[i].childList[1].text = String(gestureObject3D.cO.motionArray[i].handID);
-						dataNumCols[i].childList[2].text = String(gestureObject3D.cO.motionArray[i].type);
+						dataNumCols[i].childList[2].text = String(gestureObject3D.cO.motionArray[i].type).substr(0, 4);
 						dataNumCols[i].childList[3].text = String(int(gestureObject3D.cO.motionArray[i].position.x));
 						dataNumCols[i].childList[4].text = String(int(gestureObject3D.cO.motionArray[i].position.y));
 						dataNumCols[i].childList[5].text = String(int(gestureObject3D.cO.motionArray[i].position.z));

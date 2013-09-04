@@ -6,15 +6,15 @@
 		
 		<Graphic class="data-txt-bg-a">
 			<Text class="data-txt" stateId="point-touch" text="ID">
-				<State stateId="point-motion" text=""/>					
+				<State stateId="point-motion" text="ID"/>					
 				<State stateId="cluster-touch" text="ID"/>	
-				<State stateId="cluster-motion" text=""/>	
+				<State stateId="cluster-motion" text="ID"/>	
 			</Text>	
 		</Graphic>
 		
 		<Graphic class="data-txt-bg-b">
 			<Text class="data-txt" stateId="point-touch" text="x">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="HID"/>									
 				<State stateId="cluster-touch" text="n"/>
 				<State stateId="cluster-motion" text=""/>					
 			</Text>	
@@ -22,7 +22,7 @@
 		
 		<Graphic class="data-txt-bg-a">
 			<Text class="data-txt" stateId="point-touch" text="y">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="type" />									
 				<State stateId="cluster-touch" text="radius"/>	
 				<State stateId="cluster-motion" text=""/>					
 			</Text>					
@@ -30,7 +30,7 @@
 		
 		<Graphic class="data-txt-bg-b">	
 			<Text class="data-txt" stateId="point-touch" text="dx">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="pos-x"/>									
 				<State stateId="cluster-touch" text="position"/>
 				<State stateId="cluster-motion" text=""/>									
 			</Text>				
@@ -38,7 +38,7 @@
 		
 		<Graphic class="data-txt-bg-a">	
 			<Text class="data-txt" stateId="point-touch" text="dy">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="pos-y"/>									
 				<State stateId="cluster-touch" text="delta-position"/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -46,7 +46,7 @@
 		
 		<Graphic class="data-txt-bg-b">	
 			<Text class="data-txt" stateId="point-touch" text="DX">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="pos-z"/>									
 				<State stateId="cluster-touch" text="delta-scale"/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -54,7 +54,7 @@
 		
 		<Graphic class="data-txt-bg-a">	
 			<Text class="data-txt" stateId="point-touch" text="DY">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="dir-x"/>									
 				<State stateId="cluster-touch" text="rotation"/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>			
@@ -62,7 +62,7 @@
 		
 		<Graphic class="data-txt-bg-b">	
 			<Text class="data-txt" stateId="point-touch" text="P">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="dir-y"/>									
 				<State stateId="cluster-touch" text="seperation"/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -70,7 +70,7 @@
 		
 		<Graphic class="data-txt-bg-a">	
 			<Text class="data-txt" stateId="point-touch" text="w">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="dir-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -78,7 +78,7 @@
 		
 		<Graphic class="data-txt-bg-b">	
 			<Text class="data-txt" stateId="point-touch" text="h">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="vel-x"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -86,7 +86,7 @@
 		
 		<Graphic class="data-txt-bg-a">
 			<Text class="data-txt" stateId="point-touch" text="r">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="vel-y"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
 			</Text>				
@@ -94,7 +94,7 @@
 		
 		<Graphic class="data-txt-bg-b">
 			<Text class="data-txt" stateId="point-touch" text="">
-				<State stateId="point-motion" text=""/>									
+				<State stateId="point-motion" text="vel-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>				
 			</Text>					

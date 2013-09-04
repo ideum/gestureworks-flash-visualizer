@@ -12,5 +12,6 @@
 	<Text id="w" class="data-num" text="0.0" />
 	<Text id="h" class="data-num" text="0.0" />
 	<Text id="r" class="data-num" text="0.0" />
+	<Text id="s" class="data-num" text="0.0" />
 	
 </cml>

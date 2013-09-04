@@ -285,8 +285,8 @@ package
 			touchObject.addEventListener(GWTouchEvent.TOUCH_BEGIN, onTouchBegin);
 			gestureObject.addEventListener(GWTouchEvent.TOUCH_BEGIN, onTouchBegin);
 			
-			//TODO: add and test TUIO touch point removal
-			//TODO: add and test LEAP2D touch point removal
+			//TODO: add TUIO touch point removal
+			//TODO: add LEAP2D touch point removal
 
 			stage.addEventListener(TouchEvent.TOUCH_END, onTouchEnd);
 			stage.addEventListener(MouseEvent.MOUSE_UP, onTouchEnd);
@@ -414,7 +414,9 @@ package
 	
 		private function onViewBtns(e:StateEvent):void
 		{
-			if (currentView == e.value) return;
+			if (currentView == e.value) 
+				return;
+			
 			currentView = e.value;
 			
 			switch (e.value) {
@@ -547,9 +549,11 @@ package
 		private function onDataTabContainer(e:StateEvent):void
 		{
 			switch (e.value) {
-				case 0: if (currentDataTab != "touch") 
+				case 0: 
+					if (currentDataTab != "touch") 
 							showDataTab("touch"); break;
-				case 1: if (currentDataTab != "motion") 
+				case 1: 
+					if (currentDataTab != "motion") 
 							showDataTab("motion"); break; 					
 			}
 		}
@@ -571,13 +575,17 @@ package
 			if (e.target != tabs) return;
 			
 			switch (e.value) {
-				case 0: if (currentTab != "mode") 
+				case 0: 
+					if (currentTab != "mode") 
 							showTab("mode"); break;
-				case 1: if (currentTab != "point") 
+				case 1: 
+					if (currentTab != "point") 
 							showTab("point"); break; 
-				case 2: if (currentTab != "cluster") 
+				case 2: 
+					if (currentTab != "cluster") 
 							showTab("cluster"); break;	
-				case 3: if (currentTab != "gesture") 
+				case 3: 
+					if (currentTab != "gesture") 
 							showTab("gesture"); break;					
 			}
 		}
@@ -590,7 +598,6 @@ package
 		private function onTouchEnd(e:*):void 
 		{		
 			updatePointCnt();
-			// clear unused points
 		}		
 		
 		private function onGesture(e:GWGestureEvent):void
@@ -849,9 +856,12 @@ package
 						dataNumCols[i].childList[3].text = String(int(gestureObject3D.cO.motionArray[i].position.x));
 						dataNumCols[i].childList[4].text = String(int(gestureObject3D.cO.motionArray[i].position.y));
 						dataNumCols[i].childList[5].text = String(int(gestureObject3D.cO.motionArray[i].position.z));
-						dataNumCols[i].childList[6].text = String(int(gestureObject3D.cO.motionArray[i].velocity.x));
-						dataNumCols[i].childList[7].text = String(int(gestureObject3D.cO.motionArray[i].velocity.y));	
-						dataNumCols[i].childList[8].text = String(int(gestureObject3D.cO.motionArray[i].velocity.z));		
+						dataNumCols[i].childList[6].text = String(int(gestureObject3D.cO.motionArray[i].direction.x));
+						dataNumCols[i].childList[7].text = String(int(gestureObject3D.cO.motionArray[i].direction.y));	
+						dataNumCols[i].childList[8].text = String(int(gestureObject3D.cO.motionArray[i].direction.z));						
+						dataNumCols[i].childList[9].text = String(int(gestureObject3D.cO.motionArray[i].velocity.x));
+						dataNumCols[i].childList[10].text = String(int(gestureObject3D.cO.motionArray[i].velocity.y));
+						dataNumCols[i].childList[11].text = String(int(gestureObject3D.cO.motionArray[i].velocity.z));
 																		
 						iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
 						historyLength = gestureObject3D.cO.motionArray[i].history.length;
@@ -859,7 +869,7 @@ package
 						graphCoords.length = 0;
 						
 						for (j = 0; j < historyLength; j++) {
-							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].velocity.x / 2 );		
+							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x / 2 );		
 						}
 						for (j = historyLength; j < captureLength; j++) {
 							graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );

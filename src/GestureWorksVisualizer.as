@@ -636,14 +636,14 @@ package
 		
 		private function add2DScene():void
 		{
-			//addChildAt(touchObject, touchObjectIndex);						
+			addChildAt(touchObject, touchObjectIndex);						
 			addChildAt(gestureObject, gestureObjectIndex);
 			showTab(currentTab);
 		}
 		
 		private function remove2DScene():void
 		{
-			//removeChild(touchObject);
+			removeChild(touchObject);
 			removeChild(gestureObject);
 		}			
 		

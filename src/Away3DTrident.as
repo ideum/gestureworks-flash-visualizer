@@ -34,12 +34,12 @@
 			var rad:Number = 2.4;
 			var offset:Number = length*.025;
 			var vectors:Vector.<Vector.<Vector3D>> = new Vector.<Vector.<Vector3D>>();
-			var colors:Vector.<uint> = Vector.<uint>([0xFF0000, 0x00FF00, 0x0000FF]);
+			var colors:Vector.<uint> = Vector.<uint>([0x555555, 0x555555, 0x555555]);
 			
-			var matX:ColorMaterial = new ColorMaterial(0xFF0000, 1);
-			var matY:ColorMaterial = new ColorMaterial(0x00FF00, 1);
-			var matZ:ColorMaterial = new ColorMaterial(0x0000FF, 1);
-			var matOrigin:ColorMaterial = new ColorMaterial(0xCCCCCC, 1);
+			var matX:ColorMaterial = new ColorMaterial(0x555555, 1);
+			var matY:ColorMaterial = new ColorMaterial(0x555555, 1);
+			var matZ:ColorMaterial = new ColorMaterial(0x555555, 1);
+			var matOrigin:ColorMaterial = new ColorMaterial(0x555555, 1);
 			
 			matX.lightPicker = lightPicker;
 			matY.lightPicker = lightPicker;
@@ -110,7 +110,7 @@
 					new Vector3D(0, -scl1, length + scl3),
 					new Vector3D(0, scl1, length + scl2)]);
 				
-				colors.push(0xFF0000, 0x00FF00, 0x0000FF);
+				colors.push(0x555555, 0x555555, 0x555555);
 			}
 			
 			var tridentLindes:TridentLines = new TridentLines(vectors, colors);

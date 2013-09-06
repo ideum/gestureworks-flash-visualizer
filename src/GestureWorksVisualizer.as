@@ -551,10 +551,10 @@ package
 			switch (e.value) {
 				case 0: 
 					if (currentDataTab != "touch") 
-							showDataTab("touch"); break;
+						showDataTab("touch"); break;
 				case 1: 
 					if (currentDataTab != "motion") 
-							showDataTab("motion"); break; 					
+						showDataTab("motion"); break; 					
 			}
 		}
 		
@@ -577,16 +577,16 @@ package
 			switch (e.value) {
 				case 0: 
 					if (currentTab != "mode") 
-							showTab("mode"); break;
+						showTab("mode"); break;
 				case 1: 
 					if (currentTab != "point") 
-							showTab("point"); break; 
+						showTab("point"); break; 
 				case 2: 
 					if (currentTab != "cluster") 
-							showTab("cluster"); break;	
+						showTab("cluster"); break;	
 				case 3: 
 					if (currentTab != "gesture") 
-							showTab("gesture"); break;					
+						showTab("gesture"); break;					
 			}
 		}
 		
@@ -838,10 +838,12 @@ package
 						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 						graphPaths.childList[i].updateGraphic();
 	
+						graphPaths.childList[i].visible = true;						
 						dataNumCols[i].visible = true;
 					}
 					// clear unused points
 					for (ptArrayLength; i < 10; i++) {
+						graphPaths.childList[i].visible = false;
 						dataNumCols[i].visible = false;
 					}					
 				break;	
@@ -877,11 +879,13 @@ package
 						
 						graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 						graphPaths.childList[i].updateGraphic();
-						
+					
+						graphPaths.childList[i].visible = true;
 						dataNumCols[i].visible = true;
 					}
 					// clear unused points
 					for (ptArrayLength; i < 10; i++) {
+						graphPaths.childList[i].visible = false;
 						dataNumCols[i].visible = false;
 					}
 					

@@ -19,7 +19,7 @@
 		
 		<Graphic id="graph-btns" mouseChildren="true">		
 			
-			<Button id="dx" toggle="up">
+			<Button id="dx" toggle="up" initial="btn-active">
 				<Graphic id="btn-inactive" class="graph-btn-inactive-top">
 					<Text class="graph-txt-inactive" text="dx" />
 				</Graphic>

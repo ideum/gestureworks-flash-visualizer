@@ -16,7 +16,7 @@
 			<Text class="data-txt" stateId="point-touch" text="x">
 				<State stateId="point-motion" text="HID"/>									
 				<State stateId="cluster-touch" text="n"/>
-				<State stateId="cluster-motion" text=""/>					
+				<State stateId="cluster-motion" text="n"/>					
 			</Text>	
 		</Graphic>
 		
@@ -24,7 +24,7 @@
 			<Text class="data-txt" stateId="point-touch" text="y">
 				<State stateId="point-motion" text="type" />									
 				<State stateId="cluster-touch" text="radius"/>	
-				<State stateId="cluster-motion" text=""/>					
+				<State stateId="cluster-motion" text="radius"/>					
 			</Text>					
 		</Graphic>
 		
@@ -32,7 +32,7 @@
 			<Text class="data-txt" stateId="point-touch" text="dx">
 				<State stateId="point-motion" text="pos-x"/>									
 				<State stateId="cluster-touch" text="position"/>
-				<State stateId="cluster-motion" text=""/>									
+				<State stateId="cluster-motion" text="position"/>									
 			</Text>				
 		</Graphic>
 		
@@ -40,7 +40,7 @@
 			<Text class="data-txt" stateId="point-touch" text="dy">
 				<State stateId="point-motion" text="pos-y"/>									
 				<State stateId="cluster-touch" text="delta-position"/>	
-				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-motion" text="delta-position"/>													
 			</Text>				
 		</Graphic>
 		
@@ -48,7 +48,7 @@
 			<Text class="data-txt" stateId="point-touch" text="DX">
 				<State stateId="point-motion" text="pos-z"/>									
 				<State stateId="cluster-touch" text="delta-scale"/>	
-				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-motion" text="delta-scale"/>													
 			</Text>				
 		</Graphic>
 		
@@ -56,7 +56,7 @@
 			<Text class="data-txt" stateId="point-touch" text="DY">
 				<State stateId="point-motion" text="dir-x"/>									
 				<State stateId="cluster-touch" text="rotation"/>	
-				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-motion" text="rotation"/>													
 			</Text>			
 		</Graphic>
 		
@@ -64,7 +64,7 @@
 			<Text class="data-txt" stateId="point-touch" text="P">
 				<State stateId="point-motion" text="dir-y"/>									
 				<State stateId="cluster-touch" text="seperation"/>	
-				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-motion" text="seperation"/>													
 			</Text>				
 		</Graphic>
 		

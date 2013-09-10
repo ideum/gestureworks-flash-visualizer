@@ -5,7 +5,7 @@
     <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\GestureWorksVisualizer.swf" />
-    <movie fps="60" />
+    <movie fps="30" />
     <movie width="1920" />
     <movie height="1080" />
     <movie version="11" />
@@ -47,7 +47,7 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="" />
+    <option additional="-use-gpu=true -use-direct-blit=true" />
     <option compilerConstants="" />
     <option minorVersion="" />
   </build>
@@ -83,7 +83,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\Main.as" />
+    <compile path="src\test.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

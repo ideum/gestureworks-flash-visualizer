@@ -1,4 +1,4 @@
-﻿package unit_test
+﻿package 
 {
 	import away3d.containers.*;
 	import away3d.controllers.*;
@@ -20,7 +20,7 @@
 	
 	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "60")]
 		
-	public class utest_away3d_touch extends GestureWorks 
+	public class u_test extends GestureWorks 
 	{
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
@@ -45,7 +45,7 @@
 		
 		private var vis3d:Away3DMotionVisualizer;
 		
-		public function utest_away3d_touch():void 
+		public function u_test():void 
 		{
 			super();
 			fullscreen = true;

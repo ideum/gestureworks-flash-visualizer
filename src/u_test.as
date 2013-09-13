@@ -80,7 +80,7 @@
 			addChild(view);
 		
 
-			cameraController = new HoverController( view.camera, null, 0, 0, -400)
+			cameraController = new HoverController( view.camera, null, 270, -30, -400)
 			//cameraController.yFactor = 1;
 
 			lightPicker = new StaticLightPicker( [] );
@@ -128,7 +128,7 @@
 			
 			ts = away.registerTouchObject(cube);
 
-				ts.gestureList = { "n-drag3D":true, "n-rotate":true, "n-scale":true };
+				ts.gestureList = { "n-drag3D":true, "n-scale3D":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-3d-transform-finger":true  };
@@ -159,18 +159,11 @@
 				
 		private function onDrag(e:GWGestureEvent):void
 		{
-			//var v:Vector3D = away.alignToCamera(cube, e.value.drag_dx, e.value.drag_dy, 0);
-		
+			trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
 			
-			_drag3D.updateDrag(e.value.stageX, e.value.stageY, 400);
-			
-			trace(cube.x, cube.y, cube.z);
-			
-			//cube.x += ;
-			//cube.y += e.value.drag_dy;
-			//cube.z += e.value.drag_dz;
-
-			//cube.z += v.z;	
+			cube.x += e.value.drag_dx;
+			cube.y += e.value.drag_dy;
+			cube.z += e.value.drag_dz;
 		}
 		
 		private function onRotate(e:GWGestureEvent):void
@@ -188,16 +181,19 @@
 		}
 		
 		private function onScale(e:GWGestureEvent):void
-		{			
+		{
+			//trace("drag values:", e.value.scale_dsx, e.value.scale_dsy, e.value.scale_dsz);
+			
 			//cube.scaleX += e.value.scale_dsx;
-			//cube.scaleY += e.value.scale_dsx;
-			//cube.scaleZ += e.value.scale_dsx;
+			//cube.scaleY += e.value.scale_dsy;
+			//cube.scaleZ += e.value.scale_dsz;
 		}
 		
 		private function update():void 
 		{
 			//vis3d.updateDisplay();
 			//_drag3D.updateDrag();
+			
 			light.position = view.camera.position;
 			view.render();			
 		}

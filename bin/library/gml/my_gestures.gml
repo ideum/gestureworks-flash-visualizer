@@ -40,6 +40,47 @@
 			</mapping>
 		</Gesture>
 		
+		<Gesture id="n-drag3D" type="drag">
+			<match>
+				<action>
+					<initial>
+						<cluster point_number="0" point_number_min="1" point_number_max="10"/>
+					</initial>
+				</action>
+			</match>	
+			<analysis>
+				<algorithm class="kinemetric" type="continuous">
+					<library module="drag"/>
+					<returns>
+						<property id="drag_dx" result="dx"/>
+						<property id="drag_dy" result="dy"/>
+						<property id="drag_dz" result="dz"/>
+					</returns>
+				</algorithm>
+			</analysis>	
+			<processing>
+				<inertial_filter>
+					<property ref="drag_dx" active="true" friction="0.9"/>
+					<property ref="drag_dy" active="true" friction="0.9"/>
+					<property ref="drag_dz" active="true" friction="0.9"/>
+				</inertial_filter>
+				<delta_filter>
+					<property ref="drag_dx" active="true" delta_min="0.05" delta_max="500"/>
+					<property ref="drag_dy" active="true" delta_min="0.05" delta_max="500"/>
+					<property ref="drag_dz" active="true" delta_min="0.05" delta_max="500"/>
+				</delta_filter>						
+			</processing>
+			<mapping>
+				<update dispatch_type="continuous">
+					<gesture_event type="drag">
+						<property ref="drag_dx" target="x"/>
+						<property ref="drag_dy" target="y"/>
+						<property ref="drag_dz" target="z"/>
+					</gesture_event>
+				</update>
+			</mapping>
+		</Gesture>
+		
 		<Gesture id="n-rotate" type="rotate">
 			<match>
 				<action>
@@ -109,6 +150,47 @@
 				</update>
 			</mapping>
 		</Gesture>
+		
+		<Gesture id="n-scale3D" type="scale">
+			<match>
+				<action>
+					<initial>
+						<cluster point_number="0" point_number_min="2" point_number_max="10"/>
+					</initial>
+				</action>
+			</match>
+			<analysis>
+				<algorithm class="kinemetric" type="continuous">
+					<library module="scale"/>
+					<returns>
+						<property id="scale_dsx" result="ds"/>
+						<property id="scale_dsy" result="ds"/>
+						<property id="scale_dsz" result="ds"/>
+					</returns>
+				</algorithm>
+			</analysis>	
+			<processing>
+				<inertial_filter>
+					<property ref="scale_dsx" active="true" friction="0.9"/>
+					<property ref="scale_dsy" active="true" friction="0.9"/>
+					<property ref="scale_dsz" active="true" friction="0.9"/>
+				</inertial_filter>
+				<delta_filter>
+					<property ref="scale_dsx" active="true" delta_min="0.0005" delta_max="0.5"/>
+					<property ref="scale_dsy" active="true" delta_min="0.0005" delta_max="0.5"/>
+					<property ref="scale_dsz" active="true" delta_min="0.0005" delta_max="0.5"/>
+				</delta_filter>						
+			</processing>
+			<mapping>
+				<update dispatch_type="continuous">
+					<gesture_event type="scale">
+						<property ref="scale_dsx" target="scaleX"/>
+						<property ref="scale_dsy" target="scaleY"/>
+						<property ref="scale_dsz" target="scaleZ"/>
+					</gesture_event>
+				</update>
+			</mapping>
+		</Gesture>		
 				
 	</Gesture_set>	
 		<Gesture_set gesture_set_name="3d-motion-gestures">	

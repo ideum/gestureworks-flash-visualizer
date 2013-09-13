@@ -49,7 +49,7 @@
 		{
 			super();
 			fullscreen = true;
-			gml = "library/gml/my_motion_gestures.gml";
+			gml = "library/gml/my_gestures.gml";
 		}
 				
 		
@@ -80,7 +80,7 @@
 			addChild(view);
 		
 
-			cameraController = new HoverController( view.camera, null, 45, 0, -400)
+			cameraController = new HoverController( view.camera, null, 0, 0, -400)
 			//cameraController.yFactor = 1;
 
 			lightPicker = new StaticLightPicker( [] );
@@ -121,21 +121,14 @@
 			
 			away = new Away3DTouchManager(view);
 			
-			//var v:Vector3D = away.cartesianToSpherical(new Vector3D(.707, .707, .707) );
-			//
-			//trace( v );
-			//trace( away.sphericalToCartesian( v ) );
-			//trace( v.x*MathConsts.RADIANS_TO_DEGREES, v.y*MathConsts.RADIANS_TO_DEGREES, v.z*MathConsts.RADIANS_TO_DEGREES );
-						
-	
-			_drag3D = new TouchDrag3D(view, ObjectContainer3D(cube));
+			_drag3D = new TouchDrag3D(view, ObjectContainer3D(cube), Drag3D.PLANE_XY);
 			_drag3D.useRotations = true;
-			_drag3D.debug = true;
+			//_drag3D.debug = true;
 			//return;
 			
 			ts = away.registerTouchObject(cube);
 
-				ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true };
+				ts.gestureList = { "n-drag3D":true, "n-rotate":true, "n-scale":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-3d-transform-finger":true  };
@@ -147,7 +140,6 @@
 				
 				ts.transform3d = true; //output
 				ts.motion3d = false //input
-				//ts.debugDisplay = true;
 				
 				//ts.visualizer.pointDisplay = true;
 				//ts.visualizer.clusterDisplay = true;
@@ -170,11 +162,15 @@
 			//var v:Vector3D = away.alignToCamera(cube, e.value.drag_dx, e.value.drag_dy, 0);
 		
 			
-			//cube.x += v.x;
-			//cube.y += v.y;
+			_drag3D.updateDrag(e.value.stageX, e.value.stageY, 400);
+			
+			trace(cube.x, cube.y, cube.z);
+			
+			//cube.x += ;
+			//cube.y += e.value.drag_dy;
+			//cube.z += e.value.drag_dz;
+
 			//cube.z += v.z;	
-			
-			
 		}
 		
 		private function onRotate(e:GWGestureEvent):void

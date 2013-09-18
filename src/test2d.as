@@ -17,6 +17,7 @@
 		{
 			super();
 			fullscreen = true;
+			auto = "true";
 			gml = "library/gml/my_gestures.gml";
 		}
 			

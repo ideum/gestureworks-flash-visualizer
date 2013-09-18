@@ -65,9 +65,9 @@
 					<property ref="drag_dz" active="true" friction="0.9"/>
 				</inertial_filter>
 				<delta_filter>
-					<property ref="drag_dx" active="true" delta_min="0.05" delta_max="500"/>
-					<property ref="drag_dy" active="true" delta_min="0.05" delta_max="500"/>
-					<property ref="drag_dz" active="true" delta_min="0.05" delta_max="500"/>
+					<property ref="drag_dx" active="true" delta_min="0" delta_max="500"/>
+					<property ref="drag_dy" active="true" delta_min="0" delta_max="500"/>
+					<property ref="drag_dz" active="true" delta_min="0" delta_max="500"/>
 				</delta_filter>						
 			</processing>
 			<mapping>
@@ -81,6 +81,51 @@
 			</mapping>
 		</Gesture>
 		
+		<Gesture id="n-rotate3D" type="rotate">
+			<match>
+				<action>
+					<initial>
+						<cluster point_number="0" point_number_min="2" point_number_max="10"/>
+					</initial>
+				</action>
+			</match>
+			<analysis>
+				<algorithm class="kinemetric" type="continuous">
+					<library module="rotate"/>
+					<returns>
+						<property id="rotate_dtheta" result="dtheta"/>
+						<property id="rotate_dthetaX" result="dthetaX"/>
+						<property id="rotate_dthetaY" result="dthetaY"/>
+						<property id="rotate_dthetaZ" result="dthetaZ"/>
+					</returns>
+				</algorithm>
+			</analysis>	
+			<processing>
+				<inertial_filter>
+					<property ref="rotate_dtheta" active="true" friction="0.9"/>
+					<property ref="rotate_dthetaX" active="true" friction="0.9"/>
+					<property ref="rotate_dthetaY" active="true" friction="0.9"/>
+					<property ref="rotate_dthetaZ" active="true" friction="0.9"/>
+				</inertial_filter>
+				<delta_filter>
+					<property ref="rotate_dtheta" active="true" delta_min="0" delta_max="20"/>
+					<property ref="rotate_dthetaX" active="true" delta_min="0" delta_max="20"/>
+					<property ref="rotate_dthetaY" active="true" delta_min="0" delta_max="20"/>
+					<property ref="rotate_dthetaZ" active="true" delta_min="0" delta_max="20"/>
+				</delta_filter>
+			</processing>
+			<mapping>
+				<update dispatch_type="continuous">
+					<gesture_event type="rotate">
+						<property ref="rotate_dtheta" target="rotation"/>
+						<property ref="rotate_dthetaX" target="rotationX"/>
+						<property ref="rotate_dthetaY" target="rotationY"/>
+						<property ref="rotate_dthetaZ" target="rotationZ"/>
+					</gesture_event>
+				</update>
+			</mapping>
+		</Gesture>
+
 		<Gesture id="n-rotate" type="rotate">
 			<match>
 				<action>
@@ -176,9 +221,9 @@
 					<property ref="scale_dsz" active="true" friction="0.9"/>
 				</inertial_filter>
 				<delta_filter>
-					<property ref="scale_dsx" active="true" delta_min="0.0005" delta_max="0.5"/>
-					<property ref="scale_dsy" active="true" delta_min="0.0005" delta_max="0.5"/>
-					<property ref="scale_dsz" active="true" delta_min="0.0005" delta_max="0.5"/>
+					<property ref="scale_dsx" active="true" delta_min="0" delta_max="0.5"/>
+					<property ref="scale_dsy" active="true" delta_min="0" delta_max="0.5"/>
+					<property ref="scale_dsz" active="true" delta_min="0" delta_max="0.5"/>
 				</delta_filter>						
 			</processing>
 			<mapping>

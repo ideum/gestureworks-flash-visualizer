@@ -5,6 +5,8 @@
 	import away3d.core.math.*;
 	import away3d.debug.*;
 	import away3d.entities.*;
+	import away3d.events.MouseEvent3D;
+	import away3d.events.TouchEvent3D;
 	import away3d.lights.*;
 	import away3d.materials.*;
 	import away3d.materials.lightpickers.*;
@@ -30,12 +32,13 @@
 		protected var lightPicker:StaticLightPicker;
 		protected var cameraController:HoverController;
 		private var light:PointLight;
-		private var _mouseIsDown:Boolean;
-		private var _lastPanAngle:Number;
-		private var _lastTiltAngle:Number;
-		private var _lastMouseX:Number;
-		private var _lastMouseY:Number;
-
+		private var mouseIsDown:Boolean;
+		private var lastPanAngle:Number;
+		private var lastTiltAngle:Number;
+		private var lastMouseX:Number;
+		private var lastMouseY:Number;
+		private var tiltIncrement:Number = 0;
+		private var panIncrement:Number = 0;
 		private var cube:Mesh;
 		private var inactiveMaterial:ColorMaterial;
 		private var activeMaterial:ColorMaterial;
@@ -80,7 +83,7 @@
 			addChild(view);
 		
 
-			cameraController = new HoverController( view.camera, null, 270, -30, -400)
+			cameraController = new HoverController( view.camera, null, 0, 0, -400)
 			//cameraController.yFactor = 1;
 
 			lightPicker = new StaticLightPicker( [] );
@@ -128,7 +131,7 @@
 			
 			ts = away.registerTouchObject(cube);
 
-				ts.gestureList = { "n-drag3D":true, "n-scale3D":true };
+				ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-3d-transform-finger":true  };
@@ -154,46 +157,56 @@
 				//vis3d.cO = ts.cO;
 				//vis3d.trO = ts.trO;
 			//view.scene.addChild(vis3d);
-
+			//stage.addEventListener( MouseEvent.MOUSE_DOWN, stageMouseDownHandler );
+			//stage.addEventListener( MouseEvent.MOUSE_UP, stageMouseUpHandler );
+			//stage.addEventListener( MouseEvent.MOUSE_WHEEL, stageMouseWheelHandler );
 		}
 				
 		private function onDrag(e:GWGestureEvent):void
 		{
-			trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
+			//trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
 			
-			cube.x += e.value.drag_dx;
-			cube.y += e.value.drag_dy;
-			cube.z += e.value.drag_dz;
+			var length:Number = view.camera.project(cube.scenePosition).length;
+
+			cube.x += e.value.drag_dx * length;
+			cube.y += e.value.drag_dx * length;
+			cube.z += e.value.drag_dx * length;
 		}
 		
 		private function onRotate(e:GWGestureEvent):void
-		{			
-			var vec:Vector3D = new Vector3D(e.value.rotate_dtheta, e.value.rotate_dtheta, e.value.rotate_dtheta);
-			
-			//if (rot.x < 0)
-				//rot.x = 270 + rot.x * -1;
-			//else if (rot.y < 0)
-				//rot.y = 270 + rot.y * -1;
-			//else if (rot.z < 0)
-				//rot.z = 270 + rot.z * -1;
-				
-			cube.rotationZ += vec.x;
+		{
+			//trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);				
+			//cube.rotationX += e.value.rotate_dthetaX;
+			//cube.rotationY += e.value.rotate_dthetaY;
+			//cube.rotationZ += e.value.rotate_dthetaZ;
+
+			//cube.rotationX += e.value.rotate_dtheta;
+			//cube.rotationY += e.value.rotate_dtheta;
+			cube.rotationZ += e.value.rotate_dtheta;
+
 		}
 		
 		private function onScale(e:GWGestureEvent):void
 		{
-			//trace("drag values:", e.value.scale_dsx, e.value.scale_dsy, e.value.scale_dsz);
+			//trace("scale values:", e.value.scale_dsx, e.value.scale_dsy, e.value.scale_dsz);
 			
-			//cube.scaleX += e.value.scale_dsx;
-			//cube.scaleY += e.value.scale_dsy;
-			//cube.scaleZ += e.value.scale_dsz;
+			var length:Number = view.camera.project(cube.scenePosition).length;
+			
+			cube.scaleX += e.value.scale_dsx * length;
+			cube.scaleY += e.value.scale_dsy * length;
+			cube.scaleZ += e.value.scale_dsz * length;
 		}
 		
 		private function update():void 
 		{
 			//vis3d.updateDisplay();
 			//_drag3D.updateDrag();
-			
+			if( mouseIsDown ) {
+				cameraController.panAngle = 0.4 * ( view.mouseX - lastMouseX ) + lastPanAngle;
+				cameraController.tiltAngle = 0.4 * ( view.mouseY - lastMouseY ) + lastTiltAngle;
+			}
+			cameraController.panAngle += panIncrement;
+			cameraController.tiltAngle += tiltIncrement;			
 			light.position = view.camera.position;
 			view.render();			
 		}
@@ -203,7 +216,26 @@
 			update();
 		}		
 	
-		
+
+		private function stageMouseDownHandler( event:MouseEvent ):void {
+			mouseIsDown = true;
+			lastPanAngle = cameraController.panAngle; 
+			lastTiltAngle = cameraController.tiltAngle;
+			lastMouseX = event.stageX;
+			lastMouseY = event.stageY;
+		}
+
+		private function stageMouseWheelHandler(  event:MouseEvent  ):void {
+			//cameraController.distance -= event.delta * 5;
+			if( cameraController.distance < 150 )
+				cameraController.distance = 150;
+			else if( cameraController.distance > 2000 )
+				cameraController.distance = 2000;
+		}
+
+		private function stageMouseUpHandler(  event:MouseEvent  ):void {
+			mouseIsDown = false;
+		}		
 	}
 	
 }

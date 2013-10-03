@@ -83,7 +83,7 @@
 			addChild(view);
 		
 
-			cameraController = new HoverController( view.camera, null, 0, 0, -400)
+			cameraController = new HoverController( view.camera, null, -30, -60, -400)
 			//cameraController.yFactor = 1;
 
 			lightPicker = new StaticLightPicker( [] );
@@ -104,9 +104,7 @@
 		
 		private var plane:Mesh;
 		private var seg:SegmentSet;
-		
-		private var _drag3D:TouchDrag3D;
-		
+				
 		private function onSetup():void 
 		{	
 			activeMaterial = new ColorMaterial( 0xFF0000 );
@@ -122,14 +120,10 @@
 				cube.mouseEnabled = true;
 			view.scene.addChild(cube);
 			
-			away = new Away3DTouchManager(view);
+			Away3DTouchManager.initialize();
 			
-			_drag3D = new TouchDrag3D(view, ObjectContainer3D(cube), Drag3D.PLANE_XY);
-			_drag3D.useRotations = true;
-			//_drag3D.debug = true;
-			//return;
 			
-			ts = away.registerTouchObject(cube);
+			ts = Away3DTouchManager.registerTouchObject(cube);
 
 				ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
@@ -169,8 +163,8 @@
 			var length:Number = view.camera.project(cube.scenePosition).length;
 
 			cube.x += e.value.drag_dx * length;
-			cube.y += e.value.drag_dx * length;
-			cube.z += e.value.drag_dx * length;
+			cube.y += e.value.drag_dy * length;
+			cube.z += e.value.drag_dz * length;
 		}
 		
 		private function onRotate(e:GWGestureEvent):void
@@ -182,7 +176,9 @@
 
 			//cube.rotationX += e.value.rotate_dtheta;
 			//cube.rotationY += e.value.rotate_dtheta;
-			cube.rotationZ += e.value.rotate_dtheta;
+			
+			var length:Number = view.camera.project(cube.scenePosition).length;
+			cube.rotationZ += e.value.rotate_dtheta / 3;
 
 		}
 		

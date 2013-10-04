@@ -27,7 +27,7 @@ package
 		
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var view:View3D;
+		private var view3D:View3D;
 		private var lightPicker:StaticLightPicker;
 		private var cameraController:HoverController;
 		private var light:PointLight;
@@ -50,18 +50,18 @@ package
 		
 		override public function init():void 
 		{			
-			view = new View3D();
-			scene = view.scene;
+			view3D = new View3D();
+			scene = view3D.scene;
 
-			view.width = GestureWorks.application.stageWidth;
-			view.height = GestureWorks.application.stageHeight;
-			view.backgroundColor = 0x000000;			
-			view.antiAlias = 4;
-			view.camera.lens.far = 15000;
-			view.forceMouseMove = true;
-			addChild(view);
+			view3D.width = GestureWorks.application.stageWidth;
+			view3D.height = GestureWorks.application.stageHeight;
+			view3D.backgroundColor = 0x000000;			
+			view3D.antiAlias = 4;
+			view3D.camera.lens.far = 15000;
+			view3D.forceMouseMove = true;
+			addChild(view3D);
 			
-			cameraController = new HoverController(view.camera, null, 0, 0, -400)
+			cameraController = new HoverController(view3D.camera, null, 0, 0, -400)
 			cameraController.yFactor = 1;
 			
 			lightPicker = new StaticLightPicker( [] );
@@ -80,8 +80,8 @@ package
 			cube.mouseEnabled = true;
 			scene.addChild(cube);
 
-			away = new Away3DTouchManager(view);
-			gestureObject = away.registerTouchObject(cube);
+			Away3DTouchManager.initialize();
+			gestureObject = Away3DTouchManager.registerTouchObject(cube);
 			gestureObject.activated = true;
 			gestureObject.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
 			gestureObject.nativeTransform = true;
@@ -130,7 +130,7 @@ package
 					break;
 			}
 			
-			addChild(view);	
+			addChild(view3D);	
 			cameraController.tiltAngle = -45;				
 			currentTab = tab;			
 		}		
@@ -151,7 +151,7 @@ package
 			}
 			
 			currentTab = tab;
-			view.render();
+			view3D.render();
 		}		
 		
 		public function removeView():void
@@ -160,15 +160,15 @@ package
 			if (scene.contains(axis)) scene.removeChild(axis);			
 			if (scene.contains(cube)) scene.removeChild(cube);
 			if (scene.contains(vis3d)) scene.removeChild(vis3d);
-			view.render();
-			if (contains(view)) removeChild(view);
+			view3D.render();
+			if (contains(view3D)) removeChild(view3D);
 		}
 				
 		public function update():void 
 		{		
 			vis3d.updateDisplay();
-			light.position = view.camera.position;
-			view.render();					
+			light.position = view3D.camera.position;
+			view3D.render();					
 		}
 
 	}

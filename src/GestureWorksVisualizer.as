@@ -48,7 +48,7 @@ package
 		private var pointTab:Tab;
 		private var clusterTab:Tab;
 		private var gestureTab:Tab;
-		private var view:Graphic;
+		private var viewg:Graphic;
 		private var data:Graphic;
 		private var dataTabMotion:Tab;
 		private var dataTabTouch:Tab;
@@ -129,7 +129,7 @@ package
 			clusterTab = document.getElementById("cluster");
 			gestureTab = document.getElementById("gesture");
 			tpntsText = document.getElementById("tpnts-text");
-			view = document.getElementById("view");
+			viewg = document.getElementById("view");
 			data = document.getElementById("data");
 			dataTabMotion = document.getElementById("data-tab-motion");
 			dataTabTouch = document.getElementById("data-tab-touch");
@@ -671,7 +671,7 @@ package
 					touchObject.visualizer.clusterDisplay = false;										
 					touchObject.visualizer.gestureDisplay = false;						
 					pointTab.addChild(pointContainer);	
-					pointContainer.addChild(view);
+					pointContainer.addChild(viewg);
 					pointContainer.addChild(data);
 					dataTabContainer.addChild(dataGraph);					
 				
@@ -709,7 +709,7 @@ package
 						away3DScene.updateView(tabName, motion);
 					}					
 					clusterTab.addChild(pointContainer);					
-					pointContainer.addChild(view);
+					pointContainer.addChild(viewg);
 					pointContainer.addChild(data);
 					dataTabContainer.addChild(dataGraph);
 					
@@ -777,7 +777,7 @@ package
 					StateUtils.loadState(dataGraph, 1);						
 					loadState2(tabName);	
 					gestureFeedbackPanel.addChild(dataGraph);
-					gestureView.addChild(view);
+					gestureView.addChild(viewg);
 					break;					
 			}
 			currentTab = tabName;		
@@ -793,7 +793,7 @@ package
 			for each(tog in toggle)
 				StateUtils.loadStateById(tog, state);
 			
-			StateUtils.loadStateById(view, state);
+			StateUtils.loadStateById(viewg, state);
 		}
 				
 		private function updatePointCnt(e:*=null):void

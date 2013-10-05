@@ -71,7 +71,7 @@
 				view.height = HEIGHT;
 				view.antiAlias = 4;
 				view.camera.lens.far = 15000;
-				view.forceMouseMove = true;
+				//view.forceMouseMove = true;
 			addChild(view);
 		
 			cameraController = new HoverController( view.camera, null, 0, 0, -400);
@@ -104,31 +104,32 @@
 			
 			Away3DTouchManager.initialize();			
 			ts = Away3DTouchManager.registerTouchObject(cube);
-				ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
+				//ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
-				//ts.gestureList = { "n-3d-transform-finger":true  };
+				ts.gestureList = { "n-3d-transform-finger":true };
+				//ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
 				//ts.gestureList = { "n-drag-inertia":true };
 				ts.nativeTransform = true;
 				//ts.disableAffineTransform = true;
 				ts.gestureReleaseInertia = true;
 				ts.gestureEvents = true;
 				ts.transform3d = true; //output
-				ts.motion3d = false //input
+				ts.motion3d = true //input
 				
-				//ts.visualizer.pointDisplay = true;
-				//ts.visualizer.clusterDisplay = true;
-				//ts.visualizer.gestureDisplay = true;
+				ts.visualizer.pointDisplay = true;
+				ts.visualizer.clusterDisplay = true;
+				ts.visualizer.gestureDisplay = true;
 				
 				//ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 				//ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 				//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
 				
-			//vis3d = new Away3DMotionVisualizer();
-				//vis3d.init();
-				//vis3d.cO = ts.cO;
-				//vis3d.trO = ts.trO;
-			//view.scene.addChild(vis3d);
+			vis3d = new Away3DMotionVisualizer();
+				vis3d.cO = ts.cO;
+				vis3d.trO = ts.trO;
+				vis3d.init();				
+			view.scene.addChild(vis3d);
 			
 			//stage.addEventListener( MouseEvent.MOUSE_DOWN, stageMouseDownHandler );
 			//stage.addEventListener( MouseEvent.MOUSE_UP, stageMouseUpHandler );
@@ -163,7 +164,7 @@
 		
 		private function update():void 
 		{
-			//vis3d.updateDisplay();
+			vis3d.updateDisplay();
 			if( mouseIsDown ) {
 				cameraController.panAngle = 0.4 * ( view.mouseX - lastMouseX ) + lastPanAngle;
 				cameraController.tiltAngle = 0.4 * ( view.mouseY - lastMouseY ) + lastTiltAngle;

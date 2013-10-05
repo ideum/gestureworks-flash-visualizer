@@ -4,7 +4,7 @@
 	<Container id="point-container" class="tab-container">
 		
 		<!-- VIEW OPTIONS -->
-		<Graphic id="view" class="panel-graphic" 	stateId="point" height="150">
+		<Graphic id="viewg" class="panel-graphic" 	stateId="point" height="150">
 			<State 									stateId="cluster" height="220" />
 			<State 									stateId="gesture" height="220" />
 								

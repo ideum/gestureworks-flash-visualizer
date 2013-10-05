@@ -129,7 +129,7 @@ package
 			clusterTab = document.getElementById("cluster");
 			gestureTab = document.getElementById("gesture");
 			tpntsText = document.getElementById("tpnts-text");
-			viewg = document.getElementById("view");
+			viewg = document.getElementById("viewg");
 			data = document.getElementById("data");
 			dataTabMotion = document.getElementById("data-tab-motion");
 			dataTabTouch = document.getElementById("data-tab-touch");
@@ -338,8 +338,8 @@ package
 		
 		private function setupTabs():void
 		{
-			tabs.selectTabByIndex(0);
-			dataTabs.selectTabByIndex(0);			
+			//tabs.selectTabByIndex(0);
+			//dataTabs.selectTabByIndex(0);			
 		}
 		
 		private function setupToggles():void
@@ -692,9 +692,6 @@ package
 							dataNumCols[i].childList[j].font = "OpenSansRegular";			
 					}		
 					graphPaths.childList[0].visible = false;	
-					
-					
-					
 					break;
 				
 	

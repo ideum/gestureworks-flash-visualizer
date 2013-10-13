@@ -8,13 +8,9 @@ package
 	import com.gestureworks.cml.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
-	import flash.display.DisplayObjectContainer;
 	import flash.events.*;
 	import flash.utils.*;
-	//import com.gestureworks.core.GestureWorksAIR; GestureWorksAIR;	
-	
 	import GestureWorksVisualizer; GestureWorksVisualizer;
-	import Away3DScene; Away3DScene;
 	
 	public class Main extends GestureWorks
 	{
@@ -23,8 +19,8 @@ package
 			super();
 			fullscreen = true;
 			simulator = true;
-			leap3D = true;
-			cml = "library/cml/GestureWorks Visualizer.cml";
+			//leap3D = true;
+			cml = "library/cml/index.cml";
 			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
 		}
 		
@@ -40,7 +36,5 @@ package
 			document.getElementById("gw-visualizer").setup(this);
 			document.getElementById("gw-visualizer").scale *= stage.stageWidth / 1920; 
 		}
-
-		
 	}
 }

@@ -30,6 +30,7 @@
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
+    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
@@ -57,13 +58,8 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="..\..\lib\gml_ext.swc" />
-    <element path="..\..\lib\cml_ext\as3corelib.swc" />
-    <element path="..\..\lib\cml_ext\flickr.swc" />
-    <element path="..\..\lib\cml_ext\greensock.swc" />
-    <element path="..\..\lib\cml_ext\modestmaps.swc" />
-    <element path="..\..\lib\cml_ext\openzoom.swc" />
-    <element path="..\..\lib\cml_ext\xmp.swc" />
+    <element path="..\..\cml_core\lib\cml_ext.swc" />
+    <element path="..\..\gml_core\lib\gml_ext.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -83,11 +79,11 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\u_test.as" />
+    <compile path="src\u_test\u_test3d_hover_cam.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
-    <!-- example: <hidden path="..." /> -->
+    <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />
@@ -97,6 +93,7 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Default" />
+    <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
   <storage>

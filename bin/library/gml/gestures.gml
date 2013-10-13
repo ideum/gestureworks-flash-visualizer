@@ -712,8 +712,8 @@
 												<library module="swipe" />
 												
 												<variables>
-													<property id="swipe_dx" var="etm_ddx" return="etm_dx" var_max="1"/>
-													<property id="swipe_dy" var="etm_ddy" return="etm_dy" var_max="1"/>
+													<property id="swipe_dx" var="etm_ddx" return="etm_dx" var_min="2"/>
+													<property id="swipe_dy" var="etm_ddy" return="etm_dy" var_min="2"/>
 												</variables>
 												<returns>
 													<property id="swipe_dx" result="etm_dx"/>

@@ -170,11 +170,7 @@ package
 			gestureObject.visible = false;	
 			gestureObject.nativeTransform = true;						
 			gestureObject.debugDisplay = true;
-			gestureObject.gestureEvents = true;
-			gestureObject.visualizer.pointDisplay = true;
-			gestureObject.visualizer.clusterDisplay = true;			
-			gestureObject.visualizer.gestureDisplay = true;
-			gestureObject.tiO.timelineOn = true;
+
 			gestureObject.state[0]['x'] = stage.stageWidth / 2 - gestureObject.width / 2;
 			gestureObject.state[0]['y'] = stage.stageHeight / 2 - gestureObject.height / 2;
 			remove3DScene();
@@ -991,7 +987,6 @@ package
 			
 		}
 				
-		
 		private function updateGestureData():void
 		{
 			var i:int;			
@@ -1046,10 +1041,10 @@ package
 						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   triple_tap_x: " + ge.value.triple_tap_x.toFixed(2) + "   triple_tap_y: " + ge.value.triple_tap_y.toFixed(2) + "\n";
 					break;
 					case "n-flick": 
-						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   flick_dx: " + ge.value.triple_tap_x.toFixed(2) + "   flick_dy: " + ge.value.triple_tap_y.toFixed(2) + "\n";
+						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   flick_dx: " + ge.value.flick_dx.toFixed(2) + "   flick_dy: " + ge.value.flick_dy.toFixed(2) + "\n";
 					break;	
 					case "n-swipe": 
-						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   swipe_dx: " + ge.value.triple_tap_x.toFixed(2) + "   swipe_dy: " + ge.value.triple_tap_y.toFixed(2) + "\n";
+						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   swipe_dx: " + ge.value.swipe_dx.toFixed(2) + "   swipe_dy: " + ge.value.swipe_dy.toFixed(2) + "\n";
 					break;	
 					case "n-scroll": 
 						gestureEventText.text += "id: " + ge.value.id + "   n: " + ge.value.n + "   scroll_dx: " + ge.value.scroll_dx.toFixed(2) + "   scroll_dy: " + ge.value.scroll_dy.toFixed(2) + "\n";
@@ -1069,8 +1064,7 @@ package
 				}
 			}
 		}	
-		
-		
+			
 		private function updateGestures():void
 		{			
 			var on:Boolean;

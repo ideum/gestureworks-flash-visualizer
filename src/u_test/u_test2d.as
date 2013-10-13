@@ -1,4 +1,4 @@
-﻿package 
+﻿package u_test
 {
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
@@ -7,18 +7,17 @@
 	import flash.geom.*;
 	import flash.ui.*;
 	
-	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "60")]
+	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "30")]
 		
-	public class test2d extends GestureWorks 
+	public class u_test2d extends GestureWorks 
 	{	
 		private var ts:TouchSprite;
 				
-		public function test2d():void 
+		public function u_test2d():void 
 		{
 			super();
 			fullscreen = true;
-			auto = "true";
-			gml = "library/gml/my_gestures.gml";
+			gml = "library/gml/gestures.gml";
 		}
 			
 		override protected function gestureworksInit():void 

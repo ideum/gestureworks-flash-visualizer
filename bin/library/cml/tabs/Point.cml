@@ -2,7 +2,7 @@
 <cml>
 
 <Tab id="point" class="tab" title="POINT">
-	<Include src="library/cml/includes/Tab Container.cml" />
+	<Include src="library/cml/includes/tab-container.cml" />
 </Tab>
 
 </cml>

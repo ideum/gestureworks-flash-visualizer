@@ -44,7 +44,7 @@
 	<Away3DScene id="away3d" />		
 	
 	<!-- 2D GESTURE OBJECT -->
-	<Graphic id="gesture-object" gestureReleaseInertia="true" x="385.5" y="300" rotation="0" scale="1" mouseChildren="false">
+	<Graphic id="gesture-object" releaseInertia="true" x="385.5" y="300" rotation="0" scale="1">
 		<Gesture ref="n-drag" gestureOn="true" />
 		<Gesture ref="n-scale" gestureOn="true" />
 		<Gesture ref="n-rotate" gestureOn="true" />

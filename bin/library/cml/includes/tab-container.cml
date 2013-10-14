@@ -94,6 +94,9 @@
 		<Graphic id="data" class="panel-graphic-2" height="710" y="170">
 			<State y="240.5" />			
 			<TabbedContainer id="data-tabs" class="data-tab-container" y="0">
+				<Tab id="data-tab-sub-cluster" class="data-tab" title="SUB" stateId="point" visible="false">
+					<State stateId="cluster" visible="true" />
+				</Tab>
 				<Tab id="data-tab-motion" class="data-tab" title="MOTION" />
 				<Tab id="data-tab-touch" class="data-tab" title="TOUCH" tabX="150">
 					<Container id="data-tab-sub" x="20" y="12">

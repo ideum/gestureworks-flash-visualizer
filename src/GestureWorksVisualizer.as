@@ -1,23 +1,16 @@
 package 
 {			 
-	import com.gestureworks.away3d.Away3DMotionVisualizer;
 	import com.gestureworks.cml.element.*;
 	import com.gestureworks.cml.events.*;
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
-	import com.gestureworks.managers.TUIOManager;
 	import com.gestureworks.objects.*;
 	import com.gestureworks.utils.FrameRate;
 	import com.gestureworks.utils.GMLParser;
-	import com.leapmotion.leap.events.LeapEvent;
-	import flash.display.Bitmap;
 	import flash.events.*;
 	import flash.utils.Dictionary;
-	import flash.utils.getTimer;
-	import org.tuio.TuioEvent;
-	import org.tuio.TuioTouchEvent;
 	
 	public class GestureWorksVisualizer extends TouchContainer
 	{
@@ -50,6 +43,7 @@ package
 		private var gestureTab:Tab;
 		private var viewg:Graphic;
 		private var data:Graphic;
+		private var dataTabSubCluster:Tab;
 		private var dataTabMotion:Tab;
 		private var dataTabTouch:Tab;
 		private var dataPanel:Graphic;
@@ -131,6 +125,7 @@ package
 			tpntsText = document.getElementById("tpnts-text");
 			viewg = document.getElementById("viewg");
 			data = document.getElementById("data");
+			dataTabSubCluster = document.getElementById("data-tab-sub-cluster");
 			dataTabMotion = document.getElementById("data-tab-motion");
 			dataTabTouch = document.getElementById("data-tab-touch");
 			dataTabContainer = document.getElementById("data-tab-sub");			
@@ -334,8 +329,8 @@ package
 		
 		private function setupTabs():void
 		{
-			//tabs.selectTabByIndex(0);
-			//dataTabs.selectTabByIndex(0);			
+			tabs.selectTabByIndex(0);
+			dataTabs.selectTabByIndex(0);			
 		}
 		
 		private function setupToggles():void
@@ -550,7 +545,10 @@ package
 						showDataTab("touch"); break;
 				case 1: 
 					if (currentDataTab != "motion") 
-						showDataTab("motion"); break; 					
+						showDataTab("motion"); break; 	
+				case 2: 
+					if (currentDataTab != "sub") 
+						showDataTab("sub"); break; 						
 			}
 		}
 		
@@ -561,9 +559,12 @@ package
 					dataTabTouch.addChild(dataTabContainer); break;
 				case "motion":
 					dataTabMotion.addChild(dataTabContainer); break;
+				case "sub":
+					dataTabSubCluster.addChild(dataTabContainer); break;
 			}
 			currentDataTab = tabName;	
-			StateManager.loadState(currentTab + "-" + currentDataTab);			
+			StateManager.loadState(currentTab + "-" + currentDataTab);
+			loadDataColumns(currentTab);
 		}		
 		
 		private function onTabContainer(e:StateEvent):void
@@ -669,11 +670,12 @@ package
 					pointTab.addChild(pointContainer);	
 					pointContainer.addChild(viewg);
 					pointContainer.addChild(data);
-					dataTabContainer.addChild(dataGraph);					
+					dataTabContainer.addChild(dataGraph);
 				
 					StateUtils.loadState(data, 0);
 					StateUtils.loadState(dataGraph, 0);	
 					StateUtils.loadState(dataContainer, 0);	
+					dataTabSubCluster.loadStateById(tabName);
 
 					loadState2(tabName);
 						
@@ -692,6 +694,7 @@ package
 				
 	
 				case "cluster":
+										
 					if (currentView == "2D") {					
 						touchObject.visualizer.pointDisplay = true;
 						touchObject.visualizer.clusterDisplay = true;										
@@ -700,58 +703,14 @@ package
 					}
 					else {
 						away3DScene.updateView(tabName, motion);
-					}					
+					}	
+					
 					clusterTab.addChild(pointContainer);					
 					pointContainer.addChild(viewg);
 					pointContainer.addChild(data);
 					dataTabContainer.addChild(dataGraph);
 					
-					StateUtils.loadState(data, 1);
-					StateUtils.loadState(dataGraph, 0);
-					StateUtils.loadState(dataContainer, 1);	
-					
-					loadState2(tabName);	
-					
-					for (i = 0; i < dataNumCols.length; i++) {
-						dataNumCols[i].visible = true;
-						if (i != 0) StateUtils.loadState(dataNumCols[i], 1);
-					}	
-					for (i = 0; i < dataNumbers.length; i++) {
-						dataNumbers[i].visible = false;	
-					}						
-					for (i = 1; i < dataNumCols.length; i+=2) {
-						for (j = 0; j < dataNumCols[i].childList.length; j++)
-							dataNumCols[i].childList[j].font = "OpenSansBold";			
-					}				
-					
-					dataNumCols[0].childList[0].visible = true;	
-					dataNumCols[0].childList[1].visible = true;	
-					dataNumCols[0].childList[2].visible = true;		
-					
-					dataNumCols[0].childList[3].visible = true;	
-					dataNumCols[1].childList[3].visible = true;	
-					dataNumCols[2].childList[3].visible = true;	
-					dataNumCols[3].childList[3].visible = true;	
-					
-					dataNumCols[0].childList[4].visible = true;	
-					dataNumCols[1].childList[4].visible = true;
-					dataNumCols[2].childList[4].visible = true;
-					dataNumCols[3].childList[4].visible = true;
-					
-					dataNumCols[0].childList[5].visible = true;
-					dataNumCols[1].childList[5].visible = true;
-					dataNumCols[2].childList[5].visible = true;
-					dataNumCols[3].childList[5].visible = true;
-					
-					dataNumCols[0].childList[6].visible = true;
-					dataNumCols[1].childList[6].visible = true;
-					dataNumCols[2].childList[6].visible = true;
-					dataNumCols[3].childList[6].visible = true;
-					
-					dataNumCols[0].childList[7].visible = true;
-					dataNumCols[1].childList[7].visible = true;
-					dataNumCols[2].childList[7].visible = true;
-					dataNumCols[3].childList[7].visible = true;		
+					loadDataColumns(tabName);
 					
 					graphPaths.childList[0].visible = true;	
 					break;		
@@ -775,6 +734,88 @@ package
 			}
 			currentTab = tabName;		
 			StateManager.loadState(currentTab + "-" + currentDataTab);
+		}
+		
+		private function loadDataColumns(tabName:String):void
+		{
+			if (tabName != "cluster") {
+				return;
+			}
+			
+			var i:int;
+			var j:int;
+			
+			if (currentDataTab == "touch" || currentDataTab == "motion") {
+				StateUtils.loadState(data, 1);
+				StateUtils.loadState(dataGraph, 0);
+				StateUtils.loadState(dataContainer, 1);
+				
+				dataTabSubCluster.loadStateById(tabName);
+				loadState2(tabName);	
+				
+				for (i = 0; i < dataNumCols.length; i++) {
+					dataNumCols[i].visible = true;
+					if (i != 0) StateUtils.loadState(dataNumCols[i], 1);
+				}	
+				for (i = 0; i < dataNumbers.length; i++) {
+					dataNumbers[i].visible = false;	
+				}						
+				for (i = 1; i < dataNumCols.length; i+=2) {
+					for (j = 0; j < dataNumCols[i].childList.length; j++)
+						dataNumCols[i].childList[j].font = "OpenSansBold";			
+				}				
+				
+				dataNumCols[0].childList[0].visible = true;	
+				dataNumCols[0].childList[1].visible = true;	
+				dataNumCols[0].childList[2].visible = true;		
+				
+				dataNumCols[0].childList[3].visible = true;	
+				dataNumCols[1].childList[3].visible = true;	
+				dataNumCols[2].childList[3].visible = true;	
+				dataNumCols[3].childList[3].visible = true;	
+				
+				dataNumCols[0].childList[4].visible = true;	
+				dataNumCols[1].childList[4].visible = true;
+				dataNumCols[2].childList[4].visible = true;
+				dataNumCols[3].childList[4].visible = true;
+				
+				dataNumCols[0].childList[5].visible = true;
+				dataNumCols[1].childList[5].visible = true;
+				dataNumCols[2].childList[5].visible = true;
+				dataNumCols[3].childList[5].visible = true;
+				
+				dataNumCols[0].childList[6].visible = true;
+				dataNumCols[1].childList[6].visible = true;
+				dataNumCols[2].childList[6].visible = true;
+				dataNumCols[3].childList[6].visible = true;
+				
+				dataNumCols[0].childList[7].visible = true;
+				dataNumCols[1].childList[7].visible = true;
+				dataNumCols[2].childList[7].visible = true;
+				dataNumCols[3].childList[7].visible = true;				
+			}
+			else { // SUB data tab
+				StateUtils.loadState(data, 1);
+				StateUtils.loadState(dataGraph, 0);
+				StateUtils.loadState(dataContainer, 0);
+				
+				dataTabSubCluster.loadStateById(tabName);
+
+				loadState2(tabName);
+					
+				for (i = 1; i < dataNumCols.length; i++) {
+					StateUtils.loadState(dataNumCols[i], 0);	
+				}	
+				for (i = 0; i < dataNumbers.length; i++) {
+					dataNumbers[i].visible = true;	
+				}
+				for (i = 1; i < dataNumCols.length; i+=2) {
+					for (j = 0; j < dataNumCols[i].childList.length; j++) {
+						dataNumCols[i].childList[j].font = "OpenSansRegular";
+					}
+				}						
+			}			
+			
 		}
 		
 		private function loadState2(state:String):void 
@@ -883,6 +924,7 @@ package
 					}
 					
 				break;	
+					
 			}		
 		}
 		
@@ -983,6 +1025,56 @@ package
 					graphPaths.childList[0].updateGraphic();
 					
 				break;
+				
+				
+				case "sub": 		
+					trace("update sub cluster data");
+					var subClusterArrayLength:int = (gestureObject3D.cO.subClusterArray.length <= 10) ? gestureObject3D.cO.subClusterArray.length : 10;
+					var ipCluster:ipClusterObject;
+					var i:int;
+					
+					for (i = 0; i < subClusterArrayLength; i++) {	
+						
+						ipCluster = gestureObject3D.cO.subClusterArray[i];
+						
+						dataNumCols[i].childList[0].text = String(ipCluster.id);		
+						dataNumCols[i].childList[1].text = String(ipCluster.radius);
+						dataNumCols[i].childList[2].text = String(ipCluster.x);
+						dataNumCols[i].childList[3].text = String(ipCluster.y);
+						dataNumCols[i].childList[4].text = String(ipCluster.z);
+						dataNumCols[i].childList[5].text = String(ipCluster.dx);
+						dataNumCols[i].childList[6].text = String(ipCluster.dy);
+						dataNumCols[i].childList[7].text = String(ipCluster.dz);
+						dataNumCols[i].childList[8].text = String(ipCluster.separationX);					
+						dataNumCols[i].childList[9].text = String(ipCluster.separationY);	
+						dataNumCols[i].childList[10].text = String(ipCluster.separationZ);	
+						dataNumCols[i].childList[11].text = "0";
+																		
+						//iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
+						//historyLength = gestureObject3D.cO.motionArray[i].history.length;
+						
+						//graphCoords.length = 0;
+						//
+						//for (j = 0; j < historyLength; j++) {
+							//graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x / 2 );		
+						//}
+						//for (j = historyLength; j < captureLength; j++) {
+							//graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
+						//}			
+						//
+						//graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
+						//graphPaths.childList[i].updateGraphic();
+					//
+						//graphPaths.childList[i].visible = true;
+						
+						dataNumCols[i].visible = true;
+					}
+					// clear unused points
+					for (subClusterArrayLength; i < 10; i++) {
+						graphPaths.childList[i].visible = false;
+						dataNumCols[i].visible = false;
+					}
+				break;				
 			}			
 			
 		}

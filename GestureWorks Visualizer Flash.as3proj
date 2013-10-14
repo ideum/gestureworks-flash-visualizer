@@ -9,7 +9,7 @@
     <movie width="1920" />
     <movie height="1080" />
     <movie version="11" />
-    <movie minorVersion="7" />
+    <movie minorVersion="8" />
     <movie platform="Flash Player" />
     <movie background="#000000" />
   </output>
@@ -79,7 +79,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\u_test\u_test3d.as" />
+    <compile path="src\Main.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

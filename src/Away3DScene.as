@@ -82,7 +82,7 @@ package
 
 			Away3DTouchManager.initialize();
 			gestureObject = Away3DTouchManager.registerTouchObject(cube);
-			gestureObject.activated = true;
+			gestureObject.active = true;
 			gestureObject.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
 			gestureObject.nativeTransform = true;
 			gestureObject.gestureReleaseInertia = true;

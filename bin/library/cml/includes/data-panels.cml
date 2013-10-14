@@ -9,6 +9,7 @@
 				<State stateId="point-motion" text="ID"/>					
 				<State stateId="cluster-touch" text="ID"/>	
 				<State stateId="cluster-motion" text="ID"/>	
+				<State stateId="cluster-sub" text="ID"/>	
 			</Text>	
 		</Graphic>
 		
@@ -16,7 +17,8 @@
 			<Text class="data-txt" stateId="point-touch" text="x">
 				<State stateId="point-motion" text="HID"/>									
 				<State stateId="cluster-touch" text="n"/>
-				<State stateId="cluster-motion" text="n"/>					
+				<State stateId="cluster-motion" text="n"/>	
+				<State stateId="cluster-sub" text="n"/>	
 			</Text>	
 		</Graphic>
 		
@@ -24,7 +26,8 @@
 			<Text class="data-txt" stateId="point-touch" text="y">
 				<State stateId="point-motion" text="type" />									
 				<State stateId="cluster-touch" text="radius"/>	
-				<State stateId="cluster-motion" text="radius"/>					
+				<State stateId="cluster-motion" text="radius"/>	
+				<State stateId="cluster-sub" text="rad"/>					
 			</Text>					
 		</Graphic>
 		
@@ -33,6 +36,7 @@
 				<State stateId="point-motion" text="pos-x"/>									
 				<State stateId="cluster-touch" text="position"/>
 				<State stateId="cluster-motion" text="position"/>									
+				<State stateId="cluster-sub" text="pos-x"/>									
 			</Text>				
 		</Graphic>
 		
@@ -41,6 +45,7 @@
 				<State stateId="point-motion" text="pos-y"/>									
 				<State stateId="cluster-touch" text="delta-position"/>	
 				<State stateId="cluster-motion" text="delta-position"/>													
+				<State stateId="cluster-sub" text="pos-y"/>													
 			</Text>				
 		</Graphic>
 		
@@ -49,6 +54,7 @@
 				<State stateId="point-motion" text="pos-z"/>									
 				<State stateId="cluster-touch" text="delta-scale"/>	
 				<State stateId="cluster-motion" text="delta-scale"/>													
+				<State stateId="cluster-sub" text="pos-z"/>													
 			</Text>				
 		</Graphic>
 		
@@ -57,6 +63,7 @@
 				<State stateId="point-motion" text="dir-x"/>									
 				<State stateId="cluster-touch" text="rotation"/>	
 				<State stateId="cluster-motion" text="rotation"/>													
+				<State stateId="cluster-sub" text=""/>													
 			</Text>			
 		</Graphic>
 		
@@ -65,6 +72,7 @@
 				<State stateId="point-motion" text="dir-y"/>									
 				<State stateId="cluster-touch" text="seperation"/>	
 				<State stateId="cluster-motion" text="seperation"/>													
+				<State stateId="cluster-sub" text=""/>													
 			</Text>				
 		</Graphic>
 		
@@ -73,6 +81,7 @@
 				<State stateId="point-motion" text="dir-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-sub" text=""/>													
 			</Text>				
 		</Graphic>
 		
@@ -81,6 +90,7 @@
 				<State stateId="point-motion" text="vel-x"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-sub" text=""/>													
 			</Text>				
 		</Graphic>
 		
@@ -89,6 +99,7 @@
 				<State stateId="point-motion" text="vel-y"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
+				<State stateId="cluster-sub" text=""/>													
 			</Text>				
 		</Graphic>
 		
@@ -97,6 +108,7 @@
 				<State stateId="point-motion" text="vel-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>				
+				<State stateId="cluster-sub" text=""/>				
 			</Text>					
 		</Graphic>		
 		

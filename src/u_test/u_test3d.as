@@ -134,15 +134,11 @@
 		private var lastGlobal:Vector3D;
 		private function onDrag(e:GWGestureEvent):void
 		{
-			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz );			
-			//
-			var m:Matrix3D = cube.inverseSceneTransform; 
-			//m.appendRotation(cube.rotationX, new Vector3D(m.rawData[0], m.rawData[1], m.rawData[2]));
-			//m.appendRotation(cube.rotationY, new Vector3D(m.rawData[4], m.rawData[5], m.rawData[6]));
-			//m.appendRotation(cube.rotationZ, new Vector3D(m.rawData[8], m.rawData[9], m.rawData[10]));								
+			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
+			
+			var m:Matrix3D = cube.parent.inverseSceneTransform; 							
 			var v:Vector3D = new Vector3D( e.value.drag_dx, e.value.drag_dy, e.value.drag_dz) ; // because the object is "facing" to the left; 
 			v = m.deltaTransformVector(v); 
-						
 			trace(v);
 				
 			cube.x += v.x;
@@ -154,9 +150,9 @@
 		{
 			trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
 			
-			var m:Matrix3D = cube.inverseSceneTransform; 
+			var m:Matrix3D = cube.parent.inverseSceneTransform; 
 			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; // because the object is "facing" to the left; 
-			//v = m.deltaTransformVector(v); 			
+			v = m.deltaTransformVector(v); 			
 			trace(v);
 			
 			cube.rotationX += v.x;

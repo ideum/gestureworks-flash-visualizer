@@ -30,7 +30,7 @@
 	</Graphic>
 	
 	<!-- RIGHT PANELS -->
-	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS">
+	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS" nativeTouch="false">
 		<TabbedContainer id="tabs" mouseChildren="true">			
 			<Include src="library\cml\tabs\gesture.cml" />
 			<Include src="library\cml\tabs\cluster.cml" />

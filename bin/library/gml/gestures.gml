@@ -65,9 +65,9 @@
 					<property ref="drag_dz" active="true" friction="0.9"/>
 				</inertial_filter>
 				<delta_filter>
-					<property ref="drag_dx" active="true" delta_min="0" delta_max="500"/>
-					<property ref="drag_dy" active="true" delta_min="0" delta_max="500"/>
-					<property ref="drag_dz" active="true" delta_min="0" delta_max="500"/>
+					<property ref="drag_dx" active="true" delta_min="0" delta_max="1000"/>
+					<property ref="drag_dy" active="true" delta_min="0" delta_max="1000"/>
+					<property ref="drag_dz" active="true" delta_min="0" delta_max="1000"/>
 				</delta_filter>						
 			</processing>
 			<mapping>

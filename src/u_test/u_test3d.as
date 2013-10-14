@@ -74,7 +74,7 @@
 			//view.forceMouseMove = true;
 			addChild(view);
 			
-			view.camera.position = new Vector3D(-20, -50, -400);
+			view.camera.position = new Vector3D(0, -0, -400);
 
 			lightPicker = new StaticLightPicker( [] );
 			light = new PointLight();
@@ -99,7 +99,7 @@
 			cube.y = 0;
 			cube.z = 0;
 			cube.mouseEnabled = true;
-			view.scene.addChild(cube);
+			
 			
 			Away3DTouchManager.initialize();			
 			ts = Away3DTouchManager.registerTouchObject(cube);
@@ -109,32 +109,59 @@
 			//ts.gestureList = { "n-3d-transform-finger":true };
 			//ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
 			//ts.gestureList = { "n-drag-inertia":true };
-			ts.nativeTransform = true;
-			ts.gestureReleaseInertia = true;
+			ts.nativeTransform = false;
+			ts.releaseInertia = false;
 			ts.gestureEvents = true;
 			ts.visualizer.pointDisplay = true;
 			ts.visualizer.clusterDisplay = true;
 			ts.visualizer.gestureDisplay = true;
 			
-			//ts.addEventListener(GWGestureEvent.DRAG, onDrag);
-			//ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
+			c = new ObjectContainer3D;
+			c.addChild(cube);
+			c.rotationX = 0;
+			c.rotationY = 90;
+			c.rotationZ = 0;
+			c.x = 0;
+			
+			view.scene.addChild(c);
+			ts.addEventListener(GWGestureEvent.DRAG, onDrag);
+	
+			ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 			//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
 		}
-				
+		private var c:ObjectContainer3D;
+		private var global:Vector3D;
+		private var lastGlobal:Vector3D;
 		private function onDrag(e:GWGestureEvent):void
 		{
-			//trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
-			cube.x += e.value.drag_dx;
-			cube.y += e.value.drag_dy;
-			cube.z += e.value.drag_dz;
+			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz );			
+			//
+			var m:Matrix3D = cube.inverseSceneTransform; 
+			//m.appendRotation(cube.rotationX, new Vector3D(m.rawData[0], m.rawData[1], m.rawData[2]));
+			//m.appendRotation(cube.rotationY, new Vector3D(m.rawData[4], m.rawData[5], m.rawData[6]));
+			//m.appendRotation(cube.rotationZ, new Vector3D(m.rawData[8], m.rawData[9], m.rawData[10]));								
+			var v:Vector3D = new Vector3D( e.value.drag_dx, e.value.drag_dy, e.value.drag_dz) ; // because the object is "facing" to the left; 
+			v = m.deltaTransformVector(v); 
+						
+			trace(v);
+				
+			cube.x += v.x;
+			cube.y += v.y;
+			cube.z += v.z;
 		}
 		
 		private function onRotate(e:GWGestureEvent):void
 		{
-			//trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);				
-			//cube.rotationX += e.value.rotate_dthetaX;
-			//cube.rotationY += e.value.rotate_dthetaY;
-			//cube.rotationZ += e.value.rotate_dthetaZ;			
+			trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
+			
+			var m:Matrix3D = cube.inverseSceneTransform; 
+			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; // because the object is "facing" to the left; 
+			//v = m.deltaTransformVector(v); 			
+			trace(v);
+			
+			cube.rotationX += v.x;
+			cube.rotationY += v.y;
+			cube.rotationZ += v.z;			
 			//var length:Number = view.camera.project(cube.scenePosition).length;
 			//cube.rotationZ += e.value.rotate_dtheta / 3;
 		}
@@ -149,6 +176,11 @@
 		
 		private function update():void 
 		{
+			
+			//if (c) c.rotationX++;
+			//if (c) c.rotationY;
+			//if (c) c.rotationZ++;
+			
 			//vis3d.updateDisplay();	
 			light.position = view.camera.position;
 			view.render();			

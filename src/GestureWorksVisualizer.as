@@ -1028,27 +1028,26 @@ package
 				
 				
 				case "sub": 		
-					trace("update sub cluster data");
+					//trace("update sub cluster data");
 					var subClusterArrayLength:int = (gestureObject3D.cO.subClusterArray.length <= 10) ? gestureObject3D.cO.subClusterArray.length : 10;
 					var ipCluster:ipClusterObject;
 					var i:int;
-					
+										
 					for (i = 0; i < subClusterArrayLength; i++) {	
-						
 						ipCluster = gestureObject3D.cO.subClusterArray[i];
 						
 						dataNumCols[i].childList[0].text = String(ipCluster.id);		
-						dataNumCols[i].childList[1].text = String(ipCluster.radius);
-						dataNumCols[i].childList[2].text = String(ipCluster.x);
-						dataNumCols[i].childList[3].text = String(ipCluster.y);
-						dataNumCols[i].childList[4].text = String(ipCluster.z);
-						dataNumCols[i].childList[5].text = String(ipCluster.dx);
-						dataNumCols[i].childList[6].text = String(ipCluster.dy);
-						dataNumCols[i].childList[7].text = String(ipCluster.dz);
-						dataNumCols[i].childList[8].text = String(ipCluster.separationX);					
-						dataNumCols[i].childList[9].text = String(ipCluster.separationY);	
-						dataNumCols[i].childList[10].text = String(ipCluster.separationZ);	
-						dataNumCols[i].childList[11].text = "0";
+						dataNumCols[i].childList[1].text = (ipCluster.count).toFixed(2);
+						dataNumCols[i].childList[2].text = (ipCluster.radius).toFixed(2);
+						dataNumCols[i].childList[3].text = (ipCluster.x).toFixed(2);
+						dataNumCols[i].childList[4].text = (ipCluster.y).toFixed(2);
+						dataNumCols[i].childList[5].text = (ipCluster.z).toFixed(2);
+						dataNumCols[i].childList[6].text = (ipCluster.dx).toFixed(2);
+						dataNumCols[i].childList[7].text = (ipCluster.dy).toFixed(2);
+						dataNumCols[i].childList[8].text = (ipCluster.dz).toFixed(2);
+						dataNumCols[i].childList[9].text = (ipCluster.separationX).toFixed(2);					
+						dataNumCols[i].childList[10].text = (ipCluster.separationY).toFixed(2);	
+						dataNumCols[i].childList[11].text = (ipCluster.separationZ).toFixed(2);	
 																		
 						//iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
 						//historyLength = gestureObject3D.cO.motionArray[i].history.length;

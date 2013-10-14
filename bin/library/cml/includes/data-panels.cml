@@ -18,7 +18,7 @@
 				<State stateId="point-motion" text="HID"/>									
 				<State stateId="cluster-touch" text="n"/>
 				<State stateId="cluster-motion" text="n"/>	
-				<State stateId="cluster-sub" text="n"/>	
+				<State stateId="cluster-sub" text="cnt"/>	
 			</Text>	
 		</Graphic>
 		
@@ -63,7 +63,7 @@
 				<State stateId="point-motion" text="dir-x"/>									
 				<State stateId="cluster-touch" text="rotation"/>	
 				<State stateId="cluster-motion" text="rotation"/>													
-				<State stateId="cluster-sub" text=""/>													
+				<State stateId="cluster-sub" text="dx"/>													
 			</Text>			
 		</Graphic>
 		
@@ -72,7 +72,7 @@
 				<State stateId="point-motion" text="dir-y"/>									
 				<State stateId="cluster-touch" text="seperation"/>	
 				<State stateId="cluster-motion" text="seperation"/>													
-				<State stateId="cluster-sub" text=""/>													
+				<State stateId="cluster-sub" text="dy"/>													
 			</Text>				
 		</Graphic>
 		
@@ -81,7 +81,7 @@
 				<State stateId="point-motion" text="dir-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
-				<State stateId="cluster-sub" text=""/>													
+				<State stateId="cluster-sub" text="dz"/>													
 			</Text>				
 		</Graphic>
 		
@@ -90,7 +90,7 @@
 				<State stateId="point-motion" text="vel-x"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
-				<State stateId="cluster-sub" text=""/>													
+				<State stateId="cluster-sub" text="sep-x"/>													
 			</Text>				
 		</Graphic>
 		
@@ -99,7 +99,7 @@
 				<State stateId="point-motion" text="vel-y"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>													
-				<State stateId="cluster-sub" text=""/>													
+				<State stateId="cluster-sub" text="sep-y"/>													
 			</Text>				
 		</Graphic>
 		
@@ -108,7 +108,7 @@
 				<State stateId="point-motion" text="vel-z"/>									
 				<State stateId="cluster-touch" text=""/>	
 				<State stateId="cluster-motion" text=""/>				
-				<State stateId="cluster-sub" text=""/>				
+				<State stateId="cluster-sub" text="sep-z"/>				
 			</Text>					
 		</Graphic>		
 		

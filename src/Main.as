@@ -19,7 +19,7 @@ package
 			super();
 			fullscreen = true;
 			simulator = true;
-			//leap3D = true;
+			leap3D = true;
 			cml = "library/cml/main.cml";
 			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
 		}

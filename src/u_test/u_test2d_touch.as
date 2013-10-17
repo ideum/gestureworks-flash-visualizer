@@ -7,13 +7,13 @@
 	import flash.geom.*;
 	import flash.ui.*;
 	
-	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "30")]
+	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "60")]
 		
-	public class u_test2d extends GestureWorks 
+	public class u_test2d_touch extends GestureWorks 
 	{	
 		private var ts:TouchSprite;
 				
-		public function u_test2d():void 
+		public function u_test2d_touch():void 
 		{
 			super();
 			fullscreen = true;
@@ -38,9 +38,6 @@
 			ts.gestureReleaseInertia = true;
 			ts.gestureEvents = true;
 			
-			ts.transform3d = false; //output
-			ts.motion3d = false //input
-			
 			ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 			ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 			ts.addEventListener(GWGestureEvent.SCALE, onScale);	
@@ -50,8 +47,6 @@
 				
 		private function onDrag(e:GWGestureEvent):void
 		{
-			//ts.x += e.value.drag_dx;
-			//ts.y += e.value.drag_dy;
 		}
 		
 		private function onRotate(e:GWGestureEvent):void

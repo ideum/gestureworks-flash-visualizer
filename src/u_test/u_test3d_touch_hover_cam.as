@@ -10,6 +10,7 @@
 	import away3d.materials.lightpickers.*;
 	import away3d.primitives.*;
 	import com.gestureworks.away3d.*;
+	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
 	import flash.display.*;
@@ -19,14 +20,14 @@
 	
 	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "60")]
 		
-	public class u_test3d_hover_cam extends GestureWorks 
+	public class u_test3d_touch_hover_cam extends GestureWorks 
 	{
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var ts:*;
-		protected var view:View3D;
-		protected var lightPicker:StaticLightPicker;
-		protected var cameraController:HoverController;
+		private var ts:TouchSprite;
+		private var view:View3D;
+		private var lightPicker:StaticLightPicker;
+		private var cameraController:HoverController;
 		private var light:PointLight;
 		private var mouseIsDown:Boolean;
 		private var lastPanAngle:Number;
@@ -40,10 +41,10 @@
 		private var activeMaterial:ColorMaterial;
 		private var newX:Number = 0;
 		private var newY:Number = 0;				
-		private var vis3d:Away3DMotionVisualizer;
+		private var vis3d:MotionVisualizer3D;
 		private var plane:Mesh;
 		
-		public function u_test3d_hover_cam():void 
+		public function u_test3d_touch_hover_cam():void 
 		{
 			super();
 			fullscreen = true;
@@ -103,8 +104,8 @@
 				cube.mouseEnabled = true;
 			view.scene.addChild(cube);
 			
-			Away3DTouchManager.initialize();			
-			ts = Away3DTouchManager.registerTouchObject(cube);
+			TouchManager3D.initialize();			
+			ts = TouchManager3D.registerTouchObject(cube);
 				ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
 				//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 				//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
@@ -125,12 +126,6 @@
 				ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 				//ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 				//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
-				
-			//vis3d = new Away3DMotionVisualizer();
-				//vis3d.cO = ts.cO;
-				//vis3d.trO = ts.trO;
-				//vis3d.init();				
-			//view.scene.addChild(vis3d);
 			
 			var touchCamera:TouchSprite = new TouchSprite(view);
 			touchCamera.gestureList = { "n-drag":true };
@@ -160,9 +155,7 @@
 			//trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);				
 			//cube.rotationX += e.value.rotate_dthetaX;
 			//cube.rotationY += e.value.rotate_dthetaY;
-			//cube.rotationZ += e.value.rotate_dthetaZ;			
-			//var length:Number = view.camera.project(cube.scenePosition).length;
-			//cube.rotationZ += e.value.rotate_dtheta / 3;
+			//cube.rotationZ += e.value.rotate_dthetaZ;	
 		}
 		
 		private function onScale(e:GWGestureEvent):void

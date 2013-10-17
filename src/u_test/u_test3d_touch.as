@@ -10,6 +10,7 @@
 	import away3d.materials.lightpickers.*;
 	import away3d.primitives.*;
 	import com.gestureworks.away3d.*;
+	import com.gestureworks.away3d.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
 	import flash.display.*;
@@ -19,14 +20,14 @@
 	
 	[SWF(width = "1920", height = "1080", backgroundColor = "0x000000", frameRate = "60")]
 		
-	public class u_test3d extends GestureWorks 
+	public class u_test3d_touch extends GestureWorks 
 	{
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var ts:*;
-		protected var view:View3D;
-		protected var lightPicker:StaticLightPicker;
-		protected var cameraController:HoverController;
+		private var ts:TouchSprite;
+		private var view:View3D;
+		private var lightPicker:StaticLightPicker;
+		private var cameraController:HoverController;
 		private var light:PointLight;
 		private var mouseIsDown:Boolean;
 		private var lastPanAngle:Number;
@@ -37,13 +38,13 @@
 		private var panIncrement:Number = 0;
 		private var cube:Mesh;
 		private var inactiveMaterial:ColorMaterial;
-		private var activeMaterial:ColorMaterial;
-		private var newX:Number = 0;
-		private var newY:Number = 0;				
-		private var vis3d:Away3DMotionVisualizer;
+		private var activeMaterial:ColorMaterial;				
+		private var vis3d:MotionVisualizer3D;
 		private var plane:Mesh;
+		private var c:ObjectContainer3D;
+
 		
-		public function u_test3d():void 
+		public function u_test3d_touch():void 
 		{
 			super();
 			fullscreen = true;
@@ -71,7 +72,6 @@
 			view.height = HEIGHT;
 			view.antiAlias = 4;
 			view.camera.lens.far = 15000;
-			//view.forceMouseMove = true;
 			addChild(view);
 			
 			view.camera.position = new Vector3D(0, -0, -400);
@@ -101,8 +101,8 @@
 			cube.mouseEnabled = true;
 			
 			
-			Away3DTouchManager.initialize();			
-			ts = Away3DTouchManager.registerTouchObject(cube);
+			TouchManager3D.initialize();			
+			ts = TouchManager3D.registerTouchObject(cube);
 			ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
 			//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
@@ -125,19 +125,17 @@
 			
 			view.scene.addChild(c);
 			ts.addEventListener(GWGestureEvent.DRAG, onDrag);
-	
 			ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
-			//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
+			ts.addEventListener(GWGestureEvent.SCALE, onScale);	
 		}
-		private var c:ObjectContainer3D;
-		private var global:Vector3D;
-		private var lastGlobal:Vector3D;
+		
 		private function onDrag(e:GWGestureEvent):void
 		{
 			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
 			
+			// normalizes from rotated parent containers -> TODO: integrate this into framework
 			var m:Matrix3D = cube.parent.inverseSceneTransform; 							
-			var v:Vector3D = new Vector3D( e.value.drag_dx, e.value.drag_dy, e.value.drag_dz) ; // because the object is "facing" to the left; 
+			var v:Vector3D = new Vector3D( e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);  
 			v = m.deltaTransformVector(v); 
 			trace(v);
 				
@@ -150,21 +148,19 @@
 		{
 			trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
 			
+			// normalizes from rotated parent containers -> TODO: integrate this into framework
 			var m:Matrix3D = cube.parent.inverseSceneTransform; 
-			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; // because the object is "facing" to the left; 
+			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; 
 			v = m.deltaTransformVector(v); 			
-			trace(v);
 			
 			cube.rotationX += v.x;
 			cube.rotationY += v.y;
-			cube.rotationZ += v.z;			
-			//var length:Number = view.camera.project(cube.scenePosition).length;
-			//cube.rotationZ += e.value.rotate_dtheta / 3;
+			cube.rotationZ += v.z;	
 		}
 		
 		private function onScale(e:GWGestureEvent):void
 		{
-			//trace("scale values:", e.value.scale_dsx, e.value.scale_dsy, e.value.scale_dsz);
+			trace("scale values:", e.value.scale_dsx, e.value.scale_dsy, e.value.scale_dsz);
 			cube.scaleX += e.value.scale_dsx;
 			cube.scaleY += e.value.scale_dsy;
 			cube.scaleZ += e.value.scale_dsz;
@@ -172,20 +168,12 @@
 		
 		private function update():void 
 		{
-			
-			//if (c) c.rotationX++;
-			//if (c) c.rotationY;
-			//if (c) c.rotationZ++;
-			
-			//vis3d.updateDisplay();	
 			light.position = view.camera.position;
 			view.render();			
 		}
 
 		private function enterframeHandler( event:Event ):void 
 		{
-			//ts.updateTarget();
-			//trace("-----------", cube.x, cube.y, cube.z);
 			update();
 		}		
 		

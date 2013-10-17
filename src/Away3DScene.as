@@ -2,6 +2,7 @@ package
 {
 	import away3d.containers.*;
 	import away3d.controllers.*;
+	import away3d.core.managers.Touch3DManager;
 	import away3d.core.math.*;
 	import away3d.debug.*;
 	import away3d.entities.*;
@@ -9,12 +10,12 @@ package
 	import away3d.materials.*;
 	import away3d.materials.lightpickers.*;
 	import away3d.primitives.*;
-	
 	import com.gestureworks.away3d.*;
+	import com.gestureworks.away3d.utils.MotionVisualizer3D;
+	import com.gestureworks.away3d.utils.TouchVisualizer3D;
 	import com.gestureworks.cml.element.TouchContainer;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
-	
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.*;
@@ -22,21 +23,17 @@ package
 			
 	public class Away3DScene extends TouchContainer
 	{
-		public var motionEnabled:Boolean = true; // temporary - motion and touch should work simultaneously
-		public var gestureObject:Away3DTouchObject;
-		
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
+		public var gestureObject:TouchObject3D;
 		private var view3D:View3D;
 		private var lightPicker:StaticLightPicker;
 		private var cameraController:HoverController;
 		private var light:PointLight;
 		private var cube:Mesh;
-		private var material:ColorMaterial;
-		private var newX:Number = 0;
-		private var newY:Number = 0;		
-		private var vis3d:Away3DMotionVisualizer;
-		private var away:Away3DTouchManager;
+		private var material:ColorMaterial;	
+		private var vis3d:MotionVisualizer3D;
+		private var away:Touch3DManager;
 		private var plane:Mesh;
 		private var seg:SegmentSet;		
 		private var axis:Away3DTrident;
@@ -80,18 +77,18 @@ package
 			cube.mouseEnabled = true;
 			scene.addChild(cube);
 
-			Away3DTouchManager.initialize();
-			gestureObject = Away3DTouchManager.registerTouchObject(cube);
+			TouchManager3D.initialize();
+			gestureObject = TouchManager3D.registerTouchObject(cube);
 			gestureObject.active = true;
 			gestureObject.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
 			gestureObject.nativeTransform = true;
 			gestureObject.gestureReleaseInertia = true;
 			gestureObject.gestureEvents = true;
-			gestureObject.motion3d = motionEnabled; //input			
+			gestureObject.motion3d = true; //input			
 			gestureObject.transform3d = true; //output
 			gestureObject.debugDisplay = true;
 			
-			vis3d = new Away3DMotionVisualizer();
+			vis3d = new MotionVisualizer3D();
 			vis3d.lightPicker = lightPicker;
 			vis3d.init();
 			vis3d.cO = gestureObject.cO;

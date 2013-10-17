@@ -790,7 +790,7 @@
 							<analysis>
 								<algorithm class="kinemetric" type="continuous">
 									<library module="manipulate"/>
-									<returns>manipulate
+									<returns>
 										<property id="dx" result="dx"/>
 										<property id="dy" result="dy"/>
 										<property id="dsx" result="ds"/>

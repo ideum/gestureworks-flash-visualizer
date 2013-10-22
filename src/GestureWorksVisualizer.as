@@ -24,7 +24,6 @@ package
 		private var gestureObject:TouchContainer;
 		private var away3DScene:Away3DScene;
 		private var gestureObject3D:TouchSprite;
-		
 		private var toggle:Array;
 		private var tpntsText:Text;
 		private var dataContainer:Container;
@@ -98,8 +97,7 @@ package
 			setupVisualizer(gestureObject3D);
 			setupListeners();			
 		}
-		
-		
+			
 		///////////////////////////////////////////
 		/////////////// setup /////////////////////
 		///////////////////////////////////////////
@@ -391,10 +389,6 @@ package
 				graphPaths.childList[i].pathCommandsVector = graphCommands;
 			}	
 		}
-		
-		
-		
-		
 		
 		///////////////////////////////////////////
 		/////////// event handlers ////////////////

@@ -57,7 +57,7 @@
 					</Graphic>	
 				</Button>		
 				
-				<Button id="gesture-tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				<Button id="n-tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="TAP" />
 					</Graphic>

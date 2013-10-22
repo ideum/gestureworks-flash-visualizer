@@ -40,7 +40,7 @@
 			</mapping>
 		</Gesture>
 		
-		<Gesture id="n-drag3D" type="drag">
+		<Gesture id="n-drag-3d" type="drag">
 			<match>
 				<action>
 					<initial>
@@ -81,51 +81,6 @@
 			</mapping>
 		</Gesture>
 		
-		<Gesture id="n-rotate3D" type="rotate">
-			<match>
-				<action>
-					<initial>
-						<cluster point_number="0" point_number_min="2" point_number_max="10"/>
-					</initial>
-				</action>
-			</match>
-			<analysis>
-				<algorithm class="kinemetric" type="continuous">
-					<library module="rotate"/>
-					<returns>
-						<property id="rotate_dtheta" result="dtheta"/>
-						<property id="rotate_dthetaX" result="dthetaX"/>
-						<property id="rotate_dthetaY" result="dthetaY"/>
-						<property id="rotate_dthetaZ" result="dthetaZ"/>
-					</returns>
-				</algorithm>
-			</analysis>	
-			<processing>
-				<inertial_filter>
-					<property ref="rotate_dtheta" active="true" friction="0.9"/>
-					<property ref="rotate_dthetaX" active="true" friction="0.9"/>
-					<property ref="rotate_dthetaY" active="true" friction="0.9"/>
-					<property ref="rotate_dthetaZ" active="true" friction="0.9"/>
-				</inertial_filter>
-				<delta_filter>
-					<property ref="rotate_dtheta" active="true" delta_min="0" delta_max="20"/>
-					<property ref="rotate_dthetaX" active="true" delta_min="0" delta_max="20"/>
-					<property ref="rotate_dthetaY" active="true" delta_min="0" delta_max="20"/>
-					<property ref="rotate_dthetaZ" active="true" delta_min="0" delta_max="20"/>
-				</delta_filter>
-			</processing>
-			<mapping>
-				<update dispatch_type="continuous">
-					<gesture_event type="rotate">
-						<property ref="rotate_dtheta" target="rotation"/>
-						<property ref="rotate_dthetaX" target="rotationX"/>
-						<property ref="rotate_dthetaY" target="rotationY"/>
-						<property ref="rotate_dthetaZ" target="rotationZ"/>
-					</gesture_event>
-				</update>
-			</mapping>
-		</Gesture>
-
 		<Gesture id="n-rotate" type="rotate">
 			<match>
 				<action>
@@ -158,6 +113,47 @@
 				</update>
 			</mapping>
 		</Gesture>
+		
+		<Gesture id="n-rotate-3d" type="rotate">
+			<match>
+				<action>
+					<initial>
+						<cluster point_number="0" point_number_min="2" point_number_max="10"/>
+					</initial>
+				</action>
+			</match>
+			<analysis>
+				<algorithm class="kinemetric" type="continuous">
+					<library module="rotate"/>
+					<returns>
+						<property id="rotate_dthetaX" result="dthetaX"/>
+						<property id="rotate_dthetaY" result="dthetaY"/>
+						<property id="rotate_dthetaZ" result="dthetaZ"/>
+					</returns>
+				</algorithm>
+			</analysis>	
+			<processing>
+				<inertial_filter>
+					<property ref="rotate_dthetaX" active="true" friction="0.9"/>
+					<property ref="rotate_dthetaY" active="true" friction="0.9"/>
+					<property ref="rotate_dthetaZ" active="true" friction="0.9"/>
+				</inertial_filter>
+				<delta_filter>
+					<property ref="rotate_dthetaX" active="true" delta_min="0" delta_max="20"/>
+					<property ref="rotate_dthetaY" active="true" delta_min="0" delta_max="20"/>
+					<property ref="rotate_dthetaZ" active="true" delta_min="0" delta_max="20"/>
+				</delta_filter>
+			</processing>
+			<mapping>
+				<update dispatch_type="continuous">
+					<gesture_event type="rotate">
+						<property ref="rotate_dthetaX" target="rotationX"/>
+						<property ref="rotate_dthetaY" target="rotationY"/>
+						<property ref="rotate_dthetaZ" target="rotationZ"/>
+					</gesture_event>
+				</update>
+			</mapping>
+		</Gesture>		
 		
 		<Gesture id="n-scale" type="scale">
 			<match>
@@ -196,7 +192,7 @@
 			</mapping>
 		</Gesture>
 		
-		<Gesture id="n-scale3D" type="scale">
+		<Gesture id="n-scale-3d" type="scale">
 			<match>
 				<action>
 					<initial>
@@ -501,7 +497,7 @@
 							<match>
 								<action>
 									<initial>
-										<cluster type="hand" hand_number="1" finger_number="2" point_number="0" point_number_min="1" point_number_max="10"/>
+										<cluster type="hand" hand_number="1" finger_number="2" point_number="0" point_number_min="1" point_number_max="10" />
 									</initial>
 								</action>
 							</match>	
@@ -568,7 +564,7 @@
 								<action>
 									<initial>
 										<point event_duration_max="200" translation_max="10"/>
-										<cluster point_number="0"/>
+										<cluster point_number="0" point_number_min="1" point_number_max="10"/>
 										<event touch_event="gwTouchEnd"/>
 									</initial>
 								</action>
@@ -599,7 +595,7 @@
 							  <action>
 								  <initial>
 									  <point event_duration_max="300" interevent_duration_max="300" translation_max="20"/>
-									  <cluster point_number="0"/>
+										<cluster point_number="0" point_number_min="1" point_number_max="10"/>
 									  <event gesture_event="tap"/>
 								  </initial>
 							  </action>
@@ -630,7 +626,7 @@
 								<action>
 									<initial>
 										<point event_duration_max="300" interevent_duration_max="300" translation_max="20"/>
-										<cluster point_number="0"/>
+										<cluster point_number="0" point_number_min="1" point_number_max="10"/>
 										<event gesture_event="tap" />
 									</initial>
 								</action>

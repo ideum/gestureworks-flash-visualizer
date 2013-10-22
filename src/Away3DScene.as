@@ -55,7 +55,7 @@ package
 			view3D.backgroundColor = 0x000000;			
 			view3D.antiAlias = 4;
 			view3D.camera.lens.far = 15000;
-			view3D.forceMouseMove = true;
+			//view3D.forceMouseMove = true;
 			addChild(view3D);
 			
 			cameraController = new HoverController(view3D.camera, null, 0, 0, -400)
@@ -68,6 +68,7 @@ package
 			scene.addChild(light);
 			
 			axis = new Away3DTrident(120, true, lightPicker);
+			axis.mouseEnabled = false;
 			scene.addChild(axis);				
 			
 			material = new ColorMaterial(0x555555);
@@ -80,7 +81,7 @@ package
 			TouchManager3D.initialize();
 			gestureObject = TouchManager3D.registerTouchObject(cube);
 			gestureObject.active = true;
-			gestureObject.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "n-drag-inertia":true, "n-3d-transform-finger":true };
+			gestureObject.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
 			gestureObject.nativeTransform = true;
 			gestureObject.gestureReleaseInertia = true;
 			gestureObject.gestureEvents = true;

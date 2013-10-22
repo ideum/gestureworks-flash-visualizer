@@ -2,15 +2,14 @@ package
 {			 
 	import com.gestureworks.cml.element.*;
 	import com.gestureworks.cml.events.*;
-	import com.gestureworks.cml.managers.StateManager;
+	import com.gestureworks.cml.managers.*;
 	import com.gestureworks.cml.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
 	import com.gestureworks.objects.*;
-	import com.gestureworks.utils.FrameRate;
-	import com.gestureworks.utils.GMLParser;
+	import com.gestureworks.utils.*;
 	import flash.events.*;
-	import flash.utils.Dictionary;
+	import flash.utils.*;
 	
 	public class GestureWorksVisualizer extends TouchContainer
 	{
@@ -101,8 +100,6 @@ package
 		}
 		
 		
-		
-
 		///////////////////////////////////////////
 		/////////////// setup /////////////////////
 		///////////////////////////////////////////

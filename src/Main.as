@@ -1,15 +1,9 @@
 package 
 {
-	import com.gestureworks.cml.components.*;
-	import com.gestureworks.cml.core.*;
-	import com.gestureworks.cml.element.*;
-	import com.gestureworks.cml.events.*;
-	import com.gestureworks.cml.managers.*;
-	import com.gestureworks.cml.utils.*;
-	import com.gestureworks.core.*;
-	import com.gestureworks.events.*;
-	import flash.events.*;
-	import flash.utils.*;
+	import flash.events.Event;
+	import com.gestureworks.core.GestureWorks;
+	import com.gestureworks.cml.core.CMLParser;
+	import com.gestureworks.cml.utils.document;
 	import GestureWorksVisualizer; GestureWorksVisualizer;
 	
 	public class Main extends GestureWorks

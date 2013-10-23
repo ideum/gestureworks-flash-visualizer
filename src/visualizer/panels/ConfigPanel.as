@@ -41,7 +41,7 @@ package visualizer.panels {
 			gestureBtns = document.getElementsByClassName("gesture-btn");
 			gestureFeedbackMenu = document.getElementById("gesture-feedback-menu");				
 			
-			interactive3D = document.getElementsByClassName(Interactive3D)[0];
+			interactive3D = document.getElementsByClassName("Interactive3D")[0];
 			
 			// default tab
 			selectTabByIndex(defaultTabIndex);

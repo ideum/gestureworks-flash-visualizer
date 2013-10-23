@@ -153,7 +153,7 @@
 			
 		</Graphic>	
 		<Graphic id="gesture-gml-panel" class="panel-graphic-gesture" height="550" mouseChildren="true">
-
+			
 			<TabbedContainer id="gesture-tabs" class="gesture-tabs" mouseChildren="true" height="500" >
 			
 				<Tab id="gesture-tab" class="gesture-tab" title="FEEDBACK" >
@@ -163,7 +163,7 @@
 					</Graphic>
 					<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
 				</Tab>
-				
+							
 				<Tab id="gesture-tab" class="gesture-tab" title="GML" >
 					<Text class="input-category-text" text="GML" />	
 					<ScrollPane id="gesture-gml-scrollpane" x="25" y="40" width="528" height="450" paneStroke="0" scrollThickness="30" 
@@ -175,6 +175,9 @@
 				</Tab>
 						
 			</TabbedContainer>
+			
+			<PopupMenu id="ddMenu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG, ROTATE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />
+			
 		</Graphic>		
 		
 		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />

@@ -48,7 +48,7 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-use-gpu=true -use-direct-blit=true" />
+    <option additional="-use-gpu=true" />
     <option compilerConstants="" />
     <option minorVersion="" />
   </build>

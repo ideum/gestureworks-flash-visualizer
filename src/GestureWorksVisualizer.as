@@ -1084,7 +1084,7 @@ package
 				for (i = 0; i < gestureHistory.length; i++) {
 					if (gestureHistory[i].type == "drag") {
 						found = true;
-						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureHistory[i].value.drag_dx / 2 );
+						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureHistory[i].value.drag_dx);
 						break;
 					}
 				}
@@ -1095,24 +1095,13 @@ package
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );
-			}			
+			}	
 			
-					var j:int;			
-					var historyLength:int = touchObject.cO.history.length;
-					
-					graphCoords.length = 0;
-					
-					for (j = 0; j < historyLength; j++) {
-						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), touchObject.cO.history[j].dx / 2 );		
-					}
-					for (j = historyLength; j < captureLength; j++) {
-						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );
-					}			
-					graphPaths.childList[0].pathCoordinatesVector = graphCoords;				
-					graphPaths.childList[0].updateGraphic();				
 			
 			graphPaths.childList[0].pathCoordinatesVector = graphCoords;					
 			graphPaths.childList[0].updateGraphic();
+						
+			
 			gestureEventText.text = "";
 			
 			for each (var ge:GWGestureEvent in gestureEventArray)  {

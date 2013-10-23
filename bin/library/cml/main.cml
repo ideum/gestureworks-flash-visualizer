@@ -32,10 +32,10 @@
 	<!-- RIGHT PANELS -->
 	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS">
 		<TabbedContainer id="tabs" mouseChildren="true">			
-			<Include src="library\cml\tabs\gesture.cml" />
-			<Include src="library\cml\tabs\cluster.cml" />
-			<Include src="library\cml\tabs\point.cml" />
-			<Include src="library\cml\tabs\mode.cml" />
+			<Include src="library\cml\tabs\gesture-tab.cml" />
+			<Include src="library\cml\tabs\cluster-tab.cml" />
+			<Include src="library\cml\tabs\point-tab.cml" />
+			<Include src="library\cml\tabs\mode-tab.cml" />
 		</TabbedContainer>		
 	</Drawer>
 

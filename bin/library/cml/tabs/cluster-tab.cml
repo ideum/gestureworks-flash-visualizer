@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Tab id="cluster" class="tab" title="CLUSTER" />
+<ClusterTab id="cluster" class="tab" title="CLUSTER" />
 
 </cml>

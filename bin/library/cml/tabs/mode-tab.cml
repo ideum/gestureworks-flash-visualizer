@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Tab id="mode" class="tab" title="MODE" mouseChildren="true">
+<ModeTab id="mode" class="tab" title="INPUT" mouseChildren="true">
 	
 	<Container class="tab-container">
 		
@@ -59,6 +59,6 @@
 		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
 		
 	</Container>
-</Tab>
+</ModeTab>
 
 </cml>

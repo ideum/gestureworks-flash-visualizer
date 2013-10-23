@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <cml gml="library/gml/gestures.gml" css="library/css/styles.css">
 
-<StageKit fullscreen="true" color="0x000000" frameRate="30" />
+<Stage fullscreen="true" color="0x000000" frameRate="30" />
 
-<GestureWorksVisualizer id="gw-visualizer">
-	
-	<!-- LEFT PANELS -->	
-	
-	<!-- TOP -->	
-	<Container mouseEnabled="false">
+<GWVisualizer id="gw-visualizer">
+
+	<!-- header panel -->	
+	<HeaderPanel mouseEnabled="false">
 		<Image id="gw-logo" src="library/assets/flash-logo.png" />
 		<Text id="vis-txt" text="GESTUREWORKS FLASH" x="100" y="17" />
 		<Graphic id="logo-spacer" x="440" y="17"  />
 		<Text id="vis-txt" text="VISUALIZER" x="465" y="17" />
-	</Container>
-	<!-- BOTTOM -->		
-	<Container id="status" mouseEnabled="false">
+	</HeaderPanel>
+	
+	<!-- frame / touchpoint panel -->		
+	<FramePanel id="status" mouseEnabled="false">
 		<Text id="rate-text" class="status-txt" text="60" />
 		<Text id="proc-text" class="status-txt" text="PROCESSING CYCLES / SEC" />
 		<Text id="tpnts-text" class="status-txt" text="0" />
 		<Text id="tp-text" class="status-txt" text="TOUCHPOINTS" />
-	</Container>
+	</FramePanel>
 	
-	<!-- 2D TOUCH OBJECT -->
-	<Graphic id="touch-object" class="left-panel" mouseChildren="false">
+	
+	<!-- 2d touch object -->
+	<Graphic id="touch-object-2d" class="left-panel" mouseChildren="false">
 		<Gesture ref="n-tap" />
 		<Gesture ref="n-drag" />	
 	</Graphic>
 	
-	<!-- RIGHT PANELS -->
+
+	<!-- config panel -->
 	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS">
-		<TabbedContainer id="tabs" mouseChildren="true">			
+		<Config id="config-tab">			
 			<Include src="library\cml\tabs\gesture-tab.cml" />
 			<Include src="library\cml\tabs\cluster-tab.cml" />
 			<Include src="library\cml\tabs\point-tab.cml" />
 			<Include src="library\cml\tabs\mode-tab.cml" />
-		</TabbedContainer>		
+		</Config>		
 	</Drawer>
 
 
-	<!-- 3D SCENE -->
-	<Away3DScene id="away3d" />		
+	<!-- 3d scene -->
+	<Interactive3D />		
 	
-	<!-- 2D GESTURE OBJECT -->
-	<Graphic id="gesture-object" releaseInertia="true" x="385.5" y="300" rotation="0" scale="1">
+	
+	<!-- 2d gesture object -->
+	<Graphic id="gesture-object-2d" releaseInertia="true" x="385.5" y="300" rotation="0" scale="1">
 		<Gesture ref="n-drag" gestureOn="true" />
 		<Gesture ref="n-scale" gestureOn="true" />
 		<Gesture ref="n-rotate" gestureOn="true" />
@@ -61,7 +62,7 @@
 		<Gesture ref="5-finger-orient" gestureOn="false" />
 	</Graphic>
 
-</GestureWorksVisualizer>
+</GWVisualizer>
 
 
 </cml>

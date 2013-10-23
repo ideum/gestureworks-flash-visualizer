@@ -19,7 +19,7 @@
 #touch-txt{width:95;selectable:false;}
 #cluster-txt{width:115;selectable:false;}
 #gesture-txt{width:115;selectable:false;}
-#tabs{;backgroundAlpha:0;width:640;height:1100;spacing:0;backgroundColor:0x000000;}
+#config{;backgroundAlpha:0;width:640;height:1100;spacing:0;backgroundColor:0x000000;}
 .tab{displayColor:0x000000;tabHeight:43;tabWidth:159;spacing:0;tabFontSize:22;displayBottomRightRadius:5;tabLeftRadius:8;tabRightRadius:8;}
 .data-panel{x:0;y:14;shape:rectangle;color:0x0f0f0f;alpha:1;lineStroke:0;width:600;height:650;cornerWidth:10;cornerHeight:10;}
 #data-title{x:8;y:8;color:0x292626;font-size:15;font:OpenSansBold;width:300;height:16;letterSpacing:1;text-align:left;}

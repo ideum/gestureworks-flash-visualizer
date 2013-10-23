@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Tab id="gesture" class="tab" title="GESTURE" mouseChildren="true">
+<GestureTab id="gesture" class="tab" title="GESTURE" mouseChildren="true">
 	
 	<Container id="gesture-view"  />
 	
@@ -176,7 +176,7 @@
 						
 			</TabbedContainer>
 			
-			<PopupMenu id="ddMenu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG, ROTATE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />
+			<PopupMenu id="gesture-feedback-menu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG, ROTATE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />
 			
 		</Graphic>		
 		

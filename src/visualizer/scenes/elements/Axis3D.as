@@ -1,4 +1,4 @@
-﻿package 
+﻿package visualizer.scenes.elements
 {
 	import away3d.core.base.Geometry;
 	import away3d.debug.data.TridentLines;
@@ -17,11 +17,11 @@
 	 * @param     showLetters        If the Trident should display the letters X, Y and Z at each axis arrows. Default is true.
 	 */
 	
-	public class Away3DTrident extends Mesh
+	public class Axis3D extends Mesh
 	{
 		private var lightPicker:StaticLightPicker;
 		
-		public function Away3DTrident(length:Number, showLetters:Boolean, lightPick:StaticLightPicker):void
+		public function Axis3D(length:Number, showLetters:Boolean, lightPick:StaticLightPicker):void
 		{
 			super(new Geometry(), null);
 			lightPicker = lightPick;			

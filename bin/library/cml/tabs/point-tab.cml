@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Tab id="point" class="tab" title="POINT">
+<PointTab id="point" class="tab" title="POINT">
 	<Include src="library/cml/includes/tab-container.cml" />
-</Tab>
+</PointTab>
 
 </cml>

@@ -1,5 +1,4 @@
 package visualizer {			 
-	import com.gestureworks.cml.element.Graphic;
 	import com.gestureworks.cml.element.TouchContainer;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.GestureGlobals;
@@ -8,24 +7,22 @@ package visualizer {
 	import flash.events.Event;
 	import visualizer.panels.ConfigPanel;
 	import visualizer.panels.FramePanel;
-	import visualizer.scenes.Interactive2D;
 	import visualizer.scenes.Interactive3D;
 	
 	public class GWVisualizer extends TouchContainer {
+
+		public static var gw:GestureWorks;		
+		public static var touchObject2D:TouchSprite;
+		public static var gestureObject2D:TouchSprite;
+		public static var interactive3D:Interactive3D;
+		public static var gestureObject3D:TouchSprite;
 		public static var currentTab:String = "mode";		
 		public static var currentDataTab:String = "touch";		
 		public static var currentView:String = "2D";	
-		public static var captureLength:int = 60;
-		
-		public static var touchObject2D:TouchSprite;
-		public static var gestureObject2D:TouchSprite;
-		
-		public static var interactive3D:Interactive3D;
-		public static var gestureObject3D:TouchSprite;
-		
-		private var gw:GestureWorks;		
+		public static var captureLength:int = 60;		
 		
 		private var framePanel:FramePanel;
+		private var configPanel:ConfigPanel;
 				
 		public function GWVisualizer() {
 			super();
@@ -39,18 +36,20 @@ package visualizer {
 		// setup
 		public function setup(_gw:GestureWorks):void {
 			gw = _gw;
-			framePanel = getElementsByTagName("FramePanel")[0];
+
 			touchObject2D = getElementById("touch-object-2d");
 			gestureObject2D = getElementById("gesture-object-2d");
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			framePanel = document.getElementsByTagName("FramePanel")[0];
+			configPanel = document.getElementsByTagName("ConfigPanel")[0];
 		}
 		
 		
 		// update
 		private function update():void {
 			framePanel.update();
-			if (contains(interactive3D)) 
-				interactive3D.update();			
+			//if (contains(interactive3D)) 
+				//interactive3D.update();			
 		}
 
 		

@@ -36,9 +36,7 @@ package
 		
 		private function cmlInit(event:Event):void {
 			trace("cmlInit()");
-			trace(stage.stageWidth, stage.stageHeight);
 			document.getElementById("gw-visualizer").setup(this);
-			document.getElementById("gw-visualizer").scale *= stage.stageWidth / 1920; 
 		}
 	}
 }

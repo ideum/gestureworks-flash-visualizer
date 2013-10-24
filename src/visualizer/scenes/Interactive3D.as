@@ -4,6 +4,7 @@ package visualizer.scenes {
 	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.TouchSprite;
+	import visualizer.GWVisualizer;
 	
 	/**
 	 * ...
@@ -45,7 +46,7 @@ package visualizer.scenes {
 				
 		
 		public function addView(tab:String, motion:Boolean=false):void {
-			scene.addChild(axis);				
+			//scene.addChild(axis);				
 			
 			switch (tab) {
 				case "point":
@@ -74,7 +75,7 @@ package visualizer.scenes {
 			
 			addChild(view3D);	
 			camera.tiltAngle = -45;				
-			currentTab = tab;			
+			GWVisualizer.currentTab = tab;
 		}		
 		
 		public function updateView(tab:String, motion:Boolean=false):void{			
@@ -91,13 +92,13 @@ package visualizer.scenes {
 					break;
 			}
 			
-			currentTab = tab;
+			GWVisualizer.currentTab = tab;
 			view3D.render();
 		}		
 		
 		public function removeView():void {
 			camera.tiltAngle = 0;
-			if (scene.contains(axis)) scene.removeChild(axis);			
+			//if (scene.contains(axis)) scene.removeChild(axis);			
 			if (scene.contains(cube)) scene.removeChild(cube);
 			if (scene.contains(motionVizualizer)) scene.removeChild(motionVizualizer);
 			view3D.render();

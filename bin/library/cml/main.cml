@@ -31,12 +31,12 @@
 
 	<!-- config panel -->
 	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS">
-		<Config id="config-tab">			
+		<ConfigPanel id="config-tab">			
 			<Include src="library\cml\tabs\gesture-tab.cml" />
 			<Include src="library\cml\tabs\cluster-tab.cml" />
 			<Include src="library\cml\tabs\point-tab.cml" />
 			<Include src="library\cml\tabs\mode-tab.cml" />
-		</Config>		
+		</ConfigPanel>		
 	</Drawer>
 
 

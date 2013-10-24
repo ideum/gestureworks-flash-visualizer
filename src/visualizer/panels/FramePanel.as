@@ -24,12 +24,9 @@ package visualizer.panels {
 		
 		public function FramePanel() {
 			super();
-			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
 		}
 
-		private function cmlInit(event:Event):void {
-			CMLParser.removeEventListener(CMLParser.COMPLETE, cmlInit);
-			
+		private function setup():void {			
 			rateText = getElementById("rate-text"); 
 			tpntsText = getElementById("tpnts-text");
 						

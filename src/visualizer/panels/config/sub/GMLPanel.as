@@ -1,4 +1,5 @@
 package visualizer.panels.config.sub {
+	import com.gestureworks.cml.element.Button;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.utils.CloneUtils;
 	import com.gestureworks.cml.utils.document;
@@ -34,7 +35,7 @@ package visualizer.panels.config.sub {
 			for (gId in gList) {
 				on = gList[gId];
 				if (!on) 
-					Button( document.getElementById(gId) ).runToggle();
+					Button( document.getElementById(gId) ).runToggle(); 
 			}			
 			
 			updateGestures();
@@ -42,6 +43,35 @@ package visualizer.panels.config.sub {
 				btn.addEventListener(StateEvent.CHANGE, onGestureBtns);
 		}		
 		
+		private function updateGestures():void {			
+			var on:Boolean;
+			var gId:String;			
+			var newGestures:Object = { };
+			currentGML = gmlTemplate.copy();
+			
+			for (gId in gList) {
+				on = gList[gId];
+				if (on) {
+					for each (var node:XML in gmlData.Gesture_set.*) {
+						if (node.@id == gId) {
+							currentGML.appendChild(node);
+							newGestures[gId] = on;
+						}
+					}	
+				}
+			}
+			
+			gestureObject.gestureList = newGestures;
+			gestureGmlText.cacheAsBitmap = false;				
+			gestureGmlText.text = String(currentGML);
+			gestureGmlText.cacheAsBitmap = true;			
+			gestureGmlScrollpane.updateLayout();
+		}
+			
+		private function onGestureBtns(e:StateEvent):void {
+			gList[e.id] = e.value; 
+			updateGestures();
+		}		
 	}
 
 }

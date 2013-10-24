@@ -26,7 +26,7 @@ package visualizer.panels {
 			super();
 		}
 
-		private function setup():void {			
+		public function setup():void {			
 			rateText = getElementById("rate-text"); 
 			tpntsText = getElementById("tpnts-text");
 						

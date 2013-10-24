@@ -39,9 +39,12 @@ package visualizer {
 
 			touchObject2D = getElementById("touch-object-2d");
 			gestureObject2D = getElementById("gesture-object-2d");
-			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			framePanel = document.getElementsByTagName("FramePanel")[0];
 			configPanel = document.getElementsByTagName("ConfigPanel")[0];
+			framePanel.setup();
+			configPanel.setup();
+			
+			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);			
 		}
 		
 		

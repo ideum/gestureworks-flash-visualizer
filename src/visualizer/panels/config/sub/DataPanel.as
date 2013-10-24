@@ -50,7 +50,6 @@ package visualizer.panels.config.sub {
 			dataNumCols = document.getElementsByClassName("data-num-c");
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);
 			dataTabs.selectTabByIndex(0);	
-			dataTabs.selectTabByIndex(0);	
 			touchObject = GWVisualizer.touchObject2D;
 			gestureObject = GWVisualizer.gestureObject2D;
 			gestureObject3D = GWVisualizer.gestureObject3D;

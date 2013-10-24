@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<ModeTab id="mode" class="tab" title="INPUT" mouseChildren="true">
+<ModeTab id="mode" class="tab" title="MODE" mouseChildren="true">
 	
-	<Container class="tab-container">
+	<Container id="top-level" class="tab-container">
 		
 		<!-- SIMULATOR -->
 		<Graphic class="panel-graphic" height="100">
@@ -32,7 +32,7 @@
 					</Toggle>
 				</Container>
 				<Container class="panel-text-container">
-					<Toggle id="native" class="check-box" value="false">
+					<Toggle id="nativeTouch" class="check-box" value="false">
 						<Text class="panel-text" text="NATIVE" />
 					</Toggle>
 				</Container>

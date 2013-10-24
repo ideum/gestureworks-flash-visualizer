@@ -16,7 +16,7 @@ package
 			
 			fullscreen = true;
 			simulator = true;
-			leap3D = true;
+			leap3D = false;
 			
 			// register custom packages
 			CMLCore.PACKAGES.push("visualizer.");
@@ -36,7 +36,7 @@ package
 		
 		private function cmlInit(event:Event):void {
 			trace("cmlInit()");
-			document.getElementById("gw-visualizer").setup(this);
+			document.getElementById("gw-visualizer").setup(this);		
 		}
 	}
 }

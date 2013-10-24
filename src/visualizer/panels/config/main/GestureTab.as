@@ -34,8 +34,13 @@ package visualizer.panels.config.main {
 			gestureBtns = document.getElementsByClassName("gesture-btn");			
 		}
 	
+		// setup
+		public function setup():void {
+			
+		}
+		
 		// update
-		private function show():void {
+		public function show():void {
 			if (GWVisualizer.currentView == "2D") {	
 				StateUtils.loadState(gestureObject, 0);	
 				gestureObject.visible = true;

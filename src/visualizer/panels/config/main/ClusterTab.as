@@ -25,11 +25,16 @@ package visualizer.panels.config.main {
 			super();
 			touchObject = GWVisualizer.touchObject2D;
 			gestureObject = GWVisualizer.gestureObject2D;
-			
 		}
 		
 		override public function init():void {
 			viewg = document.getElementById("viewg"); 
+		}
+		
+		
+		// setup
+		public function setup():void {
+			
 		}
 		
 		// update

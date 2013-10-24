@@ -18,10 +18,10 @@ package visualizer.panels {
 	
 	public class ConfigPanel extends TabbedContainer {
 				
-		public static var modeTab:ModeTab;
-		public static var pointTab:PointTab;		
-		public static var clusterTab:ClusterTab;
-		public static var gestureTab:GestureTab;
+		private var modeTab:ModeTab;
+		private var pointTab:PointTab;		
+		private var clusterTab:ClusterTab;
+		private var gestureTab:GestureTab;
 		
 		private var currentTab:String;		
 		private var defaultTabIndex:int = 0;
@@ -50,31 +50,30 @@ package visualizer.panels {
 			
 			interactive3D = document.getElementsByClassName("Interactive3D")[0];
 			
-			// default tab
-			selectTabByIndex(defaultTabIndex);
-			addEventListener(StateEvent.CHANGE, onTabSelection);				
+			setupTabs();
 		}
 	
-		private function onTabSelection(e:StateEvent):void {	
-			if (e.target != this) return;
-			
-			switch (e.value) {
-				case 0: 
-					if (currentTab != "mode") 
-						showTab("mode"); break;
-				case 1: 
-					if (currentTab != "point") 
-						showTab("point"); break; 
-				case 2: 
-					if (currentTab != "cluster") 
-						showTab("cluster"); break;	
-				case 3: 
-					if (currentTab != "gesture") 
-						showTab("gesture"); break;					
-			}
-		}		
-		
 		// setup
+		private function setupTabs():void {
+			modeTab = getElementById("mode");
+			modeTab.setup();
+			
+			pointTab = getElementById("point");
+			pointTab.setup();
+			
+			clusterTab = getElementById("cluster");
+			clusterTab.setup();
+			
+			gestureTab = getElementById("gesture");
+			gestureTab.setup();
+			
+			// default tab
+			selectTabByIndex(defaultTabIndex);
+			
+			// listen for tab change
+			addEventListener(StateEvent.CHANGE, onTabSelection);			
+		}
+		
 		private function setupListeners():void {
 			viewBtns.addEventListener(StateEvent.CHANGE, onViewBtns);	
 			
@@ -96,9 +95,6 @@ package visualizer.panels {
 		}
 		
 		private function showTab(tabName:String):void {
-			var i:int;
-			var j:int;
-			
 			for each (var item:Toggle in toggle) 
 				StateUtils.saveStateById(item, item.stateId); 
 			
@@ -106,10 +102,13 @@ package visualizer.panels {
 				case "mode": 
 					break;
 				case "point":
+					pointTab.show();
 					break;				
 				case "cluster":
+					clusterTab.show();
 					break;		
 				case "gesture":
+					gestureTab.show();
 					break;					
 			}
 			
@@ -154,7 +153,27 @@ package visualizer.panels {
 		}	
 		
 		
+		
 		// events
+		private function onTabSelection(e:StateEvent):void {	
+			if (e.target != this) return;
+			
+			switch (e.value) {
+				case 0: 
+					if (currentTab != "mode") 
+						showTab("mode"); break;
+				case 1: 
+					if (currentTab != "point") 
+						showTab("point"); break; 
+				case 2: 
+					if (currentTab != "cluster") 
+						showTab("cluster"); break;	
+				case 3: 
+					if (currentTab != "gesture") 
+						showTab("gesture"); break;					
+			}
+		}	
+		
 		private function onViewBtns(e:StateEvent):void
 		{
 			if (GWVisualizer.currentView == e.value) 

@@ -30,6 +30,11 @@ package visualizer.panels.config.main {
 			data = document.getElementById("data");			
 		}
 		
+		// setup
+		public function setup():void {
+			
+		}
+		
 		// update
 		public function show():void {
 			

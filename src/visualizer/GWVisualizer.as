@@ -36,15 +36,17 @@ package visualizer {
 		// setup
 		public function setup(_gw:GestureWorks):void {
 			gw = _gw;
+			scale *= stage.stageWidth / 1920;	
 
 			touchObject2D = getElementById("touch-object-2d");
 			gestureObject2D = getElementById("gesture-object-2d");
 			framePanel = document.getElementsByTagName("FramePanel")[0];
 			configPanel = document.getElementsByTagName("ConfigPanel")[0];
+			
 			framePanel.setup();
 			configPanel.setup();
-			
-			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);			
+				
+			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 		
 		

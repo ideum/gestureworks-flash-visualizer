@@ -1,4 +1,7 @@
 package visualizer.panels.config.sub {
+	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.utils.document;
+	import com.gestureworks.cml.utils.StateUtils;
 	/**
 	 * ...
 	 * @author 
@@ -7,7 +10,7 @@ package visualizer.panels.config.sub {
 		
 		public function DataPanel() {
 			// data
-			data = document.getElementById("data");			
+			data = document.getElementById("data");
 			dataContainer = document.getElementById("data-c");
 			dataNumbers = document.getElementsByClassName("data-num");
 			dataText = document.getElementsByClassName("data-txt");
@@ -18,7 +21,8 @@ package visualizer.panels.config.sub {
 			dataPanel = document.getElementById("data-panel");
 			dataGraph = document.getElementById("data-graph");
 			dataTabs = document.getElementById("data-tabs");
-			
+			dataNumCols = document.getElementsByClassName("data-num-c");
+			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);
 			dataTabs.selectTabByIndex(0);	
 		}
 		
@@ -46,7 +50,7 @@ package visualizer.panels.config.sub {
 			
 			if (currentDataTab == "touch" || currentDataTab == "motion") {
 				StateUtils.loadState(data, 1);
-				StateUtils.loadState(dataGraph, 0);
+				StateUtils.loadState(dataGraph, 0); 
 				StateUtils.loadState(dataContainer, 1);
 				
 				dataTabSubCluster.loadStateById(tabName);

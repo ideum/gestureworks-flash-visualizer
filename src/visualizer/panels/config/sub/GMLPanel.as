@@ -1,4 +1,8 @@
 package visualizer.panels.config.sub {
+	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.utils.CloneUtils;
+	import com.gestureworks.cml.utils.document;
+	import visualizer.GWVisualizer;
 	/**
 	 * ...
 	 * @author 
@@ -22,7 +26,7 @@ package visualizer.panels.config.sub {
 			
 			gmlData = XML(GMLParser.settings);	
 			gmlTemplate = XML(<GestureMarkupLanguage/>);
-			gList = CloneUtils.deepCopyObject(gestureObject.gestureList);
+			gList = CloneUtils.deepCopyObject(GWVisualizer.gestureObject2D.gestureList);
 			
 			var gId:String;
 			var on:Boolean;

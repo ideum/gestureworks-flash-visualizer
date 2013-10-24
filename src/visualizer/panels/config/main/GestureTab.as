@@ -2,6 +2,10 @@ package visualizer.panels.config.main {
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.TouchContainer;
 	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.utils.document;
+	import com.gestureworks.cml.utils.StateUtils;
+	import com.gestureworks.core.TouchSprite;
+	import com.gestureworks.events.GWGestureEvent;
 	import visualizer.scenes.Interactive3D;
 	/**
 	 * ...
@@ -9,12 +13,14 @@ package visualizer.panels.config.main {
 	 */
 	public class GestureTab extends Tab {
 		
-		public var touchObject2D:TouchContainer;
-		public var gestureObject2D:TouchContainer;
+		public var touchObject:TouchSprite;
+		public var gestureObject:TouchSprite;
 		public var interactive3D:Interactive3D;		
 		
 		public function GestureTab() {
 			super();
+			gestureFeedbackMenu = document.getElementById("gesture-feedback-menu"); 
+			gestureBtns = document.getElementsByClassName("gesture-btn");			
 		}
 	
 		// update

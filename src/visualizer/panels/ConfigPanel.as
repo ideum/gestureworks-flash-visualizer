@@ -1,11 +1,13 @@
 package visualizer.panels {
-	import com.gestureworks.cml.core.CMLParser;
-	import com.gestureworks.cml.element.Tab;
+	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.cml.element.RadioButtons;
 	import com.gestureworks.cml.element.TabbedContainer;
+	import com.gestureworks.cml.element.Text;
+	import com.gestureworks.cml.element.Toggle;
 	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.events.GWGestureEvent;
-	import flash.events.Event;
+	import com.gestureworks.cml.utils.StateUtils;
 	import visualizer.panels.config.main.ClusterTab;
 	import visualizer.panels.config.main.GestureTab;
 	import visualizer.panels.config.main.ModeTab;
@@ -23,6 +25,11 @@ package visualizer.panels {
 		private var defaultTabIndex:int = 0;
 		
 		private var interactive3D:Interactive3D;
+		
+		private var toggle:Array;
+		private var viewg:Graphic;
+		private var panelText:Array;
+		private var viewBtns:RadioButtons;
 				
 		public function ConfigPanel () {		
 			super();
@@ -31,15 +38,11 @@ package visualizer.panels {
 		override public function init():void {
 			super.init();
 			
-			// toggle
-			toggle = document.getElementsByTagName("Toggle");
 			viewg = document.getElementById("viewg");
 
-			panelText = document.getElementsByClassName("panel-text");
 			viewBtns = document.getElementById("view-btns");
-			dataNumCols = document.getElementsByClassName("data-num-c");
-			gestureBtns = document.getElementsByClassName("gesture-btn");
-			gestureFeedbackMenu = document.getElementById("gesture-feedback-menu");				
+			panelText = document.getElementsByClassName("panel-text");			
+			toggle = document.getElementsByTagName("Toggle");
 			
 			interactive3D = document.getElementsByClassName("Interactive3D")[0];
 			
@@ -69,7 +72,6 @@ package visualizer.panels {
 		
 		// setup
 		private function setupListeners():void {
-			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
 			viewBtns.addEventListener(StateEvent.CHANGE, onViewBtns);	
 			
 			for each (var t:Toggle in toggle)
@@ -83,10 +85,10 @@ package visualizer.panels {
 		
 		private function setup3DScene():void {
 			remove2DScene();
-			display3DIndex = getChildIndex(display3D);			
+			interactive3D = getChildIndex(interactive3D);			
 			remove3DScene();
 			add2DScene();
-			gestureObject3D = display3D.gestureObject;
+			gestureObject2D = interactive3D.gestureObject2D;
 		}
 		
 		private function showTab(tabName:String):void {
@@ -94,7 +96,7 @@ package visualizer.panels {
 			var j:int;
 			
 			for each (var item:Toggle in toggle) 
-				StateUtils.saveStateById(item, item.stateId);
+				StateUtils.saveStateById(item, item.stateId); 
 			
 			switch (tabName) {			
 				case "mode": 
@@ -116,7 +118,7 @@ package visualizer.panels {
 		
 		private function loadState2(state:String):void {
 			var txt:Text;
-			var tog:Toggle;
+			var tog:Toggle
 			for each (txt in panelText)
 				StateUtils.loadStateById(txt, state);
 			for each(tog in toggle)
@@ -126,25 +128,25 @@ package visualizer.panels {
 		}
 					
 		private function add3DScene():void {
-			display3D.addView(currentTab, motion);
-			addChildAt(display3D, display3DIndex);
+			interactive3D.addView(currentTab, motion);
+			addChildAt(interactive3D, interactive3DIndex);
 			showTab(currentTab);
 		}		
 		
 		private function remove3DScene():void {
-			display3D.removeView();
-			removeChild(display3D);
+			interactive3D.removeView();
+			removeChild(interactive3D);
 		}
 		
 		private function add2DScene():void {
-			addChildAt(touchObject, touchObjectIndex);						
-			addChildAt(gestureObject, gestureObjectIndex);
+			addChildAt(touchObject2D, touchObjectIndex);						
+			addChildAt(gestureObject2D, gestureObjectIndex);
 			showTab(currentTab);
 		}
 		
 		private function remove2DScene():void {
-			removeChild(touchObject);
-			removeChild(gestureObject);
+			removeChild(touchObject2D);
+			removeChild(gestureObject2D);
 		}			
 		
 	}

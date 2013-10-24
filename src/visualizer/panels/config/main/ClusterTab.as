@@ -1,6 +1,8 @@
 package visualizer.panels.config.main {
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.core.TouchSprite;
+	import visualizer.GWVisualizer;
 	import visualizer.scenes.Interactive3D;
 	/**
 	 * ...
@@ -8,12 +10,14 @@ package visualizer.panels.config.main {
 	 */
 	public class ClusterTab extends Tab { 
 		
-		public var touchObject2D:TouchContainer;
-		public var gestureObject2D:TouchContainer;
+		public var touchObject:TouchSprite;
+		public var gestureObject:TouchSprite;
 		public var interactive3D:Interactive3D;
 		
 		public function ClusterTab() {
 			super();
+			touchObject = GWVisualizer.touchObject2D;
+			gestureObject = GWVisualizer.gestureObject2D;
 		}
 		
 		// update
@@ -89,43 +93,43 @@ package visualizer.panels.config.main {
 				
 				case "motion":
 					//columns  	//rows
-					dataNumCols[0].childList[0].text = String(gestureObject3D.cO.id);	
-					dataNumCols[0].childList[1].text = String(gestureObject3D.cO.n);
-					dataNumCols[0].childList[2].text = String(gestureObject3D.cO.radius.toFixed(2));			
+					dataNumCols[0].childList[0].text = String(gestureObject.cO.id);	
+					dataNumCols[0].childList[1].text = String(gestureObject.cO.n);
+					dataNumCols[0].childList[2].text = String(gestureObject.cO.radius.toFixed(2));			
 					
 					dataNumCols[0].childList[3].text = "-";		
-					dataNumCols[1].childList[3].text = "(x) " + String(gestureObject3D.cO.x.toFixed(2));
-					dataNumCols[2].childList[3].text = "(y) " + String(gestureObject3D.cO.y.toFixed(2));
-					dataNumCols[3].childList[3].text = "(z) " + String(gestureObject3D.cO.z.toFixed(2));
+					dataNumCols[1].childList[3].text = "(x) " + String(gestureObject.cO.x.toFixed(2));
+					dataNumCols[2].childList[3].text = "(y) " + String(gestureObject.cO.y.toFixed(2));
+					dataNumCols[3].childList[3].text = "(z) " + String(gestureObject.cO.z.toFixed(2));
 					
 					dataNumCols[0].childList[4].text = "-";			
-					dataNumCols[1].childList[4].text = "(x) " + String(gestureObject3D.cO.dx.toFixed(2));
-					dataNumCols[2].childList[4].text = "(y) " + String(gestureObject3D.cO.dy.toFixed(2));
-					dataNumCols[3].childList[4].text = "(z) " + String(gestureObject3D.cO.dz.toFixed(2));
+					dataNumCols[1].childList[4].text = "(x) " + String(gestureObject.cO.dx.toFixed(2));
+					dataNumCols[2].childList[4].text = "(y) " + String(gestureObject.cO.dy.toFixed(2));
+					dataNumCols[3].childList[4].text = "(z) " + String(gestureObject.cO.dz.toFixed(2));
 					
-					dataNumCols[0].childList[5].text = String(gestureObject3D.cO.ds.toFixed(2));
-					dataNumCols[1].childList[5].text = "(x) " + String(gestureObject3D.cO.dsx.toFixed(2));
-					dataNumCols[2].childList[5].text = "(y) " + String(gestureObject3D.cO.dsy.toFixed(2));
-					dataNumCols[3].childList[5].text = "(z) " + String(gestureObject3D.cO.dsz.toFixed(2));
+					dataNumCols[0].childList[5].text = String(gestureObject.cO.ds.toFixed(2));
+					dataNumCols[1].childList[5].text = "(x) " + String(gestureObject.cO.dsx.toFixed(2));
+					dataNumCols[2].childList[5].text = "(y) " + String(gestureObject.cO.dsy.toFixed(2));
+					dataNumCols[3].childList[5].text = "(z) " + String(gestureObject.cO.dsz.toFixed(2));
 					
-					dataNumCols[0].childList[6].text = String(gestureObject3D.cO.rotation.toFixed(2));
-					dataNumCols[1].childList[6].text = "(x) " + String(gestureObject3D.cO.rotationX.toFixed(2));
-					dataNumCols[2].childList[6].text = "(y) " + String(gestureObject3D.cO.rotationY.toFixed(2));
-					dataNumCols[3].childList[6].text = "(z) " + String(gestureObject3D.cO.rotationZ.toFixed(2));
+					dataNumCols[0].childList[6].text = String(gestureObject.cO.rotation.toFixed(2));
+					dataNumCols[1].childList[6].text = "(x) " + String(gestureObject.cO.rotationX.toFixed(2));
+					dataNumCols[2].childList[6].text = "(y) " + String(gestureObject.cO.rotationY.toFixed(2));
+					dataNumCols[3].childList[6].text = "(z) " + String(gestureObject.cO.rotationZ.toFixed(2));
 					
-					dataNumCols[0].childList[7].text = String(gestureObject3D.cO.separation.toFixed(2));
-					dataNumCols[1].childList[7].text = "(x) " + String(gestureObject3D.cO.separationX.toFixed(2));
-					dataNumCols[2].childList[7].text = "(y) " + String(gestureObject3D.cO.separationY.toFixed(2));
-					dataNumCols[3].childList[7].text = "(z) " + String(gestureObject3D.cO.separationZ.toFixed(2));	
+					dataNumCols[0].childList[7].text = String(gestureObject.cO.separation.toFixed(2));
+					dataNumCols[1].childList[7].text = "(x) " + String(gestureObject.cO.separationX.toFixed(2));
+					dataNumCols[2].childList[7].text = "(y) " + String(gestureObject.cO.separationY.toFixed(2));
+					dataNumCols[3].childList[7].text = "(z) " + String(gestureObject.cO.separationZ.toFixed(2));	
 					
 					var j:int;			
 					
-					var historyLength:int = gestureObject3D.cO.history.length;
+					var historyLength:int = gestureObject.cO.history.length;
 					
 					graphCoords.length = 0;
 					
 					for (j = 0; j < historyLength; j++) {
-						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject3D.cO.history[j].dx / 2 );		
+						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject.cO.history[j].dx / 2 );		
 					}
 					for (j = historyLength; j < captureLength; j++) {
 						graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );
@@ -139,12 +143,12 @@ package visualizer.panels.config.main {
 				
 				case "sub": 		
 					//trace("update sub cluster data");
-					var subClusterArrayLength:int = (gestureObject3D.cO.subClusterArray.length <= 10) ? gestureObject3D.cO.subClusterArray.length : 10;
+					var subClusterArrayLength:int = (gestureObject.cO.subClusterArray.length <= 10) ? gestureObject.cO.subClusterArray.length : 10;
 					var ipCluster:ipClusterObject;
 					var i:int;
 										
 					for (i = 0; i < subClusterArrayLength; i++) {	
-						ipCluster = gestureObject3D.cO.subClusterArray[i];
+						ipCluster = gestureObject.cO.subClusterArray[i];
 						
 						dataNumCols[i].childList[0].text = String(ipCluster.id);		
 						dataNumCols[i].childList[1].text = (ipCluster.count).toFixed(2);
@@ -159,8 +163,8 @@ package visualizer.panels.config.main {
 						dataNumCols[i].childList[10].text = (ipCluster.separationY).toFixed(2);	
 						dataNumCols[i].childList[11].text = (ipCluster.separationZ).toFixed(2);	
 																		
-						//iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
-						//historyLength = gestureObject3D.cO.motionArray[i].history.length;
+						//iPointGraphHistory = GWVisualizer.gestureObject.cO.motionArray[i].history;				
+						//historyLength = GWVisualizer.gestureObject.cO.motionArray[i].history.length;
 						
 						//graphCoords.length = 0;
 						//

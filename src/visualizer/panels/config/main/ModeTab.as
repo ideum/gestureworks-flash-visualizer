@@ -36,36 +36,25 @@ package visualizer.panels.config.main {
 		}
 		
 		// update
-		
-		public function show():void {
-			
-		}
+		public function show():void {}
 		
 		private function updateToggle(tId:String, value:Boolean):void {			
 			switch (tId) {
-			case "simulator":
-				gw.simulator = value;
-				break;
-			case "tuio": 
-				gw.tuio = value;
-				break;
 			case "leap2D": 
 				gw.leap2D = value;
 				if (gw.leap2D) 
 					gw.leap3D = false;
-				break;	
-			case "native": 
-				gw.nativeTouch = value;
 				break;		
 			case "leap3D": 
 				gw.leap3D = value;
 				if (gw.leap3D)
 					gw.leap2D = false;
 				break;	
+			default :
+				gw[tId] = value;
 			}
 		}
-		
-		
+			
 		private function onToggle(e:StateEvent):void {
 			var tId:String = Toggle(e.target).id;	
 			updateToggle(tId, e.value);

@@ -23,18 +23,14 @@ package visualizer.panels.config.main {
 		
 		public function ClusterTab() {
 			super();
-			touchObject = GWVisualizer.touchObject2D;
-			gestureObject = GWVisualizer.gestureObject2D;
 		}
-		
-		override public function init():void {
-			viewg = document.getElementById("viewg"); 
-		}
-		
 		
 		// setup
 		public function setup():void {
-			
+			viewg = document.getElementById("viewg"); 			
+			touchObject = GWVisualizer.touchObject2D;
+			gestureObject = GWVisualizer.gestureObject2D;
+			pointContainer = document.getElementById("point-container");
 		}
 		
 		// update
@@ -51,10 +47,10 @@ package visualizer.panels.config.main {
 			
 			addChild(pointContainer);					
 			pointContainer.addChild(viewg);
-			//pointContainer.addChild(data);
-			//dataTabContainer.addChild(dataGraph);
-			//loadDataColumns(tabName);
-			//graphPaths.childList[0].visible = true;				
+			pointContainer.addChild(DataPanel.data);
+			
+			DataPanel.showCluster();
+			GraphPanel.showCluster();		
 		}
 		
 		private function updateClusterData():void {

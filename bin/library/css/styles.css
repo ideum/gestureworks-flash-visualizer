@@ -1,4 +1,4 @@
-#touch-object {
+#touch-object-2d {
 	alpha:0.0;
 	width:1920;
 	height:1080;
@@ -6,7 +6,7 @@
 }
 
 
-#gesture-object {
+#gesture-object-2d {
 	shape:square;
 	color:0x555555;
 	width:400;

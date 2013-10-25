@@ -6,9 +6,7 @@ package visualizer.panels.config.sub {
 	 */
 	public class ConsolePanel {
 		
-		public function ConsolePanel() {
-			
-		}
+		public function ConsolePanel() {}
 		
 		public static function updateGestureText():void {
 	

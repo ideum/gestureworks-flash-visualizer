@@ -3,6 +3,7 @@ package visualizer.panels.config.sub {
 	import com.gestureworks.cml.element.Graphic;
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.TabbedContainer;
+	import com.gestureworks.cml.element.Text;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
@@ -33,9 +34,12 @@ package visualizer.panels.config.sub {
 		private static var gestureObject:TouchSprite;
 		private static var gestureObject3D:TouchSprite;
 		private static var touchObject:TouchSprite;
+		private static var panelText:Array;
 		
-		public function DataPanel() {
-			// data
+		public function DataPanel() {}
+		
+		
+		public static function setup():void {
 			data = document.getElementById("data");
 			dataContainer = document.getElementById("data-c");
 			dataNumbers = document.getElementsByClassName("data-num");
@@ -52,10 +56,15 @@ package visualizer.panels.config.sub {
 			dataTabs.selectTabByIndex(0);	
 			touchObject = GWVisualizer.touchObject2D;
 			gestureObject = GWVisualizer.gestureObject2D;
-			gestureObject3D = GWVisualizer.gestureObject3D;
+			gestureObject3D = GWVisualizer.gestureObject3D;	
+			panelText = document.getElementsByClassName("panel-text");						
+			
+			setupDataNumbers();
+			
+			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
 		}
 		
-		private function setupDataNumbers():void {
+		private static function setupDataNumbers():void {
 			var i:int;
 			for (i = 1; i < dataNumCols.length; i+=2) {
 				for (var j:int = 0; j < dataNumCols[i].childList.length; j++)
@@ -70,12 +79,12 @@ package visualizer.panels.config.sub {
 		
 		
 		public static function showPoint():void {
-			
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
 			dataTabSubCluster.loadStateById("point");			
 			dataTabContainer.addChild(dataGraph);
+			loadDataColumns("point");
 			
 			var i:int;
 			var j:int
@@ -89,15 +98,21 @@ package visualizer.panels.config.sub {
 				for (j = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
 			}			
-		}	
+		}
 		
-
+		public static function showCluster():void {
+			dataTabContainer.addChild(dataGraph);
+			loadDataColumns("cluster");			
+		}
+	
+		
 		public static function showGesture():void {
 			StateUtils.loadState(data, 0);					
 			StateUtils.loadState(dataGraph, 1);									
 		}
 		
-		private function loadDataColumns(tabName:String):void {
+		
+		private static function loadDataColumns(tabName:String):void {
 			if (tabName != "cluster") {
 				return;
 			}
@@ -111,7 +126,6 @@ package visualizer.panels.config.sub {
 				StateUtils.loadState(dataContainer, 1);
 				
 				dataTabSubCluster.loadStateById(tabName);
-				//loadState2(tabName);	
 				
 				for (i = 0; i < dataNumCols.length; i++) {
 					dataNumCols[i].visible = true;
@@ -161,7 +175,11 @@ package visualizer.panels.config.sub {
 				
 				dataTabSubCluster.loadStateById(tabName);
 
-				//loadState2(tabName);
+				var txt:Text;
+				for each (txt in panelText)
+					StateUtils.loadStateById(txt, "cluster");
+				
+				//StateUtils.loadStateById(viewg, "cluster");
 					
 				for (i = 1; i < dataNumCols.length; i++) {
 					StateUtils.loadState(dataNumCols[i], 0);	
@@ -178,7 +196,7 @@ package visualizer.panels.config.sub {
 			
 		}	
 				
-		private function onDataTabContainer(e:StateEvent):void
+		private static function onDataTabContainer(e:StateEvent):void
 		{
 			switch (e.value) {
 				case 0: 
@@ -193,7 +211,7 @@ package visualizer.panels.config.sub {
 			}
 		}
 		
-		private function showDataTab(tabName:String):void
+		private static function showDataTab(tabName:String):void
 		{
 			switch (tabName) {			
 				case "touch": 

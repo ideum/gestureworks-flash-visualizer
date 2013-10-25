@@ -7,13 +7,14 @@ package visualizer {
 	import flash.events.Event;
 	import visualizer.panels.ConfigPanel;
 	import visualizer.panels.FramePanel;
+	import visualizer.scenes.Interactive2D;
 	import visualizer.scenes.Interactive3D;
 	
 	public class GWVisualizer extends TouchContainer {
 
 		public static var gw:GestureWorks;		
-		public static var touchObject2D:TouchSprite;
-		public static var gestureObject2D:TouchSprite;
+		public static var touchObject2D:TouchContainer;
+		public static var gestureObject2D:TouchContainer;
 		public static var interactive3D:Interactive3D;
 		public static var gestureObject3D:TouchSprite;
 		public static var currentTab:String = "mode";		
@@ -38,17 +39,19 @@ package visualizer {
 			gw = _gw;
 			scale *= stage.stageWidth / 1920;	
 
-			touchObject2D = getElementById("touch-object-2d");
-			gestureObject2D = getElementById("gesture-object-2d");
+			touchObject2D = document.getElementById("touch-object-2d");
+			gestureObject2D = document.getElementById("gesture-object-2d");
 			framePanel = document.getElementsByTagName("FramePanel")[0];
 			configPanel = document.getElementsByTagName("ConfigPanel")[0];
 			
 			framePanel.setup();
 			configPanel.setup();
+			
+			Interactive2D.setup();
 				
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
-		
+	
 		
 		// update
 		private function update():void {

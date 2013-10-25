@@ -10,21 +10,24 @@ package visualizer.scenes {
 	 * @author 
 	 */
 	public class Interactive2D {
-		private var touchObject:TouchContainer	
-		private var gestureObject:TouchContainer;
-		private var stage:Stage;
-		private var gestureEventArray:Array;
+
+		private static var stage:Stage;
+		private static var gestureEventArray:Array;
+		private static var touchObject:TouchContainer	
+		private static var gestureObject:TouchContainer;
 		
-		public function Interactive2D() {
-			stage = GestureWorks.application.stage;
-			touchObject = document.getElementById("touch-object");	
-			gestureObject = document.getElementById("gesture-object");
-			setupTouchObject();
-			setupGestureObject();			
-		}
+		public function Interactive2D() {}
 		
 		// setup
-		private function setupTouchObject():void {
+		public static function setup():void {
+			stage = GestureWorks.application.stage;
+			touchObject = document.getElementById("touch-object-2d");	
+			gestureObject = document.getElementById("gesture-object-2d");
+			setupTouchObject();
+			setupGestureObject();						
+		}
+		
+		private static function setupTouchObject():void {
 			touchObject.nativeTransform = false;					
 			touchObject.debugDisplay = true;
 			touchObject.visualizer.point.maxTrails = 20;
@@ -33,26 +36,28 @@ package visualizer.scenes {
 			touchObject.visualizer.clusterDisplay = false;			
 			touchObject.visualizer.gestureDisplay = false;
 			touchObject.gestureEvents = true;
-			
+			setupVisualizer(touchObject);
 			//remove3DScene();
 			//touchObjectIndex = getChildIndex(touchObject);
 			//add3DScene();
 		}
 		
-		private function setupGestureObject():void {
+		private static function setupGestureObject():void {
 			gestureObject.visible = false;	
 			gestureObject.nativeTransform = true;						
 			gestureObject.debugDisplay = true;
+			gestureObject.gestureEvents = true;
 
 			gestureObject.state[0]['x'] = stage.stageWidth / 2 - gestureObject.width / 2;
 			gestureObject.state[0]['y'] = stage.stageHeight / 2 - gestureObject.height / 2;
 		
+			setupVisualizer(gestureObject);
 			//remove3DScene();
 			//gestureObjectIndex = getChildIndex(gestureObject);				
 			//add3DScene();
 		}	
 		
-		private function setupVisualizer(ts0:TouchSprite):void {		
+		private static function setupVisualizer(ts0:TouchSprite):void {		
 			/////////////////////////////////////////////////////////////////////////////////////////////////
 			// control point visualizer
 			ts0.visualizer.pointDisplay = true; // turn on/off point visualizer layer
@@ -137,7 +142,7 @@ package visualizer.scenes {
 		}			
 		
 		// update
-		private function addListeners():void {
+		private static function addListeners():void {
 			gestureObject.addEventListener(GWGestureEvent.DRAG, onGesture);
 			gestureObject.addEventListener(GWGestureEvent.SCALE, onGesture);
 			gestureObject.addEventListener(GWGestureEvent.ROTATE, onGesture);			
@@ -152,7 +157,7 @@ package visualizer.scenes {
 			gestureObject.addEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}
 		
-		private function removeListeners():void {
+		private static function removeListeners():void {
 			gestureObject.addEventListener(GWGestureEvent.DRAG, onGesture);
 			gestureObject.addEventListener(GWGestureEvent.SCALE, onGesture);
 			gestureObject.addEventListener(GWGestureEvent.ROTATE, onGesture);			
@@ -168,7 +173,7 @@ package visualizer.scenes {
 		}	
 		
 		// event
-		private function onGesture(e:GWGestureEvent):void {
+		private static function onGesture(e:GWGestureEvent):void {
 			gestureEventArray.unshift (e);			
 			if (gestureEventArray.length == 15)
 				gestureEventArray.pop();

@@ -27,13 +27,14 @@ package visualizer.panels.config.sub {
 		
 		public function GraphPanel() {}
 		
-		private static function setup():void {
+		public static function setup():void {
 			
 			touchObject = GWVisualizer.touchObject2D;
 			gestureObject = GWVisualizer.gestureObject2D;
-			gestureObject3D = GWVisualizer.gestureObject3D;
 			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
 			viewg = document.getElementById("viewg");
+			gestureView = document.getElementById("gesture-view");
+
 			
 			graphPaths = document.getElementById("graph-paths");			
 			pointGraphHistory = new Vector.<PointObject>(); 
@@ -53,19 +54,15 @@ package visualizer.panels.config.sub {
 				graphPaths.childList[i].pathCommandsVector = graphCommands;
 			}	
 		}
-		
-		public static function showPoint():void {
-			graphPaths.childList[0].visible = false;			
-		}
-		
-		public static function showGesture():void {
-			gestureFeedbackPanel.addChild(DataPanel.dataGraph);
-			gestureView.addChild(viewg);			
-		}
+			
 		
 		/////////////
 		// point
 		//////////////
+		
+		public static function showPoint():void {
+			graphPaths.childList[0].visible = true;			
+		}		
 		
 		public static function updatePointTouch():void {
 			
@@ -130,6 +127,11 @@ package visualizer.panels.config.sub {
 		// cluster
 		//////////////		
 		
+		
+		public static function showCluster():void {
+			graphPaths.childList[0].visible = true;	
+		}			
+		
 		public static function updateClusterTouch():void {
 			var j:int;			
 			var historyLength:int = touchObject.cO.history.length;
@@ -188,6 +190,11 @@ package visualizer.panels.config.sub {
 		/////////////
 		// gesture
 		//////////////	
+		
+		public static function showGesture():void {
+			gestureFeedbackPanel.addChild(DataPanel.dataGraph);
+			gestureView.addChild(viewg);			
+		}		
 		
 		public static function updateGestureTouch():void {
 			var i:int;			

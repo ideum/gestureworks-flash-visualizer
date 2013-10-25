@@ -10,6 +10,7 @@ package visualizer.panels.config.main {
 	import com.gestureworks.events.GWGestureEvent;
 	import visualizer.GWVisualizer;
 	import visualizer.panels.config.sub.DataPanel;
+	import visualizer.panels.config.sub.GMLPanel;
 	import visualizer.panels.config.sub.GraphPanel;
 	import visualizer.scenes.Interactive3D;
 	/**
@@ -27,16 +28,18 @@ package visualizer.panels.config.main {
 		private var gestureBtns:Array;
 		
 		public function GestureTab() {
-			super();
-			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
-			gestureGmlText = document.getElementById("gesture-gml-text");
-			gestureEventText = document.getElementById("gesture-event-text"); 
-			gestureBtns = document.getElementsByClassName("gesture-btn");			
+			super();		
 		}
 	
 		// setup
 		public function setup():void {
-			
+			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
+			gestureGmlText = document.getElementById("gesture-gml-text");
+			gestureEventText = document.getElementById("gesture-event-text"); 
+			gestureBtns = document.getElementsByClassName("gesture-btn");
+			touchObject = GWVisualizer.touchObject2D;
+			gestureObject = GWVisualizer.gestureObject2D;	
+			GMLPanel.setup();
 		}
 		
 		// update
@@ -50,17 +53,14 @@ package visualizer.panels.config.main {
 				//interactive3D.updateView(GWVisualizer.currentTab, motion);
 			}
 						
-			
-			//loadState2(GWVisualizer.currentTab);	
-
+			DataPanel.showGesture();
+			GraphPanel.showGesture();				
 		}
 		
 		private function updateGestureData():void {
 			GraphPanel.updateGestureTouch();	
 		}	
-			
-
-					
+						
 	}
 
 }

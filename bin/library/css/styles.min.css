@@ -1,5 +1,5 @@
-#touch-object{alpha:0.0;width:1920;height:1080;shape:rectange;}
-#gesture-object{shape:square;color:0x555555;width:400;height:400;alpha:0.5;}
+#touch-object-2d{alpha:0.0;width:1920;height:1080;shape:rectange;}
+#gesture-object-2d{shape:square;color:0x555555;width:400;height:400;alpha:0.5;}
 #logo-spacer{shape:line;lineColor:0xd7d7da;lineStroke:2;height:40;}
 #vis-txt{color:0xFFFFFF;font-size:28;font:OpenSansRegular;selectable:false;autoSize:left;}
 #drawer{labelFontSize:25;bkgColor:0x000000;handleColor:0x2E2D2D;}

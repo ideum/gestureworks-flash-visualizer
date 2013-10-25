@@ -14,6 +14,8 @@ package visualizer.panels {
 	import visualizer.panels.config.main.GestureTab;
 	import visualizer.panels.config.main.ModeTab;
 	import visualizer.panels.config.main.PointTab;
+	import visualizer.panels.config.sub.DataPanel;
+	import visualizer.panels.config.sub.GraphPanel;
 	import visualizer.scenes.Interactive3D;
 	
 	public class ConfigPanel extends TabbedContainer {
@@ -51,6 +53,8 @@ package visualizer.panels {
 			interactive3D = document.getElementsByClassName("Interactive3D")[0];
 			
 			setupTabs();
+			DataPanel.setup();
+			GraphPanel.setup();
 		}
 	
 		// setup
@@ -95,8 +99,9 @@ package visualizer.panels {
 		}
 		
 		private function showTab(tabName:String):void {
-			for each (var item:Toggle in toggle) 
-				StateUtils.saveStateById(item, item.stateId); 
+			for each (var item:Toggle in toggle) {
+				StateUtils.loadStateById(item, item.stateId); 
+			}
 			
 			switch (tabName) {			
 				case "mode": 
@@ -112,7 +117,8 @@ package visualizer.panels {
 					break;					
 			}
 			
-			currentTab = tabName;		
+			currentTab = tabName;
+			loadState2(currentTab);
 			StateManager.loadState(GWVisualizer.currentTab + "-" + GWVisualizer.currentDataTab);
 		}	
 

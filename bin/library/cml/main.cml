@@ -21,29 +21,13 @@
 		<Text id="tp-text" class="status-txt" text="TOUCHPOINTS" />
 	</FramePanel>
 	
-	
-	<!-- 2d touch object -->
-	<Graphic id="touch-object-2d" class="left-panel" mouseChildren="false">
-		<Gesture ref="n-tap" />
-		<Gesture ref="n-drag" />	
-	</Graphic>
 
 	<!-- 3d scene -->
 	<Interactive3D />			
 
-	<!-- config panel -->
-	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS" >
-		<ConfigPanel id="config" mouseChildren="true">			
-			<Include src="library\cml\tabs\gesture-tab.cml" />
-			<Include src="library\cml\tabs\cluster-tab.cml" />
-			<Include src="library\cml\tabs\point-tab.cml" />
-			<Include src="library\cml\tabs\mode-tab.cml" />
-		</ConfigPanel>		
-	</Drawer>
-	
 	
 	<!-- 2d gesture object -->
-	<Graphic id="gesture-object-2d" releaseInertia="true" x="385.5" y="300" rotation="0" scale="1">
+	<GestureVis2D id="gesture-object-2d" releaseInertia="true" x="385.5" y="300" rotation="0" scale="1">
 		<Gesture ref="n-drag" gestureOn="true" />
 		<Gesture ref="n-scale" gestureOn="true" />
 		<Gesture ref="n-rotate" gestureOn="true" />
@@ -58,8 +42,26 @@
 		<Gesture ref="1-finger-pivot" gestureOn="false" />
 		<Gesture ref="3-finger-tilt" gestureOn="false" />
 		<Gesture ref="5-finger-orient" gestureOn="false" />
-	</Graphic>
+	</GestureVis2D>
 
+	
+	
+	<TouchVis2D id="touch-object-2d">
+		<Gesture ref="n-tap" />
+		<Gesture ref="n-drag" />	
+	</TouchVis2D>		
+	
+	
+	<!-- config panel -->
+	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS" >
+		<ConfigPanel id="config" mouseChildren="true">			
+			<Include src="library\cml\tabs\gesture-tab.cml" />
+			<Include src="library\cml\tabs\cluster-tab.cml" />
+			<Include src="library\cml\tabs\point-tab.cml" />
+			<Include src="library\cml\tabs\mode-tab.cml" />
+		</ConfigPanel>		
+	</Drawer>
+	
 </GWVisualizer>
 
 

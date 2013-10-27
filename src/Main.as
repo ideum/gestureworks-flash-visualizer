@@ -1,11 +1,12 @@
-package 
-{
+package {
 	import com.gestureworks.cml.core.CMLCore;
 	import flash.events.Event;
 	import com.gestureworks.core.GestureWorks;
 	import com.gestureworks.cml.core.CMLParser;
 	import com.gestureworks.cml.utils.document;
 	import visualizer.GWVisualizer; GWVisualizer;
+	import visualizer.scenes.TouchVis2D; TouchVis2D;
+	import visualizer.scenes.GestureVis2D; GestureVis2D;
 	import visualizer.panels.ConfigPanel; ConfigPanel;
 	import visualizer.panels.FramePanel; FramePanel;
 	import visualizer.panels.HeaderPanel; HeaderPanel;

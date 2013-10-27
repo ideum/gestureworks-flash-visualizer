@@ -1,63 +1,13 @@
 package visualizer.scenes {
-	import com.gestureworks.cml.element.TouchContainer;
-	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.core.GestureWorks;
 	import com.gestureworks.core.TouchSprite;
-	import com.gestureworks.events.GWGestureEvent;
-	import flash.display.Stage;
+	
 	/**
 	 * ...
 	 * @author 
 	 */
-	public class Interactive2D {
-
-		private static var stage:Stage;
-		private static var gestureEventArray:Array;
-		private static var touchObject:TouchContainer	
-		private static var gestureObject:TouchContainer;
-		
-		public function Interactive2D() {}
-		
-		// setup
-		public static function setup():void {
-			stage = GestureWorks.application.stage;
-			touchObject = document.getElementById("touch-object-2d");	
-			gestureObject = document.getElementById("gesture-object-2d");
-			setupTouchObject();
-			setupGestureObject();						
-		}
-		
-		private static function setupTouchObject():void {
-			touchObject.nativeTransform = false;					
-			touchObject.debugDisplay = true;
-			touchObject.visualizer.point.maxTrails = 20;
-			touchObject.visualizer.point.init();
-			touchObject.visualizer.pointDisplay = true;
-			touchObject.visualizer.clusterDisplay = false;			
-			touchObject.visualizer.gestureDisplay = false;
-			touchObject.gestureEvents = true;
-			setupVisualizer(touchObject);
-			//remove3DScene();
-			//touchObjectIndex = getChildIndex(touchObject);
-			//add3DScene();
-		}
-		
-		private static function setupGestureObject():void {
-			gestureObject.visible = false;	
-			gestureObject.nativeTransform = true;						
-			gestureObject.debugDisplay = true;
-			gestureObject.gestureEvents = true;
-
-			gestureObject.state[0]['x'] = stage.stageWidth / 2 - gestureObject.width / 2;
-			gestureObject.state[0]['y'] = stage.stageHeight / 2 - gestureObject.height / 2;
-		
-			setupVisualizer(gestureObject);
-			//remove3DScene();
-			//gestureObjectIndex = getChildIndex(gestureObject);				
-			//add3DScene();
-		}	
-		
-		private static function setupVisualizer(ts0:TouchSprite):void {		
+	public class Settings {
+			
+		public static function setupVisualizer(ts0:TouchSprite):void {		
 			/////////////////////////////////////////////////////////////////////////////////////////////////
 			// control point visualizer
 			ts0.visualizer.pointDisplay = true; // turn on/off point visualizer layer
@@ -139,45 +89,8 @@ package visualizer.scenes {
 			ts0.visualizer.gesture.style.line_type = "dashed"	
 			
 			ts0.updateDebugDisplay();
-		}			
-		
-		// update
-		private static function addListeners():void {
-			gestureObject.addEventListener(GWGestureEvent.DRAG, onGesture);
-			gestureObject.addEventListener(GWGestureEvent.SCALE, onGesture);
-			gestureObject.addEventListener(GWGestureEvent.ROTATE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.HOLD, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.FLICK, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.SCROLL, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.STROKE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.SWIPE, onGesture);			
-		}
-		
-		private static function removeListeners():void {
-			gestureObject.addEventListener(GWGestureEvent.DRAG, onGesture);
-			gestureObject.addEventListener(GWGestureEvent.SCALE, onGesture);
-			gestureObject.addEventListener(GWGestureEvent.ROTATE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.HOLD, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.FLICK, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.SCROLL, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.STROKE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
-			gestureObject.addEventListener(GWGestureEvent.SWIPE, onGesture);			
-		}	
-		
-		// event
-		private static function onGesture(e:GWGestureEvent):void {
-			gestureEventArray.unshift (e);			
-			if (gestureEventArray.length == 15)
-				gestureEventArray.pop();
-		}			
+		}		
 		
 	}
+
 }

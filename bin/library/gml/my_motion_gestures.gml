@@ -37,7 +37,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-n-pinch-3dtranslate" type="drag">
+					<Gesture id="3dmotion-n-pinch-3dtranslate" type="motion_drag">
 							<match>
 								<action>
 									<initial>
@@ -62,7 +62,7 @@
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="drag">
+									<gesture_event type="motion_drag">
 										<property ref="dx" target="x"/>
 										<property ref="dy" target="y"/>
 										<property ref="dz" target="z"/>
@@ -71,7 +71,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-n-trigger-3dtransform" type="3d_manipulate">
+					<Gesture id="3dmotion-n-trigger-3dtransform" type="motion_manipulate">
 							<match>
 								<action>
 									<initial>
@@ -98,7 +98,7 @@
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_manipulate">
+									<gesture_event type="motion_manipulate">
 										<property ref="dx" target="x"/>
 										<property ref="dy" target="y"/>
 										<property ref="dz" target="z"/>
@@ -114,7 +114,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-n-palm-3dtilt" type="3d_tilt">
+					<Gesture id="3dmotion-n-palm-3dtilt" type="motion_tilt">
 							<match>
 								<action>
 									<initial>
@@ -168,7 +168,7 @@
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tilt">
+									<gesture_event type="motion_tilt">
 										<property ref="dtheta" target="rotation"/>
 										<property ref="dthetaX" target="rotationX"/>
 										<property ref="dthetaY" target="rotationY"/>
@@ -248,7 +248,7 @@
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_manipulate">
+									<gesture_event type="motion_manipulate">
 										<property ref="dx" target="x"/>
 										<property ref="dy" target="y"/>
 										<property ref="dz" target="z"/>
@@ -409,7 +409,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="n-3d-transform-palm" type="3d_manipulate">
+					<Gesture id="3dmotion-n-palm-3dtransform" type="3d_manipulate">
 							<match>
 								<action>
 									<initial>
@@ -452,7 +452,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="n-3d-transform-thumb" type="3d_manipulate">
+					<Gesture id="3dmotion-n-thumb-3dtransform" type="3d_manipulate">
 							<match>
 								<action>
 									<initial>
@@ -479,7 +479,7 @@
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_manipulate">
+									<gesture_event type="motion_manipulate">
 										<property ref="dx" target="x"/>
 										<property ref="dy" target="y"/>
 										<property ref="dz" target="z"/>
@@ -507,15 +507,15 @@
 								<algorithm class="3d_kinemetric" global_metric="pinch" type="continuous">
 									<library module="3d_translate"/>
 									<returns>
-										<property id="dx" result="dx"/>
-										<property id="dy" result="dy"/>
-										<property id="dz" result="dz"/>
+										<property id="dx" result="x"/>
+										<property id="dy" result="y"/>
+										<property id="dz" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="drag">
+									<gesture_event type="motion_drag">
 										<property ref="dx" target="x"/>
 										<property ref="dy" target="y"/>
 										<property ref="dz" target="z"/>
@@ -525,7 +525,7 @@
 					</Gesture>
 					
 					
-					<Gesture id="3dmotion-n-digit-tap" type="drag">
+					<Gesture id="3dmotion-n-digit-tap" type="tap">
 							<match>
 								<action>
 									<initial>
@@ -537,15 +537,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_tap"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_tap">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>
@@ -554,7 +554,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-n-finger-tap" type="drag">
+					<Gesture id="3dmotion-n-finger-tap" type="tap">
 							<match>
 								<action>
 									<initial>
@@ -566,15 +566,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_tap"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_tap">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>
@@ -583,7 +583,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-1-finger-tap" type="drag">
+					<Gesture id="3dmotion-1-finger-tap" type="tap">
 							<match>
 								<action>
 									<initial>
@@ -595,15 +595,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_tap"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_tap">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>
@@ -612,7 +612,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-1-finger-hold" type="drag">
+					<Gesture id="3dmotion-1-finger-hold" type="hold">
 							<match>
 								<action>
 									<initial>
@@ -624,15 +624,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_hold"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_hold">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>
@@ -641,7 +641,7 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-1-pinch-hold" type="drag">
+					<Gesture id="3dmotion-1-pinch-hold" type="hold">
 							<match>
 								<action>
 									<initial>
@@ -653,15 +653,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_hold"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_hold">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>
@@ -670,7 +670,36 @@
 							</mapping>
 					</Gesture>
 					
-					<Gesture id="3dmotion-n-finger-hold" type="drag">
+					<Gesture id="3dmotion-1-pinch-tap" type="tap">
+							<match>
+								<action>
+									<initial>
+										<cluster type="pinch" input_type="motion" point_number="1" point_number_min="1" point_number_max="10"/>
+									</initial>
+								</action>
+							</match>	
+							<analysis>
+								<algorithm class="3d_kinemetric" type="continuous">
+									<library module="3d_tap"/>
+									<returns>
+										<property id="x" result="x"/>
+										<property id="y" result="y"/>
+										<property id="z" result="z"/>
+									</returns>
+								</algorithm>
+							</analysis>	
+							<mapping>
+								<update dispatch_type="continuous">
+									<gesture_event type="motion_tap">
+										<property ref="x" target="x"/>
+										<property ref="y" target="y"/>
+										<property ref="z" target="z"/>
+									</gesture_event>
+								</update>
+							</mapping>
+					</Gesture>
+					
+					<Gesture id="3dmotion-n-finger-hold" type="hold">
 							<match>
 								<action>
 									<initial>
@@ -682,15 +711,15 @@
 								<algorithm class="3d_kinemetric" type="continuous">
 									<library module="3d_hold"/>
 									<returns>
-										<property id="x" result="dx"/>
-										<property id="y" result="dy"/>
-										<property id="z" result="dz"/>
+										<property id="x" result="d"/>
+										<property id="y" result="d"/>
+										<property id="z" result="d"/>
 									</returns>
 								</algorithm>
 							</analysis>	
 							<mapping>
 								<update dispatch_type="continuous">
-									<gesture_event type="3d_tap">
+									<gesture_event type="motion_hold">
 										<property ref="x" target="x"/>
 										<property ref="y" target="y"/>
 										<property ref="z" target="z"/>

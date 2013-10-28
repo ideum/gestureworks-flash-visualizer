@@ -9,7 +9,9 @@
 		<State 									stateId="gesture" height="220" />
 							
 		<Text class="input-category-text" text="VIEW" />			
+		
 		<Include src="library/cml/includes/view-buttons.cml" />
+		
 		<Container class="toggle-grid" x="23" y="100">
 			<!-- row -->
 			<Toggle class="check-box" stateId="point" 	visible="true" value="true">

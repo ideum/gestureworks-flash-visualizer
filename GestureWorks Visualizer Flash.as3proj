@@ -30,7 +30,6 @@
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
-    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
@@ -48,7 +47,7 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-use-gpu=false" />
+    <option additional="-use-gpu=true -use-direct-blit=true" />
     <option compilerConstants="" />
     <option minorVersion="" />
   </build>
@@ -93,7 +92,6 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Default" />
-    <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
   <storage>

@@ -67,8 +67,6 @@ package vis.scenes {
 			cube = new Mesh(new CubeGeometry(), material);
 			cube.mouseEnabled = true;
 			scene.addChild(cube);
-			
-			
 		}
 		
 		

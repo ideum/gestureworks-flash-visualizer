@@ -155,7 +155,6 @@
 		<Graphic id="gesture-gml-panel" class="panel-graphic-gesture" height="550" mouseChildren="true">
 			
 			<TabbedContainer id="gesture-tabs" class="gesture-tabs" mouseChildren="true" height="500" >
-			
 				<Tab id="gesture-tab" class="gesture-tab" title="FEEDBACK" >
 					<Graphic id="gesture-feedback-panel" class="panel-graphic-gesture" height="250"/>
 					<Graphic id="gesture-event-panel" class="panel-graphic-gesture-event" height="265" x="23" y="0">
@@ -172,8 +171,7 @@
 						<Text id="gesture-gml-text" width="500" cacheAsBitmap="true" />					
 						<Gesture ref="n-drag-scroll-pane" />
 					</ScrollPane>	
-				</Tab>
-						
+				</Tab>						
 			</TabbedContainer>
 			
 			<PopupMenu id="gesture-menu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG,ROTATE,SCALE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />

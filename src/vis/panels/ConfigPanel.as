@@ -131,15 +131,15 @@ package vis.panels {
 			StateManager.loadState(tabSelection + "-" + GWVisualizer.currentDataTab);			
 		
 			currentTabObj.unload();
-			currentTabObj = getElementById(tabSelection);		
+			currentTabObj = getElementById(tabSelection);
+			
+			currentTab = tabSelection; // must come before load
 			currentTabObj.load();
 			
 			
 			if (tabSelection == "gesture") {
 				touchObject.visible = false;
 			}
-			
-			currentTab = tabSelection;
 		}	
 		
 		

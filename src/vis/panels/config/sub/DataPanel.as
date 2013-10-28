@@ -30,14 +30,14 @@ package vis.panels.config.sub {
 		public var dataText:Array;
 		public var dataNumCols:Array;		
 		public var dataNumbers:Array;
-		
-		private var gestureObject:TouchSprite;
-		private var gestureObject3D:TouchSprite;
-		private var touchObject:TouchSprite;
+
 		private var panelText:Array;
 		
-		public function DataPanel() {}
+		private var touchObject:TouchSprite;		
+		private var gestureObject:TouchSprite;
+		private var gestureObject3D:TouchSprite;
 		
+		public function DataPanel() {}
 		
 		public function setup():void {
 			data = document.getElementById("data");
@@ -52,7 +52,6 @@ package vis.panels.config.sub {
 			dataGraph = document.getElementById("data-graph");
 			dataTabs = document.getElementById("data-tabs");
 			dataNumCols = document.getElementsByClassName("data-num-c");
-			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);
 			dataTabs.selectTabByIndex(0);	
 			
 			touchObject = GWVisualizer.interactive2D;
@@ -62,7 +61,7 @@ package vis.panels.config.sub {
 			panelText = document.getElementsByClassName("panel-text");						
 			
 			setupDataNumbers();
-			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
+			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);			
 		}
 		
 		private function setupDataNumbers():void {
@@ -91,7 +90,7 @@ package vis.panels.config.sub {
 			loadDataColumns("point");
 			
 			var i:int;
-			var j:int
+			var j:int;
 			for (i = 1; i < dataNumCols.length; i++) {
 				StateUtils.loadState(dataNumCols[i], 0);	
 			}	
@@ -182,9 +181,7 @@ package vis.panels.config.sub {
 				var txt:Text;
 				for each (txt in panelText)
 					StateUtils.loadStateById(txt, "cluster");
-				
-				//StateUtils.loadStateById(viewg, "cluster");
-					
+									
 				for (i = 1; i < dataNumCols.length; i++) {
 					StateUtils.loadState(dataNumCols[i], 0);	
 				}	
@@ -227,9 +224,11 @@ package vis.panels.config.sub {
 				case "sub":
 					dataTabSubCluster.addChild(dataTabContainer); break;
 			}
-			GWVisualizer.currentDataTab = tabName;	
-			StateManager.loadState(GWVisualizer.currentTab + "-" + GWVisualizer.currentDataTab);
-			loadDataColumns(GWVisualizer.currentTab);
+			loadDataColumns(GWVisualizer.currentTab);			
+			StateManager.loadState(GWVisualizer.currentTab + "-" + tabName);
+			
+			trace( GWVisualizer.currentTab + "-" + tabName );
+			GWVisualizer.currentDataTab = tabName;				
 		}
 		
 		
@@ -322,9 +321,6 @@ package vis.panels.config.sub {
 		}
 		
 		public function updateClusterMotion():void {
-					
-			trace(gestureObject3D.cO.n);
-			
 			//columns  	//rows
 			dataNumCols[0].childList[0].text = String(gestureObject3D.cO.id);	
 			dataNumCols[0].childList[1].text = String(gestureObject3D.cO.n);

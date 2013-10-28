@@ -49,7 +49,7 @@
 		{
 			super();
 			fullscreen = true;
-			gml = "library/gml/my_motion_gestures.gml";
+			gml = "library/gml/gestures.gml";
 		}
 		
 		override protected function gestureworksInit():void 
@@ -113,13 +113,18 @@
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-3d-transform-finger":true };
 
+			//ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
 			//ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true,"n-3d-transform-finger":true, "n-3d-transform-pinch":true,"n-3d-transform-trigger":true,"n-3d-transform-frame":true,"n-3d-transform-thumb":true,"n-3d-transform-hook":true };
 			
 			ts.gestureList = { 
-			"3dmotion-n-pinch-3dtransform":true,
+			"n-drag3D":true, 
+			"n-scale3D":true, 
+			"n-rotate3D":true,
+			"3dmotion-n-pinch-3dtransform":false,
+			"3dmotion-n-pinch-3dtranslate":true,
+			"3dmotion-1-pinch-tap":true,
 			"3dmotion-1-pinch-hold":true
 			};
-			
 			/*
 			"3dmotion-n-hook-3dtransform":false,
 			"3dmotion-n-frame-3dtransform":false,
@@ -134,17 +139,38 @@
 			"3dmotion-n-finger-hold":false,
 			*/
 			
-			
+	
 			//ts.gestureList = { "n-drag-inertia":true };
 			ts.nativeTransform = false;
 			ts.releaseInertia = false;
 			ts.gestureEvents = true;
+
+			
+			ts.touchEnabled = true;
+			ts.motionEnabled = true;
+			
 			ts.motion3d = true; 
 			ts.transform3d = true; //NEED TO ENSURE NO 2D CLUSTER COOR TRANSFORM
 			
 			ts.visualizer.pointDisplay = true;
 			ts.visualizer.clusterDisplay = true;
 			ts.visualizer.gestureDisplay = true;
+			
+			
+			
+			ts.addEventListener(GWGestureEvent.MOTION_DRAG, gestureMotionDragHandler);
+			ts.addEventListener(GWGestureEvent.MOTION_ROTATE, gestureMotionRotateHandler);
+			ts.addEventListener(GWGestureEvent.MOTION_SCALE, gestureMotionScaleHandler);
+			
+			ts.addEventListener(GWGestureEvent.MOTION_TAP, gestureMotionTapHandler);
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			c = new ObjectContainer3D;
 			c.addChild(cube);
@@ -166,10 +192,38 @@
 			view.scene.addChild(vis3d);				
 		}
 
+		////////////////////////////////////////////////////////////////
+		// MOTION GESTURES
+		////////////////////////////////////////////////////////////////
+		private function gestureMotionDragHandler(event:GWGestureEvent):void
+		{	
+			trace("g motion drag:		",event.value.drag_dx,event.value.drag_dy)
+			//event.target.x += event.value.drag_dx;
+			//event.target.y += event.value.drag_dy;
+		}
+		private function gestureMotionRotateHandler(event:GWGestureEvent):void
+		{
+			trace("g motion rot:		",event.value.rotate_dtheta)
+			//event.target.rotation += event.value.rotate_dtheta;
+		}
+		private function gestureMotionScaleHandler(event:GWGestureEvent):void
+		{
+			trace("g motion scale:		", event.value.scale_dsx, event.value.scale_dsy, event.value.n);
+			//event.target.scaleX += event.value.scale_dsx;
+			//event.target.scaleY += event.value.scale_dsy;
+		}
+		
+		private function gestureMotionTapHandler(event:GWGestureEvent):void
+		{
+			trace("g motion tap:		", event.value.x, event.value.y, event.value.n);
+			//event.target.scaleX += event.value.scale_dsx;
+		}
+		
+		
+		
+		
 		private function onDrag(e:GWGestureEvent):void
 		{
-			trace("cluster", ts.cO.dx );
-			
 			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
 			
 			// normalizes from rotated parent containers -> TODO: integrate this into framework
@@ -209,9 +263,7 @@
 		{
 			vis3d.updateDisplay();	
 			light.position = view.camera.position;
-			view.render();	
-			
-			trace( vis3d.cO.dx );
+			view.render();			
 		}
 
 		private function enterframeHandler( event:Event ):void 

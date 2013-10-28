@@ -1,43 +1,48 @@
 package {
 	import com.gestureworks.cml.core.CMLCore;
-	import flash.events.Event;
-	import com.gestureworks.core.GestureWorks;
 	import com.gestureworks.cml.core.CMLParser;
 	import com.gestureworks.cml.utils.document;
-	import visualizer.GWVisualizer; GWVisualizer;
-	import visualizer.scenes.TouchVis2D; TouchVis2D;
-	import visualizer.scenes.GestureVis2D; GestureVis2D;
-	import visualizer.panels.ConfigPanel; ConfigPanel;
-	import visualizer.panels.FramePanel; FramePanel;
-	import visualizer.panels.HeaderPanel; HeaderPanel;
+	import com.gestureworks.core.GestureWorks;
+	import flash.events.Event;
+	
+	// register custom cml objects
+	import vis.GWVisualizer; GWVisualizer;
+	import vis.interactives.Interactive2D; Interactive2D;
+	import vis.interactives.GestureObject2D; GestureObject2D;
+	import vis.panels.ConfigPanel; ConfigPanel;
+	import vis.panels.FramePanel; FramePanel;
+	import vis.panels.HeaderPanel; HeaderPanel;
 	
 	public class Main extends GestureWorks {
 		public function Main() {
 			super();
 			
+			// default input settings
 			fullscreen = true;
 			simulator = true;
 			leap3D = false;
 			
-			// register custom packages
-			CMLCore.PACKAGES.push("visualizer.");
-			CMLCore.PACKAGES.push("visualizer.scenes.");
-			CMLCore.PACKAGES.push("visualizer.panels");
-			CMLCore.PACKAGES.push("visualizer.panels.config.main");
-			CMLCore.PACKAGES.push("visualizer.panels.config.sub");
+			// register custom cml packages
+			CMLCore.PACKAGES.push("vis");
+			CMLCore.PACKAGES.push("vis.interactives");
+			CMLCore.PACKAGES.push("vis.scenes");
+			CMLCore.PACKAGES.push("vis.panels");
+			CMLCore.PACKAGES.push("vis.panels.config.main");
+			CMLCore.PACKAGES.push("vis.panels.config.sub");
 			
+			// add cml parser complete event handler
 			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
-
+			
+			// load cml file
 			cml = "library/cml/main.cml";
 		}
 		
-		override protected function gestureworksInit():void {
-			trace("gestureWorksInit()");			
-		}
-		
+		// cml parser initialized
 		private function cmlInit(event:Event):void {
 			trace("cmlInit()");
-			document.getElementById("gw-visualizer").setup(this);		
+			
+			// setup through custom visualizer objects
+			document.getElementsByTagName("GWVisualizer")[0].setup(this);		
 		}
 	}
 }

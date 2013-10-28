@@ -1,4 +1,4 @@
-package visualizer.panels.config.main {
+package vis.panels.config.main {
 	import com.gestureworks.cml.core.CMLParser;
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.Toggle;
@@ -6,7 +6,7 @@ package visualizer.panels.config.main {
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.GestureWorks;
 	import flash.events.Event;
-	import visualizer.GWVisualizer;
+	import vis.GWVisualizer;
 	
 	/**
 	 * ...
@@ -21,6 +21,7 @@ package visualizer.panels.config.main {
 			super();		
 		}
 		
+		
 		// setup 
 		public function setup():void {
 			gw = GWVisualizer.gw;
@@ -31,15 +32,21 @@ package visualizer.panels.config.main {
 			toggles = searchChildren(Toggle, Array);
 			for each (var item:Toggle in toggles) {
 				item.value = gw[item.id];
-				item.addEventListener(StateEvent.CHANGE, onToggle);
-			}		
+			}				
 		}
 		
-		// update
-		public function show():void {}
 		
-		private function updateToggle(tId:String, value:Boolean):void {			
-			switch (tId) {
+		// load
+		public function load():void {}
+		public function unload() {}		
+		
+		
+		// update		
+		public function update():void {}
+		
+		public function updateToggle(label:String, value:Boolean):void {
+			label = label.toLowerCase();
+			switch (label) {
 			case "leap2D": 
 				gw.leap2D = value;
 				if (gw.leap2D) 
@@ -51,13 +58,8 @@ package visualizer.panels.config.main {
 					gw.leap2D = false;
 				break;	
 			default :
-				gw[tId] = value;
+				gw[label] = value;
 			}
 		}
-			
-		private function onToggle(e:StateEvent):void {
-			var tId:String = Toggle(e.target).id;	
-			updateToggle(tId, e.value);
-		}	
 	}
 }

@@ -1,4 +1,4 @@
-package visualizer.scenes {
+package vis {
 	import com.gestureworks.core.TouchSprite;
 	
 	/**
@@ -7,6 +7,8 @@ package visualizer.scenes {
 	 */
 	public class Settings {
 			
+		public static var captureLength:int = 60;
+		
 		public static function setupVisualizer(ts0:TouchSprite):void {		
 			/////////////////////////////////////////////////////////////////////////////////////////////////
 			// control point visualizer
@@ -18,16 +20,22 @@ package visualizer.scenes {
 			// set point element styles
 			ts0.visualizer.point.style.stroke_thickness = 10;
 			ts0.visualizer.point.style.stroke_color = 0xFFAE1F;
-			ts0.visualizer.point.style.stroke_alpha = 0.5;
+			//ts0.visualizer.point.style.stroke_color = 0xFFFFFF;
+			ts0.visualizer.point.style.stroke_alpha = .5;
 			ts0.visualizer.point.style.fill_color = 0xFFAE1F;
+			//ts0.visualizer.point.style.fill_color = 0xAADDFF;
 			ts0.visualizer.point.style.fill_alpha = 0.5;
-			ts0.visualizer.point.style.radius = 25;
-			ts0.visualizer.point.style.height = 20;
-			ts0.visualizer.point.style.width = 20;
+			ts0.visualizer.point.style.radius = 30;
+			ts0.visualizer.point.style.height = 30;
+			ts0.visualizer.point.style.width = 30;
 			ts0.visualizer.point.style.shape = "circle-fill"; // square/ring/cross/tringle/circle-fill/tringle-fill/square/fill
 			ts0.visualizer.point.style.trail_shape = "circle-fill"; //line/cirve/ring
+			
+			//ts0.visualizer.point.init();
+				
 			//ts0.visualizer.point.style.touch_text_color = 0x9BD6EA; //blue
-			ts0.visualizer.point.style.touch_text_color = 0xFFAE1F; //orange
+			//ts0.visualizer.point.style.touch_text_color = 0xFFAE1F; //orange
+			ts0.visualizer.point.style.touch_text_color = 0xFFFFFF; //white
 			//ts0.visualizer.point.style.touch_text_color = 0xFFFFFF; //white
 					
 			// motion point draw
@@ -45,11 +53,13 @@ package visualizer.scenes {
 			//ts0.visualizer.cluster.drawSeparation = false; // control cluster radius draw element
 			
 			// set element styles
-			ts0.visualizer.cluster.style.stroke_color = 0xFFAE1F; //main stroke color for cluster
+			//ts0.visualizer.cluster.style.stroke_color = 0xFFAE1F; //main stroke color for cluster
+			//ts0.visualizer.cluster.style.stroke_color = 0xFFAE1F; //main stroke color for cluster
 			ts0.visualizer.cluster.style.stroke_thickness = 4;
-			ts0.visualizer.cluster.style.stroke_color = 0xFFAE1F;
+			ts0.visualizer.cluster.style.stroke_color = 0xAADDFF;
 			ts0.visualizer.cluster.style.stroke_alpha = 0.9;
-			ts0.visualizer.cluster.style.fill_color = 0xFFAE1F;
+			//ts0.visualizer.cluster.style.fill_color = 0xFFAE1F;
+			ts0.visualizer.cluster.style.fill_color = 0xAADDFF;
 			ts0.visualizer.cluster.style.fill_alpha = 0.9;
 			ts0.visualizer.cluster.style.radius = 20; // for cluster center
 			ts0.visualizer.cluster.style.c_stroke_thickness = 16;// circle line thickness

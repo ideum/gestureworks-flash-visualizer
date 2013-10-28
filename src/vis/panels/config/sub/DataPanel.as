@@ -1,4 +1,4 @@
-package visualizer.panels.config.sub {
+package vis.panels.config.sub {
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
 	import com.gestureworks.cml.element.Tab;
@@ -11,7 +11,7 @@ package visualizer.panels.config.sub {
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.objects.ipClusterObject;
 	import flash.utils.Dictionary;
-	import visualizer.GWVisualizer;
+	import vis.GWVisualizer;
 	/**
 	 * ...
 	 * @author 
@@ -54,9 +54,9 @@ package visualizer.panels.config.sub {
 			dataNumCols = document.getElementsByClassName("data-num-c");
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);
 			dataTabs.selectTabByIndex(0);	
-			touchObject = GWVisualizer.touchObject2D;
+			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
-			gestureObject3D = GWVisualizer.gestureObject3D;	
+			//gestureObject3D = GWVisualizer.gestureObject3D;	
 			panelText = document.getElementsByClassName("panel-text");						
 			
 			setupDataNumbers();
@@ -78,7 +78,10 @@ package visualizer.panels.config.sub {
 		}		
 		
 		
-		public static function showPoint():void {
+		// update
+		
+		
+		public static function loadPoint():void {
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
@@ -100,13 +103,13 @@ package visualizer.panels.config.sub {
 			}			
 		}
 		
-		public static function showCluster():void {
+		public static function loadCluster():void {
 			dataTabContainer.addChild(dataGraph);
 			loadDataColumns("cluster");			
 		}
 	
 		
-		public static function showGesture():void {
+		public static function loadGesture():void {
 			StateUtils.loadState(data, 0);					
 			StateUtils.loadState(dataGraph, 1);									
 		}
@@ -245,7 +248,7 @@ package visualizer.panels.config.sub {
 				dataNumCols[i].childList[6].text = String(int(touchObject.pointArray[i].DY));
 				dataNumCols[i].childList[7].text = String(int(touchObject.pointArray[i].w));	
 				dataNumCols[i].childList[8].text = String(int(touchObject.pointArray[i].h));						
-				dataNumCols[i].visible = true;
+				dataNumCols[i].visible = true;				
 			}
 			// clear unused points
 			for (ptArrayLength; i < 10; i++) {

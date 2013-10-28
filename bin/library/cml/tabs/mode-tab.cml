@@ -3,7 +3,7 @@
 
 <ModeTab id="mode" class="tab" title="MODE" mouseChildren="true">
 	
-	<Container id="top-level" class="tab-container">
+	<Container class="tab-container">
 		
 		<!-- SIMULATOR -->
 		<Graphic class="panel-graphic" height="100">

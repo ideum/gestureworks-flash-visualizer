@@ -258,7 +258,7 @@
 .data-num {
 	y:2.5;
 	x:4;
-	color:0x9BD6EA;
+	color:0xAADDFF;
 	font-size:15;
 	width:300;
 	height:30;
@@ -291,7 +291,7 @@
 	width:500;
 	fill:none;
 	lineStroke:2;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	alpha:.1;
 	visible:true;
 }
@@ -339,7 +339,7 @@
 	width:500;
 	fill:none;
 	lineStroke:2;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	alpha:.5
 }
 
@@ -349,7 +349,7 @@
 	height:650;
 	spacing:0;
 	tabLeftRadius:8;
-	tabRightRadius:8	
+	tabRightRadius:8;
 }
 
 
@@ -408,7 +408,7 @@
 	cornerWidth:10;
 	cornerHeight:10;  
 	mouseChildren:true;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	lineAlpha:.5;
 	fillAlpha:1; 
 	mouseChildren:true;
@@ -422,7 +422,7 @@
 	cornerWidth:10;
 	cornerHeight:10;
 	mouseChildren:true;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	lineAlpha:.5;
 	fillAlpha:1; 
 	mouseChildren:true;
@@ -438,7 +438,7 @@
 	cornerWidth:10;
 	cornerHeight:10;  
 	mouseChildren:true;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	lineAlpha:1;
 	fillAlpha:1;
 }
@@ -451,14 +451,15 @@
 	cornerWidth:10;
 	cornerHeight:10;  
 	mouseChildren:true;
-	lineColor:0x9BD6EA;
+	lineColor:0xAADDFF;
 	lineAlpha:.5;
 	fillAlpha:1;
 	mouseChildren:true;
 }
 
 .sub-input {
-	y:10;
+	x:3;
+	y:12;
 }
 
 .input-category-graphic {
@@ -513,7 +514,7 @@
 	backgroundLineStoke:5;
 	backgroundLineColor:0x555555;
 	backgroundColor:0x555555;
-	toggleColor:0xFFAE1F;
+	toggleColor:0xAADDFF;
 	toggleLineStoke:1.5;
 	toggleLineStoke:1.5;
 }

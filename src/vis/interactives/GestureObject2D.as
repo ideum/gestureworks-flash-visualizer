@@ -1,20 +1,19 @@
-package visualizer.scenes {
+package vis.interactives {
 	import com.gestureworks.cml.element.Graphic;
-	import com.gestureworks.cml.element.TouchContainer;
-	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.core.GestureWorks;
-	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
+	import vis.Settings;
 	
 	/**
 	 * ...
 	 * @author 
 	 */
-	public class GestureVis2D extends Graphic {
+	public class GestureObject2D extends Graphic {
 
-		private var gestureEventArray:Array;
+		public var gestureTextArray:Array = [];
+		public var gestureDataArray:Array = [];
+		private var frameArray:Array = [];
 		
-		public function GestureVis2D() {}
+		public function GestureObject2D() {}
 		
 		// setup
 		public function setup():void {
@@ -23,18 +22,23 @@ package visualizer.scenes {
 			nativeTransform = true;						
 			debugDisplay = true;
 			gestureEvents = true;
+			tiO.timelineOn = true;
 
 			state[0]['x'] = stage.stageWidth / 2 - width / 2;
 			state[0]['y'] = stage.stageHeight / 2 - height / 2;
 		
 			Settings.setupVisualizer(this);	
-			
-			//remove3DScene();
-			//gestureObjectIndex = getChildIndex(gestureObject);				
-			//add3DScene();			
 		}
 		
-		// update
+		// load 
+		public function load():void {
+			addListeners();
+		}
+		
+		public function unload():void {
+			removeListeners();
+		}		
+		
 		public function addListeners():void {
 			addEventListener(GWGestureEvent.DRAG, onGesture);
 			addEventListener(GWGestureEvent.SCALE, onGesture);
@@ -65,11 +69,20 @@ package visualizer.scenes {
 			addEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}	
 		
+		// update
+		public function update():void {
+			gestureDataArray.unshift(frameArray);
+			if (gestureDataArray.length > Settings.captureLength)
+				gestureDataArray.pop();
+			frameArray = [];
+		}
+		
 		// event
 		private function onGesture(e:GWGestureEvent):void {
-			gestureEventArray.unshift (e);			
-			if (gestureEventArray.length == 15)
-				gestureEventArray.pop();
+			frameArray.push(e);
+			gestureTextArray.unshift(e);			
+			if (gestureTextArray.length == 15)
+				gestureTextArray.pop();
 		}			
 		
 	}

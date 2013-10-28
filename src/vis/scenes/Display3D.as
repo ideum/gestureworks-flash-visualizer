@@ -1,4 +1,4 @@
-package visualizer.scenes {
+package vis.scenes {
 	import away3d.containers.*;
 	import away3d.controllers.*;
 	import away3d.core.math.*;
@@ -14,7 +14,7 @@ package visualizer.scenes {
 	import com.gestureworks.events.*;
 	import flash.display.*;
 	import flash.events.*;
-	import visualizer.scenes.elements.*;
+	import vis.scenes.elements.*;
 	import com.gestureworks.away3d.TouchManager3D;
 	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;

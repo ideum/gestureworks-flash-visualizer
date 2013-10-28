@@ -1,16 +1,14 @@
-package visualizer.scenes {
-	import away3d.controllers.HoverController;
+package vis.interactives {
 	import com.gestureworks.away3d.TouchManager3D;
-	import com.gestureworks.away3d.TouchObject3D;
-	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.TouchSprite;
-	import visualizer.GWVisualizer;
+	import vis.GWVisualizer;
+	import vis.scenes.Display3D;
 	
 	/**
 	 * ...
 	 * @author 
 	 */
-	public class Interactive3D extends Display3D {
+	public class Interactive3D extends Display3D { 
 
 		private var display3D:Display3D;
 		private var gestureObject3D:TouchSprite;

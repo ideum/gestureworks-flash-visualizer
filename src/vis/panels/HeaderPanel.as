@@ -1,4 +1,4 @@
-package visualizer.panels {
+package vis.panels {
 	import com.gestureworks.cml.element.Container;
 	
 	/**

@@ -1,4 +1,5 @@
-package visualizer.panels.config.sub {
+package vis.panels.config.sub {
+	import com.gestureworks.cml.element.Text;
 	import com.gestureworks.events.GWGestureEvent;
 	/**
 	 * ...
@@ -6,10 +7,17 @@ package visualizer.panels.config.sub {
 	 */
 	public class ConsolePanel {
 		
+		private var gestureEventText:Text;
+		private var gestureEventArray:Array;
+		
 		public function ConsolePanel() {}
 		
-		public static function updateGestureText():void {
-	
+		public function setup(_gestureEventText:Text, _gestureEventArray:Array) {
+			gestureEventText = _gestureEventText;
+			gestureEventArray = _gestureEventArray;
+		}
+		
+		public function update():void {
 			gestureEventText.text = "";
 			
 			for each (var ge:GWGestureEvent in gestureEventArray)  { 

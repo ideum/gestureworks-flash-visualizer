@@ -1,17 +1,14 @@
-package visualizer.panels.config.main {
+package vis.panels.config.main {
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
 	import com.gestureworks.cml.element.Tab;
-	import com.gestureworks.cml.element.Text;
 	import com.gestureworks.cml.element.Toggle;
-	import com.gestureworks.cml.element.TouchContainer;
 	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.cml.utils.StateUtils;
 	import com.gestureworks.core.TouchSprite;
-	import visualizer.GWVisualizer;
-	import visualizer.panels.config.sub.DataPanel;
-	import visualizer.panels.config.sub.GraphPanel;
-	import visualizer.scenes.Interactive3D;
+	import vis.GWVisualizer;
+	import vis.interactives.Interactive3D;
+	import vis.panels.config.sub.DataPanel;
+	import vis.panels.config.sub.GraphPanel;
 	/**
 	 * ...
 	 * @author 
@@ -37,13 +34,14 @@ package visualizer.panels.config.main {
 			viewg = document.getElementById("viewg"); 
 			data = document.getElementById("data");	
 			toggles = searchChildren(Toggle);	
-			touchObject = GWVisualizer.touchObject2D;
+			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
 			pointContainer = document.getElementById("point-container");
 		}
 		
-		// update
-		public function show():void {
+		
+		// load
+		public function load():void {
 			
 			if (GWVisualizer.currentView == "2D") { 
 				gestureObject.visible = false;											
@@ -60,24 +58,36 @@ package visualizer.panels.config.main {
 			addChild(pointContainer);	
 			pointContainer.addChild(viewg);
 			pointContainer.addChild(data);
-
-			loadTabState(this.id);
 			
-			DataPanel.showPoint();
-			GraphPanel.showPoint();			
+			DataPanel.loadPoint();
+			GraphPanel.loadPoint();			
 		}
 		
-		private function loadTabState(state:String):void 
-		{
-			var txt:Text;
-			var tog:Toggle;
-			//for each (txt in panelText)
-			//	StateUtils.loadStateById(txt, state);
-			for each(tog in toggles)
-				StateUtils.loadStateById(tog, state);
-			
-			StateUtils.loadStateById(viewg, state);
-		}		
+		public function unload():void { }
+		
+		
+		// update
+		public function update():void {
+			updatePointData();
+		}
+		
+		public function updateToggle(label:String, value:Boolean):void {
+			label = label.toLowerCase();				
+			switch (label) {
+			case "text":
+				touchObject.visualizer.point.drawText = value;
+				gestureObject.visualizer.point.drawText = value;
+				break;
+			case "shape":
+				touchObject.visualizer.point.drawShape = value;
+				gestureObject.visualizer.point.drawShape = value;
+				break;
+			case "vector":
+				touchObject.visualizer.point.drawVector = value;										
+				gestureObject.visualizer.point.drawVector = value;										
+				break;		
+			}
+		}
 		
 		private function updatePointData():void {
 			

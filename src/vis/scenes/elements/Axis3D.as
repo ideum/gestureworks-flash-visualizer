@@ -1,4 +1,4 @@
-﻿package visualizer.scenes.elements
+﻿package vis.scenes.elements
 {
 	import away3d.core.base.Geometry;
 	import away3d.debug.data.TridentLines;

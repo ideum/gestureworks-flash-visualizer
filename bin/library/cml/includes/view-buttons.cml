@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<RadioButtons id="view-btns" class="view-btns" graphicReps="1a:1b,2a:2b" labels="2D,3D" absOffset="true" verticalLayout="false" horizontalOffset="0">
+<Container id="view-btns-container" x="21" y="45">
 
-	<Container id="1a" class="con1">
-		<Graphic class="view-btns-bg" topLeftRadius="4" bottomLeftRadius="4"/>
-		<Text class="view-btns-text" text="2D" />		
-	</Container>
-	<Container id="1b" class="con1" alpha=".3">
-		<Graphic class="view-btns-bg" topLeftRadius="4" bottomLeftRadius="4"/>
-		<Text class="view-btns-text" text="2D" />		
-	</Container>
+	<Button id="view-btn-2d" class="view-btns" toggle="up" dispatch="toggle:{currentIndex}">
+		<Container id="1a" class="con1">
+			<Graphic class="view-btns-bg" />
+			<Text class="view-btns-text" text="2D" />		
+		</Container>
+		<Container id="1b" class="con1" alpha=".3">
+			<Graphic class="view-btns-bg"/>
+			<Text class="view-btns-text" text="2D" />		
+		</Container>		
+	</Button>
 	
-	<Container id="2a" class="con2">
-		<Graphic class="view-btns-bg" topRightRadius="4" bottomRightRadius="4" />
-		<Text class="view-btns-text" text="3D" />		
-	</Container>
-	<Container id="2b" class="con2" alpha=".3">
-		<Graphic class="view-btns-bg" topRightRadius="4" bottomRightRadius="4" />
-		<Text class="view-btns-text" text="3D" />		
-	</Container>
-	
-</RadioButtons>
+
+	<Button id="view-btn-3d" class="view-btns" x="290" toggle="up" dispatch="toggle:{currentIndex}">
+		<Container id="2a" class="con2">
+			<Graphic class="view-btns-bg" />
+			<Text class="view-btns-text" text="3D" />		
+		</Container>
+		<Container id="2b" class="con2" alpha=".3">
+			<Graphic class="view-btns-bg" />
+			<Text class="view-btns-text" text="3D" />		
+		</Container>
+	</Button>
+		
+</Container>
 
 </cml>

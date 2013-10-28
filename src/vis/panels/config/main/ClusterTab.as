@@ -19,13 +19,17 @@ package vis.panels.config.main {
 		public var interactive3D:Interactive3D;
 		public var pointContainer:Container;
 		private var viewg:Graphic; 
+		private var dataPanel:DataPanel;
+		private var graphPanel:GraphPanel;
 		
 		public function ClusterTab() {
 			super();
 		}
 		
 		// setup
-		public function setup():void {
+		public function setup(_dataPanel:DataPanel, _graphPanel:GraphPanel):void {
+			dataPanel = _dataPanel;
+			graphPanel = _graphPanel;
 			viewg = document.getElementById("viewg"); 			
 			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
@@ -47,10 +51,10 @@ package vis.panels.config.main {
 			
 			addChild(pointContainer);					
 			pointContainer.addChild(viewg);
-			pointContainer.addChild(DataPanel.data);
+			pointContainer.addChild(dataPanel.data);
 			
-			DataPanel.loadCluster();
-			GraphPanel.loadCluster();		
+			dataPanel.loadCluster();
+			graphPanel.loadCluster();		
 		}
 		
 		public function unload() {}
@@ -60,18 +64,18 @@ package vis.panels.config.main {
 		public function update():void {
 			switch (GWVisualizer.currentDataTab) {			
 			case "touch": 
-				DataPanel.updateClusterTouch();
-				GraphPanel.updateClusterTouch();
+				dataPanel.updateClusterTouch();
+				graphPanel.updateClusterTouch();
 			break;
 			
 			case "motion":
-				DataPanel.updateClusterMotion();
-				GraphPanel.updateClusterMotion();
+				dataPanel.updateClusterMotion();
+				graphPanel.updateClusterMotion();
 			break;
 
 			case "sub": 	
-				DataPanel.updateSubClusterMotion();
-				GraphPanel.updateSubClusterMotion();			
+				dataPanel.updateSubClusterMotion();
+				graphPanel.updateSubClusterMotion();			
 			}
 		}	
 		

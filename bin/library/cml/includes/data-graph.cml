@@ -17,23 +17,35 @@
 			<Graphic class="graph-path" />
 		</Container>
 		
-		<Graphic id="graph-btns" mouseChildren="true">		
+		<Graphic id="graph-btns-container">		
 			
-			<Button id="dx" toggle="up" initial="btn-active">
-				<Graphic id="btn-inactive" class="graph-btn-inactive-top">
-					<Text class="graph-txt-inactive" text="dx" />
-				</Graphic>
-				<Graphic id="btn-active" class="graph-btn-active-top">
-					<Text class="graph-txt-active" text="dx" />
-				</Graphic>	
-			</Button>
-			
-			<Button id="dy" toggle="up" >
+			<Button id="dx" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
 				<Graphic id="btn-inactive" class="graph-btn-inactive">
-					<Text class="graph-txt-inactive" text="dy" />
+					<Text class="graph-txt-inactive" text="dx" stateId="drag" >
+						<State stateId="rotate" text="dtheta" />
+						<State stateId="scale" text="dsx" />
+					</Text>
 				</Graphic>
 				<Graphic id="btn-active" class="graph-btn-active">
-					<Text class="graph-txt-active" text="dy" />
+					<Text class="graph-txt-active" text="dx" stateId="drag">
+						<State stateId="rotate" text="dtheta" />
+						<State stateId="scale" text="dsx" />						
+					</Text>
+				</Graphic>
+			</Button>
+			
+			<Button id="dy" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
+				<Graphic id="btn-inactive" class="graph-btn-inactive">
+					<Text class="graph-txt-inactive" text="dy" stateId="drag" visible="true">
+						<State stateId="rotate" visible="false" />
+						<State stateId="scale" text="dsy" visible="true"/>												
+					</Text>
+				</Graphic>
+				<Graphic id="btn-active" class="graph-btn-active">
+					<Text class="graph-txt-active" text="dy" stateId="drag" visible="true">
+						<State stateId="rotate" visible="false" />
+						<State stateId="scale" text="dsy" visible="true"/>						
+					</Text>
 				</Graphic>	
 			</Button>		
 			

@@ -20,10 +20,7 @@
 		<Text id="tpnts-text" class="status-txt" text="0" />
 		<Text id="tp-text" class="status-txt" text="TOUCHPOINTS" />
 	</FramePanel>
-	
-
-	<!-- 3d scene -->
-	<Interactive3D />			
+			
 
 	
 	<!-- 2d interactive zone for point and cluster -->
@@ -31,11 +28,11 @@
 		<Gesture ref="n-tap" />
 		<Gesture ref="n-drag" />	
 	</Interactive2D>		
-	
 
 	
+	
 	<!-- config panel -->
-	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" alpha="1" handleOrientation="left" title="OPTIONS" >
+	<Drawer id="drawer" initializeOpen="true" x="1220" y="0" width="700" height="1080" handleOrientation="left" title="OPTIONS" >
 		<ConfigPanel id="config" mouseChildren="true">			
 			<Include src="library\cml\tabs\gesture-tab.cml" />
 			<Include src="library\cml\tabs\cluster-tab.cml" />
@@ -63,6 +60,9 @@
 		<Gesture ref="3-finger-tilt" gestureOn="false" />
 		<Gesture ref="5-finger-orient" gestureOn="false" />
 	</GestureObject2D>
+	
+
+	
 	
 </GWVisualizer>
 

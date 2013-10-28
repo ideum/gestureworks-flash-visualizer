@@ -1,6 +1,7 @@
 package vis.panels.config.sub {
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.cml.element.PopupMenu;
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.TabbedContainer;
 	import com.gestureworks.cml.element.Text;
@@ -18,28 +19,28 @@ package vis.panels.config.sub {
 	 */
 	public class DataPanel {
 		
-		public static var data:Graphic;		
-		public static var dataTabSubCluster:Tab;
-		public static var dataTabMotion:Tab;
-		public static var dataTabTouch:Tab;
-		public static var dataPanel:Graphic;
-		public static var dataGraph:Graphic;
-		public static var dataTabContainer:Container;
-		public static var dataTabs:TabbedContainer; 
-		public static var dataContainer:Container;
-		public static var dataText:Array;
-		public static var dataNumCols:Array;		
-		public static var dataNumbers:Array;
+		public var data:Graphic;		
+		public var dataTabSubCluster:Tab;
+		public var dataTabMotion:Tab;
+		public var dataTabTouch:Tab;
+		public var dataPanel:Graphic;
+		public var dataGraph:Graphic;
+		public var dataTabContainer:Container;
+		public var dataTabs:TabbedContainer; 
+		public var dataContainer:Container;
+		public var dataText:Array;
+		public var dataNumCols:Array;		
+		public var dataNumbers:Array;
 		
-		private static var gestureObject:TouchSprite;
-		private static var gestureObject3D:TouchSprite;
-		private static var touchObject:TouchSprite;
-		private static var panelText:Array;
+		private var gestureObject:TouchSprite;
+		private var gestureObject3D:TouchSprite;
+		private var touchObject:TouchSprite;
+		private var panelText:Array;
 		
 		public function DataPanel() {}
 		
 		
-		public static function setup():void {
+		public function setup():void {
 			data = document.getElementById("data");
 			dataContainer = document.getElementById("data-c");
 			dataNumbers = document.getElementsByClassName("data-num");
@@ -64,7 +65,7 @@ package vis.panels.config.sub {
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
 		}
 		
-		private static function setupDataNumbers():void {
+		private function setupDataNumbers():void {
 			var i:int;
 			for (i = 1; i < dataNumCols.length; i+=2) {
 				for (var j:int = 0; j < dataNumCols[i].childList.length; j++)
@@ -81,7 +82,7 @@ package vis.panels.config.sub {
 		// update
 		
 		
-		public static function loadPoint():void {
+		public function loadPoint():void {
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
@@ -103,19 +104,19 @@ package vis.panels.config.sub {
 			}			
 		}
 		
-		public static function loadCluster():void {
+		public function loadCluster():void {
 			dataTabContainer.addChild(dataGraph);
 			loadDataColumns("cluster");			
 		}
 	
 		
-		public static function loadGesture():void {
+		public function loadGesture():void {
 			StateUtils.loadState(data, 0);					
 			StateUtils.loadState(dataGraph, 1);									
 		}
 		
 		
-		private static function loadDataColumns(tabName:String):void {
+		private function loadDataColumns(tabName:String):void {
 			if (tabName != "cluster") {
 				return;
 			}
@@ -199,8 +200,10 @@ package vis.panels.config.sub {
 			
 		}	
 				
-		private static function onDataTabContainer(e:StateEvent):void
+		private function onDataTabContainer(e:StateEvent):void
 		{
+			if (e.target != dataTabs)
+				return;
 			switch (e.value) {
 				case 0: 
 					if (GWVisualizer.currentDataTab != "touch") 
@@ -214,7 +217,7 @@ package vis.panels.config.sub {
 			}
 		}
 		
-		private static function showDataTab(tabName:String):void
+		private function showDataTab(tabName:String):void
 		{
 			switch (tabName) {			
 				case "touch": 
@@ -234,7 +237,7 @@ package vis.panels.config.sub {
 		// point
 		//////////////
 		
-		public static function updatePointTouch():void {
+		public function updatePointTouch():void {
 			var ptArrayLength:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
 			
 			var i:int;
@@ -256,7 +259,7 @@ package vis.panels.config.sub {
 			}				
 		}
 		
-		public static function updatePointMotion():void {
+		public function updatePointMotion():void {
 			var ptArrayLength:int  = (gestureObject3D.cO.motionArray.length <= 10) ? gestureObject3D.cO.motionArray.length : 10;
 			
 			var i:int;
@@ -286,7 +289,7 @@ package vis.panels.config.sub {
 		// cluster
 		//////////////
 		
-		public static function updateClusterTouch():void {
+		public function updateClusterTouch():void {
 			//columns  	//rows
 			dataNumCols[0].childList[0].text = String(touchObject.cO.id);	
 			dataNumCols[0].childList[1].text = String(touchObject.cO.n);
@@ -318,7 +321,7 @@ package vis.panels.config.sub {
 			dataNumCols[3].childList[7].text = "(z) " + String(touchObject.cO.separationZ.toFixed(2));	
 		}
 		
-		public static function updateClusterMotion():void {
+		public function updateClusterMotion():void {
 			//columns  	//rows
 			dataNumCols[0].childList[0].text = String(gestureObject.cO.id);	
 			dataNumCols[0].childList[1].text = String(gestureObject.cO.n);
@@ -352,7 +355,7 @@ package vis.panels.config.sub {
 								
 		}
 		
-		public static function updateSubClusterMotion():void {
+		public function updateSubClusterMotion():void {
 			var subClusterArrayLength:int = (gestureObject.cO.subClusterArray.length <= 10) ? gestureObject.cO.subClusterArray.length : 10;
 			var ipCluster:ipClusterObject;
 			var i:int;

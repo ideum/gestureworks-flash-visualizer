@@ -5,7 +5,9 @@ package vis {
 	import com.gestureworks.core.GestureWorks;
 	import flash.events.Event;
 	import vis.interactives.GestureObject2D;
+	import vis.interactives.GestureObject3D;
 	import vis.interactives.Interactive2D;
+	import vis.interactives.Interactive3D;
 	import vis.panels.ConfigPanel;
 	import vis.panels.FramePanel;
 	import vis.Settings;
@@ -17,8 +19,8 @@ package vis {
 		public static var interactive2D:Interactive2D;
 		public static var gestureObject2D:GestureObject2D;
 		
-		//public static var interactive3D:Interactive3D;
-		//public static var gestureObject3D:TouchSprite;
+		public static var interactive3D:Interactive3D;
+		public static var gestureObject3D:GestureObject3D;
 		
 		public static var currentTab:String = "mode";		
 		public static var currentDataTab:String = "touch";		
@@ -44,13 +46,19 @@ package vis {
 			
 			interactive2D = document.getElementsByTagName("Interactive2D")[0];
 			gestureObject2D = document.getElementsByTagName("GestureObject2D")[0];
+			
+			interactive3D = new Interactive3D;
+			
 			framePanel = document.getElementsByTagName("FramePanel")[0];
 			configPanel = document.getElementsByTagName("ConfigPanel")[0];
 			
 			interactive2D.setup();			
 			gestureObject2D.setup();
+			
+			interactive3D.setup(this);
+			
 			framePanel.setup();
-			configPanel.setup();			
+			configPanel.setup(interactive3D);			
 			
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
@@ -60,9 +68,12 @@ package vis {
 		private function update():void {
 			framePanel.update();
 			configPanel.update();
-			gestureObject2D.update();
-			//if (contains(interactive3D)) 
-				//interactive3D.update();			
+			
+			if (currentView == "2D")
+				gestureObject2D.update();
+			else {
+				interactive3D.update();
+			}
 		}
 
 		

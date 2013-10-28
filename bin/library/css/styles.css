@@ -11,6 +11,7 @@
 	color:0x555555;
 	width:400;
 	height:400;
+	lineStroke:0;
 	alpha:0.5;
 }
 
@@ -54,6 +55,9 @@
 	labelFontSize:25;
 	bkgColor:0x000000;
 	handleColor:0x2E2D2D;
+	handleAlpha:0.3;
+	rightCornerRadius:10;
+	leftCornerRadius:10;
 }
 
 #mode-txt {
@@ -66,12 +70,6 @@
 	height:16;
 	text-align:left;
 	selectable:false;
-}
-
-.view-btns {
-	fontAlpha:0;
-	x:22;
-	y:50;
 }
 
 .con1 {
@@ -89,6 +87,10 @@
 	color:0x555555;
 	shape:roundRectangleComplex;
 	lineStroke:0;
+	topRightRadius:3;
+	bottomRightRadius:3; 	
+	topLeftRadius:3; 	
+	bottomLeftRadius:3; 	
 }
 
 .view-btns-text {
@@ -296,7 +298,7 @@
 	visible:true;
 }
 
-#graph-btns {
+#graph-btns-container {
 	x:500;
 	y:0;
 	shape:roundRectangleComplex;
@@ -517,10 +519,8 @@
 	toggleColor:0xAADDFF;
 	toggleLineStoke:1.5;
 	toggleLineStoke:1.5;
+	alpha:.75;
 }
-
-
-
 
 
 .label-c {

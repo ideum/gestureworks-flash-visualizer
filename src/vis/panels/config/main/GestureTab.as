@@ -24,11 +24,13 @@ package vis.panels.config.main {
 		private var gestureFeedbackPanel:Graphic;
 		private var gestureEventText:Text; 
 		private var gestureTextArray:Array; 
-		private var gestureDataArray:Array; 		
+		private var gestureDataArray:Array = []; 		
 		private var gestureGmlText:Text; 
 		private var gestureBtns:Array;
 		private var consolePanel:ConsolePanel;
 		private var gmlPanel:GMLPanel;
+		private var dataPanel:DataPanel;
+		private var graphPanel:GraphPanel;
 		
 		public function GestureTab() {
 			super();		
@@ -36,7 +38,9 @@ package vis.panels.config.main {
 	
 		
 		// setup
-		public function setup():void {
+		public function setup(_dataPanel:DataPanel, _graphPanel:GraphPanel):void {
+			dataPanel = _dataPanel;
+			graphPanel = _graphPanel;
 			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
 			gestureGmlText = document.getElementById("gesture-gml-text");
 			gestureEventText = document.getElementById("gesture-event-text"); 
@@ -52,7 +56,7 @@ package vis.panels.config.main {
 			gmlPanel = new GMLPanel;
 			gmlPanel.setup();
 			
-			GraphPanel.gestureDataArray = gestureDataArray;
+			graphPanel.gestureDataArray = gestureDataArray;
 		}
 		
 		
@@ -67,8 +71,8 @@ package vis.panels.config.main {
 				//interactive3D.updateView(GWVisualizer.currentTab, motion);
 			}
 						
-			DataPanel.loadGesture();
-			GraphPanel.loadGesture();
+			dataPanel.loadGesture();
+			graphPanel.loadGesture();
 			
 			gestureObject.load();
 		}		
@@ -80,7 +84,7 @@ package vis.panels.config.main {
 		
 		// update
 		public function update():void {
-			GraphPanel.updateGestureTouch();	
+			graphPanel.updateGestureTouch();	
 			consolePanel.update();
 		}	
 		

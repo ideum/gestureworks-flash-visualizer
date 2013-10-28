@@ -103,7 +103,7 @@
 			
 			TouchManager3D.initialize();			
 			ts = TouchManager3D.registerTouchObject(cube);
-			ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true };
+			ts.gestureList = { "n-drag-3d":true, "n-scale3D":true, "n-rotate3D":true };
 			//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-3d-transform-finger":true };

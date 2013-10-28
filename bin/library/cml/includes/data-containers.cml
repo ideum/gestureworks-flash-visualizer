@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-	<Container id="data-c" class="data-c" x="55" y="20">
-		<Container id="data1" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>
-		<Container id="data2" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>	
-		<Container id="data3" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>	
-		<Container id="data4" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>
-		<Container id="data5" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>
-		<Container id="data6" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>	
-		<Container id="data7" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>	
-		<Container id="data8" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>
-		<Container id="data9" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>	
-		<Container id="data10" class="data-num-c" visible="false">
-			<Include src="library/cml/includes/data-numbers.cml" />
-			<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
-		</Container>		
-		<Layout classRef="ListLayout" useMargins="true" marginX="24" type="horizontal" />
-		<State x="150" />
+<Container id="data-c" class="data-c" x="55" y="20">
+	<Container id="data1" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
 	</Container>
+	<Container id="data2" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>	
+	<Container id="data3" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>	
+	<Container id="data4" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>
+	<Container id="data5" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>
+	<Container id="data6" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>	
+	<Container id="data7" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>	
+	<Container id="data8" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>
+	<Container id="data9" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>	
+	<Container id="data10" class="data-num-c" visible="false">
+		<Include src="library/cml/includes/data-numbers.cml" />
+		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+	</Container>		
+	<Layout classRef="ListLayout" useMargins="true" marginX="24" type="horizontal" />
+	<State x="150" />
+</Container>
+
 </cml>

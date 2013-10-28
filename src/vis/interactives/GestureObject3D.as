@@ -1,5 +1,6 @@
 package vis.interactives {
 	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
 	import vis.Settings;
 	
@@ -7,27 +8,29 @@ package vis.interactives {
 	 * ...
 	 * @author 
 	 */
-	public class GestureObject2D extends Graphic {
+	public class GestureObject3D extends TouchSprite {
 
 		public var gestureTextArray:Array = [];
 		public var gestureDataArray:Array = [];
 		private var frameArray:Array = [];
 		
-		public function GestureObject2D() {}
+		private var gestureObject:TouchSprite;
+		
+		public function GestureObject3D(_gestureObject:TouchSprite):void {
+			gestureObject = _gestureObject;
+		}
 		
 		// setup
 		public function setup():void {
-			mouseChildren = false;	
-			visible = false;	
-			nativeTransform = true;						
-			debugDisplay = true;
-			gestureEvents = true;
-			tiO.timelineOn = true;
-
-			state[0]['x'] = stage.stageWidth / 2 - width / 2;
-			state[0]['y'] = stage.stageHeight / 2 - height / 2;
-		
-			Settings.setupVisualizer(this);	
+			gestureObject.nativeTransform = false;					
+			gestureObject.debugDisplay = true;
+			gestureObject.gestureEvents = false;
+			gestureObject.visualizer.point.maxTrails = 30;
+			gestureObject.visualizer.point.init();
+			gestureObject.visualizer.pointDisplay = true;
+			gestureObject.visualizer.clusterDisplay = false;			
+			gestureObject.visualizer.gestureDisplay = false;
+			Settings.setupVisualizer(gestureObject);			
 		}
 		
 		// load 

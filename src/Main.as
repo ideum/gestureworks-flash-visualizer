@@ -19,7 +19,7 @@ package {
 			
 			// default input settings
 			fullscreen = true;
-			simulator = true;
+			simulator = false;
 			leap3D = false;
 			
 			// register custom cml packages

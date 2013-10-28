@@ -9,19 +9,16 @@ package vis.scenes {
 	import away3d.materials.lightpickers.*;
 	import away3d.primitives.*;
 	import com.gestureworks.away3d.*;
-	import com.gestureworks.cml.element.*;
-	import com.gestureworks.core.*;
-	import com.gestureworks.events.*;
-	import flash.display.*;
-	import flash.events.*;
-	import vis.scenes.elements.*;
 	import com.gestureworks.away3d.TouchManager3D;
 	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
+	import com.gestureworks.core.GestureWorks;
+	import vis.GWVisualizer;
+	import vis.scenes.elements.Axis3D;
 	
-	public class Display3D extends TouchContainer {
+	public class Display3D {  
 		
-		protected var view3D:View3D;
+		public var view3D:View3D;
 		protected var scene:Scene3D;
 		protected var camera:HoverController;
 		protected var cube:Mesh;
@@ -29,19 +26,20 @@ package vis.scenes {
 		private var lightPicker:StaticLightPicker;
 		private var light:PointLight;
 		private var material:ColorMaterial;
-		private var axis:Axis3D;		
+		protected var axis:Axis3D;		
 		
 		private var currentTab:String;
 		
-		protected var gestureObject:TouchObject3D;
 		protected var touchManager3D:TouchManager3D;
 		protected var motionVizualizer:MotionVisualizer3D;		
 		
 		public function Display3D():void {
-			mouseChildren = true;
+			super();
 		}
 		
-		override public function init():void {			
+		
+		// setup
+		public function setup(_gwVisualizer:GWVisualizer=null):void {
 			
 			// Away3D Scene
 			view3D = new View3D();
@@ -52,7 +50,6 @@ package vis.scenes {
 			view3D.backgroundColor = 0x000000;			
 			view3D.antiAlias = 4;
 			view3D.camera.lens.far = 15000;
-			addChild(view3D);
 			
 			camera = new HoverController(view3D.camera, null, 0, 0, -400)
 			camera.yFactor = 1;
@@ -74,15 +71,16 @@ package vis.scenes {
 			cube.mouseEnabled = true;
 			scene.addChild(cube);
 			
-			
 			// GestureWorks Visualization
-			motionVizualizer = new MotionVisualizer3D();
-			motionVizualizer.lightPicker = lightPicker;
-			scene.addChild(motionVizualizer);				
+			//motionVizualizer = new MotionVisualizer3D();
+			//motionVizualizer.lightPicker = lightPicker;
+			//scene.addChild(motionVizualizer);					
 		}
-	
+		
+		
+		// update
 		public function update():void {		
-			motionVizualizer.updateDisplay();
+			//motionVizualizer.updateDisplay();
 			light.position = view3D.camera.position;
 			view3D.render();					
 		}	

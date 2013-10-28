@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-	<Container id="point-container" class="tab-container">
-		
-		<!-- VIEW OPTIONS -->
-		<Graphic id="viewg" class="panel-graphic" 	stateId="point" height="150">
-			<State 									stateId="cluster" height="220" />
-			<State 									stateId="gesture" height="220" />
-								
-			<Text class="input-category-text" text="VIEW" />			
-			<Include src="library/cml/includes/view-buttons.cml" />
-			<Container class="toggle-grid" x="23" y="100">
-				<!-- row -->
-				<Toggle class="check-box" stateId="point" 	visible="true" value="true">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="TEXT" >
-						<State 				 stateId="cluster" 	text="POINT" />
-						<State 				 stateId="gesture" 	text="POINT" />
-					</Text>		
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="true" value="true">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="SHAPE">
-						<State 				 stateId="cluster" 	text="WEB" />
-						<State 				 stateId="gesture" 	text="CLUSTER" />
-					</Text>						
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="true" value="true">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="VECTOR">
-						<State 				 stateId="cluster"  text="BOX" />
-						<State 				 stateId="gesture"  text="GESTURE" />
-					</Text>		
-				</Toggle>
-				<!-- row -->
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="ROTATION" />
-						<State 				 stateId="gesture" 	text="ROTATION" />
-					</Text>			
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="RADIUS" />
-						<State 				 stateId="gesture" 	text="PIVOT" />
-					</Text>								
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="CENTER" />
-						<State 				 stateId="gesture" 	text="STROKE" />
-					</Text>		
-				</Toggle>
-				<!-- row -->
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="true" value="true"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="BISECTOR" />
-						<State 				 stateId="gesture" 	text="ORIENTATION" />
-					</Text>			
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="false" value="false"/>
-					<State 				  stateId="gesture" visible="true" value="true"/>
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="" />
-						<State 				 stateId="gesture" 	text="TRANSFORMATION" />
-					</Text>								
-				</Toggle>
-				<Toggle class="check-box" stateId="point" 	visible="false" value="false">
-					<State 				  stateId="cluster" visible="false" value="false"/>
-					<State 				  stateId="gesture" visible="false" value="false" />
-					<Text class="panel-text" stateId="point" 	text="">
-						<State 				 stateId="cluster" 	text="" />
-						<State 				 stateId="gesture" 	text="" />
-					</Text>		
-				</Toggle>				
-				<Layout classRef="GridLayout" useMargins="true" rows="2" columns="3" marginX="90" marginY="7" />
-			</Container>		
-		</Graphic>	
-		
-		<!-- FEEDBACK -->
-		<Graphic id="data" class="panel-graphic-2" height="710" y="170">
-			<State y="240.5" />			
-			<TabbedContainer id="data-tabs" class="data-tab-container" y="0">
-				<Tab id="data-tab-sub-cluster" class="data-tab" title="SUB" stateId="point" visible="false">
-					<State stateId="cluster" visible="true" />
-				</Tab>
-				<Tab id="data-tab-motion" class="data-tab" title="MOTION" />
-				<Tab id="data-tab-touch" class="data-tab" title="TOUCH" tabX="150">
-					<Container id="data-tab-sub" x="20" y="12">
-						<Include src="library/cml/includes/data-panels.cml" />		
-						<Include src="library/cml/includes/data-graph.cml" />	
-					</Container>
-				</Tab>							
-			</TabbedContainer>
-			<Text class="input-category-text" text="FEEDBACK" x="20" y="10" />			
-		</Graphic>	
-		
-		<Layout id="l1" classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
-		
-	</Container>
+<Container id="point-container" class="tab-container">
+	
+	<!-- VIEW OPTIONS -->
+	<Graphic id="viewg" class="panel-graphic" 	stateId="point" height="150">
+		<State 									stateId="cluster" height="220" />
+		<State 									stateId="gesture" height="220" />
+							
+		<Text class="input-category-text" text="VIEW" />			
+		<Include src="library/cml/includes/view-buttons.cml" />
+		<Container class="toggle-grid" x="23" y="100">
+			<!-- row -->
+			<Toggle class="check-box" stateId="point" 	visible="true" value="true">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="TEXT" >
+					<State 				 stateId="cluster" 	text="POINT" />
+					<State 				 stateId="gesture" 	text="POINT" />
+				</Text>		
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="true" value="true">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="SHAPE">
+					<State 				 stateId="cluster" 	text="WEB" />
+					<State 				 stateId="gesture" 	text="CLUSTER" />
+				</Text>						
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="true" value="true">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="VECTOR">
+					<State 				 stateId="cluster"  text="BOX" />
+					<State 				 stateId="gesture"  text="GESTURE" />
+				</Text>		
+			</Toggle>
+			<!-- row -->
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="ROTATION" />
+					<State 				 stateId="gesture" 	text="ROTATION" />
+				</Text>			
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="RADIUS" />
+					<State 				 stateId="gesture" 	text="PIVOT" />
+				</Text>								
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="CENTER" />
+					<State 				 stateId="gesture" 	text="STROKE" />
+				</Text>		
+			</Toggle>
+			<!-- row -->
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="true" value="true"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="BISECTOR" />
+					<State 				 stateId="gesture" 	text="ORIENTATION" />
+				</Text>			
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="false" value="false"/>
+				<State 				  stateId="gesture" visible="true" value="true"/>
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="" />
+					<State 				 stateId="gesture" 	text="TRANSFORMATION" />
+				</Text>								
+			</Toggle>
+			<Toggle class="check-box" stateId="point" 	visible="false" value="false">
+				<State 				  stateId="cluster" visible="false" value="false"/>
+				<State 				  stateId="gesture" visible="false" value="false" />
+				<Text class="panel-text" stateId="point" 	text="">
+					<State 				 stateId="cluster" 	text="" />
+					<State 				 stateId="gesture" 	text="" />
+				</Text>		
+			</Toggle>				
+			<Layout classRef="GridLayout" useMargins="true" rows="2" columns="3" marginX="90" marginY="7" />
+		</Container>		
+	</Graphic>	
+	
+	<!-- FEEDBACK -->
+	<Graphic id="data" class="panel-graphic-2" height="710" y="170">
+		<State y="240.5" />			
+		<TabbedContainer id="data-tabs" class="data-tab-container" y="0">
+			<Tab id="data-tab-sub-cluster" class="data-tab" title="SUB" stateId="point" visible="false">
+				<State stateId="cluster" visible="true" />
+			</Tab>
+			<Tab id="data-tab-motion" class="data-tab" title="MOTION" />
+			<Tab id="data-tab-touch" class="data-tab" title="TOUCH" tabX="150">
+				<Container id="data-tab-sub" x="20" y="12">
+					<Include src="library/cml/includes/data-panels.cml" />		
+					<Include src="library/cml/includes/data-graph.cml" />	
+				</Container>
+			</Tab>							
+		</TabbedContainer>
+		<Text class="input-category-text" text="FEEDBACK" x="20" y="10" />			
+	</Graphic>	
+	
+	<Layout id="l1" classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+	
+</Container>
 
 
 </cml>

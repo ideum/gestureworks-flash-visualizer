@@ -1,8 +1,12 @@
 package vis.panels.config.sub {
+	import com.gestureworks.cml.element.Button;
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.cml.element.PopupMenu;
+	import com.gestureworks.cml.element.Text;
+	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.cml.utils.StateUtils;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.objects.MotionPointObject;
 	import com.gestureworks.objects.PointObject;
@@ -15,24 +19,30 @@ package vis.panels.config.sub {
 	 */
 	public class GraphPanel {
 	
-		private static var pointGraphHistory:Vector.<PointObject>;
-		private static var iPointGraphHistory:Vector.<MotionPointObject>;
-		private static var graphCommands:Vector.<int>;
-		private static var graphCoords:Vector.<Number>;
-		private static var graphPaths:Container; 
-		private static var touchObject:TouchSprite;
-		private static var gestureObject:GestureObject2D;
-		private static var gestureObject3D:TouchSprite;
-		private static var gestureFeedbackPanel:Graphic;
-		private static var gestureView:Container;
-		public static var gestureDataArray:Array;
-		private static var viewg:Graphic;
+		private var pointGraphHistory:Vector.<PointObject>;
+		private var iPointGraphHistory:Vector.<MotionPointObject>;
+		private var graphCommands:Vector.<int>;
+		private var graphCoords:Vector.<Number>;
+		private var graphPaths:Container; 
+		private var touchObject:TouchSprite;
+		private var gestureObject:GestureObject2D;
+		private var gestureObject3D:TouchSprite;
+		private var gestureFeedbackPanel:Graphic;
+		private var gestureView:Container;
+		public var gestureDataArray:Array = [];
+		private var viewg:Graphic;
+		private var graphBtns:Array;
 		
-		private static var captureLength:int;
+		private var captureLength:int;
+		private var currentDim:String;
+		private var currentBtn:Button;
+		private var gestureMenu:PopupMenu;
+		private var currentGesture:String;
+		private var graphScalar:Number = .3;
 		
 		public function GraphPanel() {}
 		
-		public static function setup():void {
+		public function setup():void {
 			captureLength = Settings.captureLength;
 			
 			touchObject = GWVisualizer.interactive2D;
@@ -40,9 +50,21 @@ package vis.panels.config.sub {
 			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
 			viewg = document.getElementById("viewg");
 			gestureView = document.getElementById("gesture-view");
+			graphBtns = document.getElementsByClassName("graph-btns");
 			
+			for each (var item:Button in graphBtns) {
+				item.addEventListener(StateEvent.CHANGE, onGraphButton);
+				item.reset();
+			}
+			currentDim = "dx";
+			currentBtn = graphBtns[0];			
+			graphBtns[0].runToggle();
 			
-			graphPaths = document.getElementById("graph-paths");			
+			currentGesture = "drag";
+			StateManager.loadState(currentGesture);
+
+			graphPaths = document.getElementById("graph-paths");
+
 			pointGraphHistory = new Vector.<PointObject>(); 
 			iPointGraphHistory = new Vector.<MotionPointObject>();
 			graphCommands = new Vector.<int>(captureLength);
@@ -60,19 +82,33 @@ package vis.panels.config.sub {
 				graphPaths.childList[i].pathCommandsVector = graphCommands;
 			}	
 			
-
+			gestureMenu = document.getElementById("gesture-menu");
+			gestureMenu.addEventListener(StateEvent.CHANGE, onGestureChange);
 		}
 			
 		
-		/////////////
-		// point
-		//////////////
 		
-		public static function loadPoint():void {
+		// load
+		public function loadPoint():void {
 			graphPaths.childList[0].visible = true;			
-		}		
+		}	
 		
-		public static function updatePointTouch():void {
+		public function loadCluster():void {
+			graphPaths.childList[0].visible = true;	
+		}			
+		
+		public function loadGesture():void {
+			gestureFeedbackPanel.addChild(document.getElementById("data-graph"));
+			gestureView.addChild(viewg);			
+		}	
+		
+		
+		
+		
+		// update
+		
+		// point
+		public function updatePointTouch():void {
 			
 			var i:int;
 			var j:int;	
@@ -87,7 +123,7 @@ package vis.panels.config.sub {
 				graphCoords.length = 0;
 				
 				for (j = 0; j < historyLength; j++) {
-					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), pointGraphHistory[j].dx);		
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), pointGraphHistory[j][currentDim] * .25 );		
 				}
 				for (j = historyLength; j < captureLength; j++) {
 					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
@@ -95,7 +131,6 @@ package vis.panels.config.sub {
 				
 				graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 				graphPaths.childList[i].updateGraphic();
-
 				graphPaths.childList[i].visible = true;	
 			}
 			// clear unused points
@@ -105,7 +140,7 @@ package vis.panels.config.sub {
 		}
 		
 		
-		public static function updatePointMotion():void {
+		public function updatePointMotion():void {
 			
 			var i:int;
 			var j:int;	
@@ -118,7 +153,7 @@ package vis.panels.config.sub {
 			graphCoords.length = 0;
 			
 			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x / 2 );		
+				graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );		
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
@@ -134,23 +169,18 @@ package vis.panels.config.sub {
 			}			
 		}
 		
-		/////////////
+
+		
 		// cluster
-		//////////////		
 		
-		
-		public static function loadCluster():void {
-			graphPaths.childList[0].visible = true;	
-		}			
-		
-		public static function updateClusterTouch():void {
+		public function updateClusterTouch():void {
 			var j:int;			
 			var historyLength:int = touchObject.cO.history.length;
 			
 			graphCoords.length = 0;
 			
 			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), touchObject.cO.history[j].dx / 2 );		
+				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), touchObject.cO.history[j][currentDim] * .25 );		
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );
@@ -159,14 +189,14 @@ package vis.panels.config.sub {
 			graphPaths.childList[0].updateGraphic();
 		}
 		
-		public static function updateClusterMotion():void {
+		public function updateClusterMotion():void {
 			var j:int;			
 			var historyLength:int = gestureObject.cO.history.length;
 			
 			graphCoords.length = 0;
 			
 			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject.cO.history[j].dx / 2 );		
+				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject.cO.history[j][currentDim] * .25 );		
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );
@@ -175,7 +205,7 @@ package vis.panels.config.sub {
 			graphPaths.childList[0].updateGraphic();			
 		}
 
-		public static function updateSubClusterMotion():void {
+		public function updateSubClusterMotion():void {
 			//iPointGraphHistory = GWVisualizer.gestureObject.cO.motionArray[i].history;				
 			//historyLength = GWVisualizer.gestureObject.cO.motionArray[i].history.length;
 			
@@ -198,16 +228,8 @@ package vis.panels.config.sub {
 			//}			
 		}	
 		
-		/////////////
-		// gesture
-		//////////////	
 		
-		public static function loadGesture():void {
-			gestureFeedbackPanel.addChild(DataPanel.dataGraph);
-			gestureView.addChild(viewg);			
-		}		
-		
-		public static function updateGestureTouch():void {
+		public function updateGestureTouch():void {
 			var i:int;			
 			var j:int;			
 			
@@ -221,14 +243,12 @@ package vis.panels.config.sub {
 					gestureHistory = gestureObject.gestureDataArray[j];
 										
 					for (i = 0; i < gestureHistory.length; i++) {
-						if (gestureHistory[i] && gestureHistory[i].type == "drag") {
-							if (!found) {
-								//graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureHistory[i].value.drag_dx / 2);
-								graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureHistory[i].value.drag_dy / 2);
-							}
+						if (gestureHistory[i] && gestureHistory[i].type == currentGesture) {
+							graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 
+								gestureHistory[i].value[currentGesture + "_" + currentDim] * graphScalar);
 							found = true;
+							break;
 						}
-
 					}
 				}
 				if (!found)
@@ -240,6 +260,51 @@ package vis.panels.config.sub {
 			graphPaths.childList[0].pathCoordinatesVector = graphCoords;					
 			graphPaths.childList[0].updateGraphic();			
 		}
+		
+		
+		
+		
+		// events
+		private function onGraphButton(e:StateEvent):void {
+			
+			for each (var item:Button in graphBtns) {				
+				if (item.id == e.id) {
+					currentDim = item.childList[int(e.value)].childList[0].text;
+					if (!e.value)
+						item.runToggle();
+				}
+				else  {
+					item.reset();
+				}
+			}
+		}
+		
+		
+		private function onGestureChange(e:StateEvent):void {
+			if (e.property == "itemSelected") {
+				currentGesture = String(e.value).toLowerCase();
+				StateManager.loadState(currentGesture);
+				for each (var item:Button in graphBtns) {
+					item.reset();
+				}
+				
+				switch (currentGesture) {
+					case "drag" :
+						graphScalar = .3;
+					break;
+					case "rotate" :
+						graphScalar = 2;
+					break;
+					case "scale" :
+						graphScalar = 100;
+					break;					
+				}
+				
+				graphBtns[0].runToggle();
+			}
+		}
+		
+		
 		
 	}
 }

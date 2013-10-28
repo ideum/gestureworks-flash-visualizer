@@ -24,13 +24,17 @@ package vis.panels.config.main {
 		private var pointTab:Tab;
 		private var data:Graphic;
 		private var toggles:Array;
-	
+		private var dataPanel:DataPanel;
+		private var graphPanel:GraphPanel;
+		
 		public function PointTab() {
 			super();
 		}
 		
 		// setup
-		public function setup():void {
+		public function setup(_dataPanel:DataPanel, _graphPanel:GraphPanel):void {
+			dataPanel = _dataPanel;
+			graphPanel = _graphPanel;
 			viewg = document.getElementById("viewg"); 
 			data = document.getElementById("data");	
 			toggles = searchChildren(Toggle);	
@@ -59,8 +63,8 @@ package vis.panels.config.main {
 			pointContainer.addChild(viewg);
 			pointContainer.addChild(data);
 			
-			DataPanel.loadPoint();
-			GraphPanel.loadPoint();			
+			dataPanel.loadPoint();
+			graphPanel.loadPoint();			
 		}
 		
 		public function unload():void { }
@@ -93,13 +97,13 @@ package vis.panels.config.main {
 			
 			switch (GWVisualizer.currentDataTab) {			
 				case "touch": 		
-					DataPanel.updatePointTouch();
-					GraphPanel.updatePointTouch();				
+					dataPanel.updatePointTouch();
+					graphPanel.updatePointTouch();				
 				break;	
 				
 				case "motion":	
-					DataPanel.updatePointMotion();
-					GraphPanel.updatePointMotion();
+					dataPanel.updatePointMotion();
+					graphPanel.updatePointMotion();
 				break;	
 			}		
 		}

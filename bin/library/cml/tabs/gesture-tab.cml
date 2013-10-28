@@ -176,7 +176,7 @@
 						
 			</TabbedContainer>
 			
-			<PopupMenu id="gesture-feedback-menu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG, ROTATE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />
+			<PopupMenu id="gesture-menu" x="470" y="10" menuTitle="GESTURES" menuItems="DRAG,ROTATE,SCALE" font="OpenSansBold" fill="0x666888" color="0xFFFFFF" fontSize="18" showTitleBg="false" />
 			
 		</Graphic>		
 		

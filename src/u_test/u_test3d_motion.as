@@ -43,6 +43,8 @@
 		private var plane:Mesh;
 		private var c:ObjectContainer3D;
 		
+		
+		
 		public function u_test3d_motion():void 
 		{
 			super();
@@ -66,7 +68,7 @@
 		protected function initAway3d():void 
 		{
 			view = new View3D();
-			view.backgroundColor = 0x777777;
+			view.backgroundColor = 0x888888;
 			view.width = WIDTH;
 			view.height = HEIGHT;
 			view.antiAlias = 4;
@@ -74,8 +76,11 @@
 			//view.forceMouseMove = true;
 			addChild(view);
 			
-			view.camera.position = new Vector3D(0, -0, -400);
-
+			//view.camera.position = new Vector3D(0, -0, -400);
+			view.camera.position = new Vector3D(50, 150, -500);
+			
+			cameraController = new HoverController(view.camera, null, 180, 30, 400);
+			
 			lightPicker = new StaticLightPicker( [] );
 			light = new PointLight();
 			lightPicker.lights = [ light ];
@@ -107,11 +112,41 @@
 			//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-3d-transform-finger":true };
+<<<<<<< .mine
 			ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
+=======
+			//ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true,"n-3d-transform-finger":true, "n-3d-transform-pinch":true,"n-3d-transform-trigger":true,"n-3d-transform-frame":true,"n-3d-transform-thumb":true,"n-3d-transform-hook":true };
+			
+			ts.gestureList = { 
+			"n-drag3D":true, 
+			"n-scale3D":true, 
+			"n-rotate3D":true,
+			"3dmotion-n-pinch-3dtransform":true,
+			"3dmotion-1-pinch-hold":true
+			};
+			/*
+			"3dmotion-n-hook-3dtransform":false,
+			"3dmotion-n-frame-3dtransform":false,
+			"3dmotion-n-trigger-3dtransform":false,
+			
+			"3dmotion-n-palm-3dtransform":false,
+			"3dmotion-n-finger-3dtransform":false,
+			"3dmotion-n-thumb-3dtransform":false,
+			"3dmotion-1-finger-tap":false,
+			"3dmotion-n-finger-tap":false,
+			"3dmotion-1-finger-hold":false,
+			"3dmotion-n-finger-hold":false,
+			*/
+			
+			
+>>>>>>> .r2977
 			//ts.gestureList = { "n-drag-inertia":true };
 			ts.nativeTransform = false;
 			ts.releaseInertia = false;
 			ts.gestureEvents = true;
+			ts.motion3d = true; 
+			ts.transform3d = true; //NEED TO ENSURE NO 2D CLUSTER COOR TRANSFORM
+			
 			ts.visualizer.pointDisplay = true;
 			ts.visualizer.clusterDisplay = true;
 			ts.visualizer.gestureDisplay = true;

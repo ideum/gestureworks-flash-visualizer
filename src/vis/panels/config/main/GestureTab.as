@@ -62,12 +62,12 @@ package vis.panels.config.main {
 		
 		// load
 		public function load():void {
-			if (GWVisualizer.currentView == "2D") {	
+			if (GWVisualizer.active2D) {	
 				StateUtils.loadState(gestureObject, 0);	
 				gestureObject.visible = true;
 				gestureObject.visualizer.gestureDisplay = true;							
 			}
-			else {
+			if (GWVisualizer.active3D) {
 				//interactive3D.updateView(GWVisualizer.currentTab, motion);
 			}
 						

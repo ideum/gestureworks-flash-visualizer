@@ -1,14 +1,10 @@
 package vis.interactives {
-	import away3d.controllers.HoverController;
-	import com.gestureworks.away3d.TouchManager2D;
 	import com.gestureworks.away3d.TouchManager3D;
-	import com.gestureworks.cml.utils.document;
-	import com.gestureworks.core.GestureWorks;
+	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
 	import vis.GWVisualizer;
 	import vis.scenes.Display3D;
-	import vis.Settings;
 	
 	/**
 	 * ...
@@ -18,9 +14,9 @@ package vis.interactives {
 		
 		private var touchCamera:TouchSprite;
 		private var gwVisualizer:GWVisualizer;
-		private var gestureObject3D:TouchSprite;
-		private var gestureObject:TouchSprite;
-		private var goviz:TouchSprite;
+		
+		public var gestureObject3D:TouchSprite;
+		//private var goviz:TouchSprite;
 		
 		public function Interactive3D() {
 			super();
@@ -31,32 +27,42 @@ package vis.interactives {
 			
 			gwVisualizer = _gwVisualizer;
 			TouchManager3D.initialize(); 			
-			TouchManager2D.initialize(); 
-			goviz = TouchManager2D.registerTouchObject(cube);
-			gestureObject = TouchManager3D.registerTouchObject(cube);
-			gestureObject.touch3d = true;			
-			gestureObject.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
-			goviz.touch3d = false;
+			//TouchManager2D.initialize(); 
+			//goviz = TouchManager2D.registerTouchObject(cube);
+			gestureObject3D = TouchManager3D.registerTouchObject(cube);
+			gestureObject3D.touch3d = true;			
+			//gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
+			gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true };
 			
-			goviz.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true };
+			//goviz.touch3d = false;
+			//goviz.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true };
 						
-			gestureObject.nativeTransform = true;
-			gestureObject.releaseInertia = true;
-			gestureObject.gestureEvents = true;
-			gestureObject.motion3d = false; 		
-			gestureObject.transform3d = true; 
-			goviz.debugDisplay = true;
-			Settings.setupVisualizer(goviz);
+			gestureObject3D.nativeTransform = true;
+			gestureObject3D.releaseInertia = true;
+			gestureObject3D.gestureEvents = true;
+			gestureObject3D.motion3d = true; 		
+			gestureObject3D.transform3d = true; 
+			//goviz.debugDisplay = true;
+			//Settings.setupVisualizer(goviz);
 			
-			//touchCamera = new TouchSprite(view3D);
-			//touchCamera.gestureList = { "n-drag":true };
-			//touchCamera.addEventListener(GWGestureEvent.DRAG, onCameraDrag);	
-				
-			gwVisualizer.addChildAt(goviz, gwVisualizer.numChildren-3);			
-			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren-3);
+			touchCamera = new TouchSprite(view3D);
+			touchCamera.gestureList = { "n-drag":true };
+			touchCamera.addEventListener(GWGestureEvent.DRAG, onCameraDrag);	
+
+			
+			// GestureWorks Visualization
+			motionVizualizer = new MotionVisualizer3D();
+			motionVizualizer.lightPicker = lightPicker;
+			motionVizualizer.init();
+			motionVizualizer.cO = gestureObject3D.cO;
+			motionVizualizer.trO = gestureObject3D.trO;
+			scene.addChild(motionVizualizer);					
+			
+			//gwVisualizer.addChildAt(goviz, gwVisualizer.numChildren-3);			
+			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);
+			
+			
 		}		
-		
-		
 		
 		//public function addView():void {			
 			//switch (tab) {

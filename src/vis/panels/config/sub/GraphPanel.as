@@ -3,7 +3,6 @@ package vis.panels.config.sub {
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
 	import com.gestureworks.cml.element.PopupMenu;
-	import com.gestureworks.cml.element.Text;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
@@ -47,6 +46,8 @@ package vis.panels.config.sub {
 			
 			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
+			gestureObject3D = GWVisualizer.gestureObject3D;
+			
 			gestureFeedbackPanel = document.getElementById("gesture-feedback-panel");
 			viewg = document.getElementById("viewg");
 			gestureView = document.getElementById("gesture-view");
@@ -147,26 +148,30 @@ package vis.panels.config.sub {
 			var ptArrayLength:int;
 			var historyLength:int;	
 			
-			iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
-			historyLength = gestureObject3D.cO.motionArray[i].history.length;
+			for (i = 0; i < ptArrayLength; i++) {	
 			
-			graphCoords.length = 0;
+				iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
+				historyLength = gestureObject3D.cO.motionArray[i].history.length;
+				
+				graphCoords.length = 0;
+				
+				for (j = 0; j < historyLength; j++) {
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );		
+				}
+				for (j = historyLength; j < captureLength; j++) {
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
+				}			
+				
+				graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
+				graphPaths.childList[i].updateGraphic();
 			
-			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );		
+				graphPaths.childList[i].visible = true;
+				// clear unused points
+				for (ptArrayLength; i < 10; i++) {
+					graphPaths.childList[i].visible = false;
+				}
+				
 			}
-			for (j = historyLength; j < captureLength; j++) {
-				graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
-			}			
-			
-			graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
-			graphPaths.childList[i].updateGraphic();
-		
-			graphPaths.childList[i].visible = true;
-			// clear unused points
-			for (ptArrayLength; i < 10; i++) {
-				graphPaths.childList[i].visible = false;
-			}			
 		}
 		
 
@@ -191,12 +196,12 @@ package vis.panels.config.sub {
 		
 		public function updateClusterMotion():void {
 			var j:int;			
-			var historyLength:int = gestureObject.cO.history.length;
+			var historyLength:int = gestureObject3D.cO.history.length;
 			
 			graphCoords.length = 0;
 			
 			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject.cO.history[j][currentDim] * .25 );		
+				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject3D.cO.history[j][currentDim] * .25 );		
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );

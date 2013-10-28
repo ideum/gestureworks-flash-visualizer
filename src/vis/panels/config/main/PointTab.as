@@ -47,10 +47,10 @@ package vis.panels.config.main {
 		// load
 		public function load():void {
 			
-			if (GWVisualizer.currentView == "2D") { 
+			if (GWVisualizer.active2D) { 
 				gestureObject.visible = false;											
 			}					
-			else {
+			else if (GWVisualizer.active3D) {
 				//interactive3D.updateView(tabName, motion);
 			}
 			

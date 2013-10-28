@@ -49,7 +49,7 @@
 		{
 			super();
 			fullscreen = true;
-			gml = "library/gml/gestures.gml";
+			gml = "library/gml/my_motion_gestures.gml";
 		}
 		
 		override protected function gestureworksInit():void 
@@ -112,18 +112,14 @@
 			//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-3d-transform-finger":true };
-<<<<<<< .mine
-			ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
-=======
+
 			//ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true,"n-3d-transform-finger":true, "n-3d-transform-pinch":true,"n-3d-transform-trigger":true,"n-3d-transform-frame":true,"n-3d-transform-thumb":true,"n-3d-transform-hook":true };
 			
 			ts.gestureList = { 
-			"n-drag3D":true, 
-			"n-scale3D":true, 
-			"n-rotate3D":true,
 			"3dmotion-n-pinch-3dtransform":true,
 			"3dmotion-1-pinch-hold":true
 			};
+			
 			/*
 			"3dmotion-n-hook-3dtransform":false,
 			"3dmotion-n-frame-3dtransform":false,
@@ -139,7 +135,6 @@
 			*/
 			
 			
->>>>>>> .r2977
 			//ts.gestureList = { "n-drag-inertia":true };
 			ts.nativeTransform = false;
 			ts.releaseInertia = false;
@@ -173,6 +168,8 @@
 
 		private function onDrag(e:GWGestureEvent):void
 		{
+			trace("cluster", ts.cO.dx );
+			
 			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
 			
 			// normalizes from rotated parent containers -> TODO: integrate this into framework
@@ -212,7 +209,9 @@
 		{
 			vis3d.updateDisplay();	
 			light.position = view.camera.position;
-			view.render();			
+			view.render();	
+			
+			trace( vis3d.cO.dx );
 		}
 
 		private function enterframeHandler( event:Event ):void 

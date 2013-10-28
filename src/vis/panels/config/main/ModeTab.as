@@ -49,15 +49,13 @@ package vis.panels.config.main {
 			switch (label) {
 			case "leap 2d": 
 				gw.leap2D = value;
-				
-				trace( gw.leap2D );
-				//if (gw.leap2D) 
-					//gw.leap3D = false;
+				if (gw.leap2D) 
+					gw.leap3D = false;
 				break;		
 			case "leap 3d": 
-				//gw.leap3D = value;
-				//if (gw.leap3D)
-					//gw.leap2D = false;
+				gw.leap3D = value;
+				if (gw.leap3D)
+					gw.leap2D = false;
 				break;	
 			default :
 				gw[label] = value;

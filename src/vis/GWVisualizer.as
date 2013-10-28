@@ -3,6 +3,7 @@ package vis {
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.GestureGlobals;
 	import com.gestureworks.core.GestureWorks;
+	import com.gestureworks.core.TouchSprite;
 	import flash.events.Event;
 	import vis.interactives.GestureObject2D;
 	import vis.interactives.GestureObject3D;
@@ -20,12 +21,13 @@ package vis {
 		public static var gestureObject2D:GestureObject2D;
 		
 		public static var interactive3D:Interactive3D;
-		public static var gestureObject3D:GestureObject3D;
+		public static var gestureObject3D:TouchSprite;
 		
 		public static var currentTab:String = "mode";		
-		public static var currentDataTab:String = "touch";		
-		public static var currentView:String = "2D";	
+		public static var currentDataTab:String = "touch";				
 		
+		public static var active2D:Boolean = true;
+		public static var active3D:Boolean = true;
 		
 		private var framePanel:FramePanel;
 		private var configPanel:ConfigPanel;
@@ -56,6 +58,8 @@ package vis {
 			gestureObject2D.setup();
 			
 			interactive3D.setup(this);
+			gestureObject3D = interactive3D.gestureObject3D;
+			
 			
 			framePanel.setup();
 			configPanel.setup(interactive3D);			
@@ -69,9 +73,10 @@ package vis {
 			framePanel.update();
 			configPanel.update();
 			
-			if (currentView == "2D")
+			if (gestureObject2D.visible) {
 				gestureObject2D.update();
-			else {
+			}
+			else if ( interactive3D.view3D.visible ) {
 				interactive3D.update();
 			}
 		}

@@ -1,7 +1,6 @@
 package vis.panels.config.sub {
 	import com.gestureworks.cml.element.Container;
 	import com.gestureworks.cml.element.Graphic;
-	import com.gestureworks.cml.element.PopupMenu;
 	import com.gestureworks.cml.element.Tab;
 	import com.gestureworks.cml.element.TabbedContainer;
 	import com.gestureworks.cml.element.Text;
@@ -55,13 +54,14 @@ package vis.panels.config.sub {
 			dataNumCols = document.getElementsByClassName("data-num-c");
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);
 			dataTabs.selectTabByIndex(0);	
+			
 			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
-			//gestureObject3D = GWVisualizer.gestureObject3D;	
+			gestureObject3D = GWVisualizer.gestureObject3D;
+			
 			panelText = document.getElementsByClassName("panel-text");						
 			
 			setupDataNumbers();
-			
 			dataTabs.addEventListener(StateEvent.CHANGE, onDataTabContainer);	
 		}
 		
@@ -260,7 +260,7 @@ package vis.panels.config.sub {
 		}
 		
 		public function updatePointMotion():void {
-			var ptArrayLength:int  = (gestureObject3D.cO.motionArray.length <= 10) ? gestureObject3D.cO.motionArray.length : 10;
+			var ptArrayLength:int = (gestureObject3D.cO.motionArray.length <= 10) ? gestureObject3D.cO.motionArray.length : 10;
 			
 			var i:int;
 			for (i = 0; i < ptArrayLength; i++) {						
@@ -322,37 +322,38 @@ package vis.panels.config.sub {
 		}
 		
 		public function updateClusterMotion():void {
+					
+			trace(gestureObject3D.cO.n);
+			
 			//columns  	//rows
-			dataNumCols[0].childList[0].text = String(gestureObject.cO.id);	
-			dataNumCols[0].childList[1].text = String(gestureObject.cO.n);
-			dataNumCols[0].childList[2].text = String(gestureObject.cO.radius.toFixed(2));			
+			dataNumCols[0].childList[0].text = String(gestureObject3D.cO.id);	
+			dataNumCols[0].childList[1].text = String(gestureObject3D.cO.n);
+			dataNumCols[0].childList[2].text = String(gestureObject3D.cO.radius.toFixed(2));			
 			
 			dataNumCols[0].childList[3].text = "-";		
-			dataNumCols[1].childList[3].text = "(x) " + String(gestureObject.cO.x.toFixed(2));
-			dataNumCols[2].childList[3].text = "(y) " + String(gestureObject.cO.y.toFixed(2));
-			dataNumCols[3].childList[3].text = "(z) " + String(gestureObject.cO.z.toFixed(2));
+			dataNumCols[1].childList[3].text = "(x) " + String(gestureObject3D.cO.x.toFixed(2));
+			dataNumCols[2].childList[3].text = "(y) " + String(gestureObject3D.cO.y.toFixed(2));
+			dataNumCols[3].childList[3].text = "(z) " + String(gestureObject3D.cO.z.toFixed(2));
 			
 			dataNumCols[0].childList[4].text = "-";			
-			dataNumCols[1].childList[4].text = "(x) " + String(gestureObject.cO.dx.toFixed(2));
-			dataNumCols[2].childList[4].text = "(y) " + String(gestureObject.cO.dy.toFixed(2));
-			dataNumCols[3].childList[4].text = "(z) " + String(gestureObject.cO.dz.toFixed(2));
+			dataNumCols[1].childList[4].text = "(x) " + String(gestureObject3D.cO.dx.toFixed(2));
+			dataNumCols[2].childList[4].text = "(y) " + String(gestureObject3D.cO.dy.toFixed(2));
+			dataNumCols[3].childList[4].text = "(z) " + String(gestureObject3D.cO.dz.toFixed(2));
 			
-			dataNumCols[0].childList[5].text = String(gestureObject.cO.ds.toFixed(2));
-			dataNumCols[1].childList[5].text = "(x) " + String(gestureObject.cO.dsx.toFixed(2));
-			dataNumCols[2].childList[5].text = "(y) " + String(gestureObject.cO.dsy.toFixed(2));
-			dataNumCols[3].childList[5].text = "(z) " + String(gestureObject.cO.dsz.toFixed(2));
+			dataNumCols[0].childList[5].text = String(gestureObject3D.cO.ds.toFixed(2));
+			dataNumCols[1].childList[5].text = "(x) " + String(gestureObject3D.cO.dsx.toFixed(2));
+			dataNumCols[2].childList[5].text = "(y) " + String(gestureObject3D.cO.dsy.toFixed(2));
+			dataNumCols[3].childList[5].text = "(z) " + String(gestureObject3D.cO.dsz.toFixed(2));
 			
-			dataNumCols[0].childList[6].text = String(gestureObject.cO.rotation.toFixed(2));
-			dataNumCols[1].childList[6].text = "(x) " + String(gestureObject.cO.rotationX.toFixed(2));
-			dataNumCols[2].childList[6].text = "(y) " + String(gestureObject.cO.rotationY.toFixed(2));
-			dataNumCols[3].childList[6].text = "(z) " + String(gestureObject.cO.rotationZ.toFixed(2));
+			dataNumCols[0].childList[6].text = String(gestureObject3D.cO.rotation.toFixed(2));
+			dataNumCols[1].childList[6].text = "(x) " + String(gestureObject3D.cO.rotationX.toFixed(2));
+			dataNumCols[2].childList[6].text = "(y) " + String(gestureObject3D.cO.rotationY.toFixed(2));
+			dataNumCols[3].childList[6].text = "(z) " + String(gestureObject3D.cO.rotationZ.toFixed(2));
 			
-			dataNumCols[0].childList[7].text = String(gestureObject.cO.separation.toFixed(2));
-			dataNumCols[1].childList[7].text = "(x) " + String(gestureObject.cO.separationX.toFixed(2));
-			dataNumCols[2].childList[7].text = "(y) " + String(gestureObject.cO.separationY.toFixed(2));
-			dataNumCols[3].childList[7].text = "(z) " + String(gestureObject.cO.separationZ.toFixed(2));	
-
-								
+			dataNumCols[0].childList[7].text = String(gestureObject3D.cO.separation.toFixed(2));
+			dataNumCols[1].childList[7].text = "(x) " + String(gestureObject3D.cO.separationX.toFixed(2));
+			dataNumCols[2].childList[7].text = "(y) " + String(gestureObject3D.cO.separationY.toFixed(2));
+			dataNumCols[3].childList[7].text = "(z) " + String(gestureObject3D.cO.separationZ.toFixed(2));					
 		}
 		
 		public function updateSubClusterMotion():void {

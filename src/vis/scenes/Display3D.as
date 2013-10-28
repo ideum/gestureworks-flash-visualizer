@@ -1,16 +1,13 @@
 package vis.scenes {
-	import away3d.containers.*;
-	import away3d.controllers.*;
-	import away3d.core.math.*;
-	import away3d.debug.*;
-	import away3d.entities.*;
-	import away3d.lights.*;
-	import away3d.materials.*;
-	import away3d.materials.lightpickers.*;
-	import away3d.primitives.*;
-	import com.gestureworks.away3d.*;
+	import away3d.containers.Scene3D;
+	import away3d.containers.View3D;
+	import away3d.controllers.HoverController;
+	import away3d.entities.Mesh;
+	import away3d.lights.PointLight;
+	import away3d.materials.ColorMaterial;
+	import away3d.materials.lightpickers.StaticLightPicker;
+	import away3d.primitives.CubeGeometry;
 	import com.gestureworks.away3d.TouchManager3D;
-	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.GestureWorks;
 	import vis.GWVisualizer;
@@ -18,12 +15,12 @@ package vis.scenes {
 	
 	public class Display3D {  
 		
-		public var view3D:View3D;
+		public var view3D:View3D; 
 		protected var scene:Scene3D;
 		protected var camera:HoverController;
 		protected var cube:Mesh;
 		
-		private var lightPicker:StaticLightPicker;
+		protected var lightPicker:StaticLightPicker;
 		private var light:PointLight;
 		private var material:ColorMaterial;
 		protected var axis:Axis3D;		
@@ -64,23 +61,20 @@ package vis.scenes {
 			axis.mouseEnabled = false;
 			scene.addChild(axis);				
 			
-			material = new ColorMaterial(0x555555);
+			material = new ColorMaterial(0x555555); 
 			material.lightPicker = lightPicker;
 
 			cube = new Mesh(new CubeGeometry(), material);
 			cube.mouseEnabled = true;
 			scene.addChild(cube);
 			
-			// GestureWorks Visualization
-			//motionVizualizer = new MotionVisualizer3D();
-			//motionVizualizer.lightPicker = lightPicker;
-			//scene.addChild(motionVizualizer);					
+			
 		}
 		
 		
 		// update
 		public function update():void {		
-			//motionVizualizer.updateDisplay();
+			motionVizualizer.updateDisplay();
 			light.position = view3D.camera.position;
 			view3D.render();					
 		}	

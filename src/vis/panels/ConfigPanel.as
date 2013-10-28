@@ -27,6 +27,7 @@ package vis.panels {
 		public var touchObject:TouchSprite;
 		public var gestureObject:TouchSprite;		
 		public var interactive3D:Interactive3D;		
+		public var gestureObject3D:TouchSprite;		
 		
 		private var currentTab:String;		
 		private var currentTabObj:*;		
@@ -49,6 +50,7 @@ package vis.panels {
 		public function setup(_interactive3D:Interactive3D):void {
 			touchObject = GWVisualizer.interactive2D;
 			gestureObject = GWVisualizer.gestureObject2D;
+			gestureObject3D = GWVisualizer.gestureObject3D;
 			
 			viewg = document.getElementById("viewg");
 
@@ -195,27 +197,28 @@ package vis.panels {
 		}	
 		
 		private function onViewBtns(e:StateEvent):void {
-			if (GWVisualizer.currentView == e.value) {
-				return;
-			}
-			
-			GWVisualizer.currentView = e.value;
 			
 			if (e.id == "view-btn-2d") {
 				if (e.value) {
-					load2DScene();
+					if (!GWVisualizer.active2D) {
+						load2DScene();
+					}
 				}
 				else  {
 					unload2DScene();
 				}
+				GWVisualizer.active2D = e.value;
 			}
 			else if ("view-btn-3d") {
 				if (e.value) {
-					load3DScene();
+					if (!GWVisualizer.active3D) {
+						load3DScene();
+					}
 				}
 				else {
 					unload3DScene();
 				}
+				GWVisualizer.active3D = e.value;
 			}
 			
 		}			

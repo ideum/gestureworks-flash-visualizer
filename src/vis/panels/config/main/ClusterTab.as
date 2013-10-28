@@ -39,7 +39,7 @@ package vis.panels.config.main {
 		
 		// load
 		public function load():void {							
-			if (GWVisualizer.currentView == "2D") {					
+			if (GWVisualizer.active2D == "2D") {					
 				touchObject.visualizer.pointDisplay = true;
 				touchObject.visualizer.clusterDisplay = true;										
 				touchObject.visualizer.gestureDisplay = false;					
@@ -57,7 +57,7 @@ package vis.panels.config.main {
 			graphPanel.loadCluster();		
 		}
 		
-		public function unload() {}
+		public function unload():void {}
 		
 		
 		// update	

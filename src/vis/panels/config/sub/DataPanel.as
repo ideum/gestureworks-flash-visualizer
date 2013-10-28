@@ -37,6 +37,8 @@ package vis.panels.config.sub {
 		private var gestureObject:TouchSprite;
 		private var gestureObject3D:TouchSprite;
 		
+		private var currentTab:String = "point";
+		
 		public function DataPanel() {}
 		
 		public function setup():void {
@@ -82,19 +84,22 @@ package vis.panels.config.sub {
 		
 		
 		public function loadPoint():void {
+			currentTab = "point";
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
 			dataTabSubCluster.loadStateById("point");			
 			dataTabContainer.addChild(dataGraph);
-			loadDataColumns("point");
+			loadDataColumns(currentTab);
 			
 			var i:int;
 			var j:int;
 			for (i = 1; i < dataNumCols.length; i++) {
 				StateUtils.loadState(dataNumCols[i], 0);	
 			}	
-			for (i = 0; i < dataNumbers.length; i++) {
+			
+			// make all but last visible for point
+			for (i = 0; i < dataNumbers.length-1; i++) {
 				dataNumbers[i].visible = true;	
 			}
 			for (i = 1; i < dataNumCols.length; i+=2) {
@@ -104,12 +109,14 @@ package vis.panels.config.sub {
 		}
 		
 		public function loadCluster():void {
+			currentTab = "cluster";			
 			dataTabContainer.addChild(dataGraph);
-			loadDataColumns("cluster");			
+			loadDataColumns(currentTab);			
 		}
 	
 		
 		public function loadGesture():void {
+			currentTab = "gesture";	
 			StateUtils.loadState(data, 0);					
 			StateUtils.loadState(dataGraph, 1);									
 		}
@@ -224,10 +231,8 @@ package vis.panels.config.sub {
 				case "sub":
 					dataTabSubCluster.addChild(dataTabContainer); break;
 			}
-			loadDataColumns(GWVisualizer.currentTab);			
-			StateManager.loadState(GWVisualizer.currentTab + "-" + tabName);
-			
-			trace( GWVisualizer.currentTab + "-" + tabName );
+			loadDataColumns(currentTab);			
+			StateManager.loadState(currentTab + "-" + tabName);
 			GWVisualizer.currentDataTab = tabName;				
 		}
 		

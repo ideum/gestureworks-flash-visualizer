@@ -38,7 +38,7 @@ package vis.panels.config.main {
 		
 		// load
 		public function load():void {}
-		public function unload() {}		
+		public function unload():void {}		
 		
 		
 		// update		
@@ -47,15 +47,17 @@ package vis.panels.config.main {
 		public function updateToggle(label:String, value:Boolean):void {
 			label = label.toLowerCase();
 			switch (label) {
-			case "leap2D": 
+			case "leap 2d": 
 				gw.leap2D = value;
-				if (gw.leap2D) 
-					gw.leap3D = false;
+				
+				trace( gw.leap2D );
+				//if (gw.leap2D) 
+					//gw.leap3D = false;
 				break;		
-			case "leap3D": 
-				gw.leap3D = value;
-				if (gw.leap3D)
-					gw.leap2D = false;
+			case "leap 3d": 
+				//gw.leap3D = value;
+				//if (gw.leap3D)
+					//gw.leap2D = false;
 				break;	
 			default :
 				gw[label] = value;

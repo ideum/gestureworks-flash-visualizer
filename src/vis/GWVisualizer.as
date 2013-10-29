@@ -60,7 +60,6 @@ package vis {
 			interactive3D.setup(this);
 			gestureObject3D = interactive3D.gestureObject3D;
 			
-			
 			framePanel.setup();
 			configPanel.setup(interactive3D);			
 			

@@ -245,7 +245,9 @@ package vis.panels.config.sub {
 			var ptArrayLength:int = (touchObject.pointArray.length <= 10) ? touchObject.pointArray.length : 10;
 			
 			var i:int;
-			for (i = 0; i < ptArrayLength; i++) {
+			
+			// all but the last one
+			for (i = 0; i < ptArrayLength-1; i++) {
 				dataNumCols[i].childList[0].text = String(touchObject.pointArray[i].id);		
 				dataNumCols[i].childList[1].text = String(int(touchObject.pointArray[i].x));
 				dataNumCols[i].childList[2].text = String(int(touchObject.pointArray[i].y));

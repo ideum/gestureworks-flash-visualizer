@@ -93,11 +93,11 @@
 	</Graphic>	
 	
 	<!-- FEEDBACK -->
-	<Graphic id="data" class="panel-graphic-2" height="710" y="170">
-		<State y="240.5" />			
+	<Graphic id="data" stateId="point" class="panel-graphic-2" height="835" y="170">
+		<State 			stateId="cluster" height="835" y="240.5" />			
 		<TabbedContainer id="data-tabs" class="data-tab-container" y="0">
 			<Tab id="data-tab-sub-cluster" class="data-tab" title="SUB" stateId="point" visible="false">
-				<State stateId="cluster" visible="true" />
+				<State 	stateId="cluster" visible="true" />
 			</Tab>
 			<Tab id="data-tab-motion" class="data-tab" title="MOTION" />
 			<Tab id="data-tab-touch" class="data-tab" title="TOUCH" tabX="150">

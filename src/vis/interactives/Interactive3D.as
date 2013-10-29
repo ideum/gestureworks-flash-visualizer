@@ -16,6 +16,8 @@ package vis.interactives {
 		private var gwVisualizer:GWVisualizer;
 		
 		public var gestureObject3D:TouchSprite;
+		private var _visible:Boolean = true;
+		
 		//private var goviz:TouchSprite;
 		
 		public function Interactive3D() {
@@ -98,9 +100,22 @@ package vis.interactives {
 		
 		
 		private function onCameraDrag(e:GWGestureEvent):void {
-			camera.panAngle += e.value.drag_dx * .25;
-			camera.tiltAngle += e.value.drag_dy * .25;
+			if (GWVisualizer.active3D) {
+				camera.panAngle += e.value.drag_dx * .25;
+				camera.tiltAngle += e.value.drag_dy * .25;
+			}
 		}		
+		
+		
+		
+		public function get visible():Boolean {
+			return _visible;
+		}
+		
+		public function set visible(value:Boolean):void {
+			_visible = value;
+			view3D.visible = _visible;
+		}
 					
 		
 	}

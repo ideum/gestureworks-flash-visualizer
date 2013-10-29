@@ -98,13 +98,19 @@ package vis.panels.config.sub {
 				StateUtils.loadState(dataNumCols[i], 0);	
 			}	
 			
-			// make all but last visible for point
-			for (i = 0; i < dataNumbers.length-1; i++) {
+			for (i = 0; i < dataNumbers.length; i++) {
 				dataNumbers[i].visible = true;	
 			}
 			for (i = 1; i < dataNumCols.length; i+=2) {
 				for (j = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
+			}
+			
+			if (GWVisualizer.currentDataTab == "touch") {
+				dataNumbers[11].visible = false;
+			}
+			else {
+				dataNumbers[11].visible = true;
 			}			
 		}
 		
@@ -200,7 +206,7 @@ package vis.panels.config.sub {
 						dataNumCols[i].childList[j].font = "OpenSansRegular";
 					}
 				}						
-			}			
+			}
 			
 		}	
 				
@@ -247,7 +253,7 @@ package vis.panels.config.sub {
 			var i:int;
 			
 			// all but the last one
-			for (i = 0; i < ptArrayLength-1; i++) {
+			for (i = 0; i < ptArrayLength; i++) {
 				dataNumCols[i].childList[0].text = String(touchObject.pointArray[i].id);		
 				dataNumCols[i].childList[1].text = String(int(touchObject.pointArray[i].x));
 				dataNumCols[i].childList[2].text = String(int(touchObject.pointArray[i].y));

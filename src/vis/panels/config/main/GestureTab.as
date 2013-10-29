@@ -62,14 +62,8 @@ package vis.panels.config.main {
 		
 		// load
 		public function load():void {
-			if (GWVisualizer.active2D) {	
-				StateUtils.loadState(gestureObject, 0);	
-				gestureObject.visible = true;
-				gestureObject.visualizer.gestureDisplay = true;							
-			}
-			if (GWVisualizer.active3D) {
-				//interactive3D.updateView(GWVisualizer.currentTab, motion);
-			}
+			StateUtils.loadState(gestureObject, 0);	
+			gestureObject.visualizer.gestureDisplay = true;							
 						
 			dataPanel.loadGesture();
 			graphPanel.loadGesture();

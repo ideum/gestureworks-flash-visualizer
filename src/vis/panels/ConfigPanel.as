@@ -24,8 +24,8 @@ package vis.panels {
 		private var clusterTab:ClusterTab;
 		private var gestureTab:GestureTab;
 		
-		public var touchObject:TouchSprite;
-		public var gestureObject:TouchSprite;		
+		public var interactive2D:TouchSprite;
+		public var gestureObject2D:TouchSprite;		
 		public var interactive3D:Interactive3D;		
 		public var gestureObject3D:TouchSprite;		
 		
@@ -48,8 +48,8 @@ package vis.panels {
 		}
 		
 		public function setup(_interactive3D:Interactive3D):void {
-			touchObject = GWVisualizer.interactive2D;
-			gestureObject = GWVisualizer.gestureObject2D;
+			interactive2D = GWVisualizer.interactive2D;
+			gestureObject2D = GWVisualizer.gestureObject2D;
 			gestureObject3D = GWVisualizer.gestureObject3D;
 			
 			viewg = document.getElementById("viewg");
@@ -60,7 +60,6 @@ package vis.panels {
 			
 			interactive3D = _interactive3D;
 			
-			
 			dataPanel = new DataPanel;
 			dataPanel.setup();
 			
@@ -70,6 +69,8 @@ package vis.panels {
 			setupTabs();
 			
 			setupListeners();
+			
+			loadScene();
 		}
 	
 		// setup
@@ -91,8 +92,8 @@ package vis.panels {
 			currentTabObj = modeTab;
 			loadTab("mode");
 			
-			touchObject.visible = true;
-			gestureObject.visible = true;			
+			interactive2D.visible = true;
+			gestureObject2D.visible = true;			
 			interactive3D.view3D.visible = true;
 						
 			// listen for tab change
@@ -108,11 +109,6 @@ package vis.panels {
 			for each (var t:Toggle in toggle)
 				t.addEventListener(StateEvent.CHANGE, onToggle);
 		}		
-		
-		private function setupToggles():void {
-			for each (var item:Toggle in toggle)
-				item.value = true;
-		}
 		
 		
 		// load
@@ -133,13 +129,8 @@ package vis.panels {
 			currentTabObj.unload();
 			currentTabObj = getElementById(tabSelection);
 			
-			currentTab = tabSelection; // must come before load
+			currentTab = tabSelection; 
 			currentTabObj.load();
-			
-			
-			if (tabSelection == "gesture") {
-				touchObject.visible = false;
-			}
 		}	
 		
 		
@@ -149,29 +140,33 @@ package vis.panels {
 		}
 					
 		
-		// 2d
-		private function load2DScene():void {
-			touchObject.visible = true;
-			if (currentTab == "gesture")
-				gestureObject.visible = true;	
+		private function loadScene():void {
+			
+			switch (currentTab) {
+				case "mode" :					
+				break;
+			case "point" :
+				pointCluster();			
+				break;
+			case "cluster" :
+				pointCluster();	
+				break;
+			case "gesture" :
+				interactive2D.visible = false;
+				gestureObject2D.visible = GWVisualizer.active2D;
+				interactive3D.visible = GWVisualizer.active3D;
+				gestureObject3D.vto.visible = GWVisualizer.active3D;										
+				break;				
+			}	
+			
+			function pointCluster():void {				
+				interactive2D.visible = GWVisualizer.active2D;
+				gestureObject2D.visible = false;
+				interactive3D.visible = GWVisualizer.active3D;
+				gestureObject3D.vto.visible = false;						
+			}
 		}
-		
-		private function unload2DScene():void {
-			touchObject.visible = false;
-			gestureObject.visible = false;
-		}			
-		
-		
-		// 3d
-		private function load3DScene():void {
-			if (currentTab == "gesture")			
-				interactive3D.view3D.visible = true;
-		}		
-		
-		private function unload3DScene():void {
-			interactive3D.view3D.visible = false;
-		}
-		
+
 		
 
 		// events
@@ -179,7 +174,6 @@ package vis.panels {
 			if (e.target != this) {
 				return;
 			}
-			
 			switch (e.value) {
 				case 0: 
 					loadTab("mode"); 
@@ -194,33 +188,18 @@ package vis.panels {
 					loadTab("gesture"); 
 					break;					
 			}
+			loadScene();			
 		}	
 		
 		private function onViewBtns(e:StateEvent):void {
-			
 			if (e.id == "view-btn-2d") {
-				if (e.value) {
-					if (!GWVisualizer.active2D) {
-						load2DScene();
-					}
-				}
-				else  {
-					unload2DScene();
-				}
 				GWVisualizer.active2D = e.value;
+				loadScene();				
 			}
-			else if ("view-btn-3d") {
-				if (e.value) {
-					if (!GWVisualizer.active3D) {
-						load3DScene();
-					}
-				}
-				else {
-					unload3DScene();
-				}
+			else if (e.id == "view-btn-3d") {
 				GWVisualizer.active3D = e.value;
-			}
-			
+				loadScene();								
+			}			
 		}			
 		
 		private function onToggle(e:StateEvent):void {

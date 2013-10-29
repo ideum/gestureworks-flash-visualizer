@@ -152,7 +152,7 @@
 			</Container>	
 			
 		</Graphic>	
-		<Graphic id="gesture-gml-panel" class="panel-graphic-gesture" height="550" mouseChildren="true">
+		<Graphic id="gesture-gml-panel" class="panel-graphic-gesture" height="565" mouseChildren="true">
 			
 			<TabbedContainer id="gesture-tabs" class="gesture-tabs" mouseChildren="true" height="500" >
 				<Tab id="gesture-tab" class="gesture-tab" title="FEEDBACK" >

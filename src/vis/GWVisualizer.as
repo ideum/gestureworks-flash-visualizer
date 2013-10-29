@@ -49,14 +49,14 @@ package vis {
 			interactive2D = document.getElementsByTagName("Interactive2D")[0];
 			gestureObject2D = document.getElementsByTagName("GestureObject2D")[0];
 			
-			interactive3D = new Interactive3D;
 			
 			framePanel = document.getElementsByTagName("FramePanel")[0];
 			configPanel = document.getElementsByTagName("ConfigPanel")[0];
 			
 			interactive2D.setup();			
 			gestureObject2D.setup();
-			
+
+			interactive3D = new Interactive3D;
 			interactive3D.setup(this);
 			gestureObject3D = interactive3D.gestureObject3D;
 			
@@ -72,10 +72,10 @@ package vis {
 			framePanel.update();
 			configPanel.update();
 			
-			if (gestureObject2D.visible) {
+			if (active2D) {
 				gestureObject2D.update();
 			}
-			else if ( interactive3D.view3D.visible ) {
+			if (active3D) {
 				interactive3D.update();
 			}
 		}

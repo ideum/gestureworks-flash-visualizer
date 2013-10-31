@@ -88,7 +88,7 @@ package vis.panels.config.sub {
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
-			dataTabSubCluster.loadStateById("point");			
+			dataTabSubCluster.loadState("point");			
 			dataTabContainer.addChild(dataGraph);
 			loadDataColumns(currentTab);
 			
@@ -141,7 +141,7 @@ package vis.panels.config.sub {
 				StateUtils.loadState(dataGraph, 0); 
 				StateUtils.loadState(dataContainer, 1);
 				
-				dataTabSubCluster.loadStateById(tabName);
+				dataTabSubCluster.loadState(tabName);
 				
 				for (i = 0; i < dataNumCols.length; i++) {
 					dataNumCols[i].visible = true;
@@ -189,11 +189,11 @@ package vis.panels.config.sub {
 				StateUtils.loadState(dataGraph, 0);
 				StateUtils.loadState(dataContainer, 0);
 				
-				dataTabSubCluster.loadStateById(tabName);
+				dataTabSubCluster.loadState(tabName);
 
 				var txt:Text;
 				for each (txt in panelText)
-					StateUtils.loadStateById(txt, "cluster");
+					StateUtils.loadState(txt, "cluster");
 									
 				for (i = 1; i < dataNumCols.length; i++) {
 					StateUtils.loadState(dataNumCols[i], 0);	

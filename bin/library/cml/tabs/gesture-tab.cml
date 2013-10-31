@@ -147,7 +147,7 @@
 					</Graphic>	
 				</Button>					
 				
-				<Layout classRef="GridLayout" useMargins="true" rows="3" columns="5" marginX="5" marginY="5" />
+				<Layout ref="Grid" useMargins="true" rows="3" columns="5" marginX="5" marginY="5" />
 					
 			</Container>	
 			
@@ -160,7 +160,7 @@
 					<Graphic id="gesture-event-panel" class="panel-graphic-gesture-event" height="265" x="23" y="0">
 						<Text id="gesture-event-text" width="500" />	
 					</Graphic>
-					<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+					<Layout ref="List" useMargins="true" marginY="10" type="vertical" />
 				</Tab>
 							
 				<Tab id="gesture-tab" class="gesture-tab" title="GML" >
@@ -178,7 +178,7 @@
 			
 		</Graphic>		
 		
-		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+		<Layout ref="List" useMargins="true" marginY="10" type="vertical" />
 		
 	</Container>
 

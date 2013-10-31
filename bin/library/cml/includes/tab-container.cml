@@ -88,7 +88,7 @@
 					<State 				 stateId="gesture" 	text="" />
 				</Text>		
 			</Toggle>				
-			<Layout classRef="GridLayout" useMargins="true" rows="2" columns="3" marginX="90" marginY="7" />
+			<Layout ref="GridLayout" useMargins="true" rows="2" columns="3" marginX="90" marginY="7" />
 		</Container>		
 	</Graphic>	
 	
@@ -110,7 +110,7 @@
 		<Text class="input-category-text" text="FEEDBACK" x="20" y="10" />			
 	</Graphic>	
 	
-	<Layout id="l1" classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+	<Layout id="l1" ref="List" useMargins="true" marginY="10" type="vertical" />
 	
 </Container>
 

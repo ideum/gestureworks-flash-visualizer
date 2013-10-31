@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-	<Graphic id="data-graph" class="graph-panel" mouseChildren="true" x="0" y="425">
-		<State x="23" y="45" />
+	<Graphic id="data-graph" stateId="point" class="graph-panel" mouseChildren="true" x="0" y="425">
+		<State stateId="cluster" x="23" y="45" />
+		<State stateId="gesture" x="23" y="45" />
 		<Graphic id="graph-axis" />
 		<Container id="graph-paths">
 			<Graphic class="graph-path" />
@@ -49,7 +50,7 @@
 				</Graphic>	
 			</Button>		
 			
-			<Layout classRef="ListLayout" useMargins="true" marginY="15" type="vertical" />
+			<Layout ref="List" useMargins="true" marginY="15" type="vertical" />
 			
 		</Graphic>
 		

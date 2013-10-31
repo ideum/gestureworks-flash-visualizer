@@ -112,7 +112,7 @@
 			</Text>					
 		</Graphic>		
 		
-		<Layout classRef="ListLayout" useMargins="true" marginY="0" type="vertical" />
+		<Layout ref="List" useMargins="true" marginY="0" type="vertical" />
 	</Container>
 	
 	<Include src="library/cml/includes/data-containers.cml" />			

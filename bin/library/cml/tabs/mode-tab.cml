@@ -36,7 +36,7 @@
 						<Text class="panel-text" text="NATIVE" />
 					</Toggle>
 				</Container>
-				<Layout classRef="ListLayout" useMargins="true" marginY="25" type="vertical" />
+				<Layout ref="List" useMargins="true" marginY="25" type="vertical" />
 			</Container>
 			<Text class="input-category-text" text="TOUCH" />
 		</Graphic>
@@ -50,13 +50,13 @@
 						<Text class="panel-text" text="LEAP 3D" />
 					</Toggle>
 				</Container>
-				<Layout classRef="ListLayout" useMargins="true" marginY="25" type="vertical" />
+				<Layout ref="List" useMargins="true" marginY="25" type="vertical" />
 			</Container>
 			<Text class="input-category-text" text="MOTION" />
 		</Graphic>		
 		
 
-		<Layout classRef="ListLayout" useMargins="true" marginY="10" type="vertical" />
+		<Layout ref="List" useMargins="true" marginY="10" type="vertical" />
 		
 	</Container>
 </ModeTab>

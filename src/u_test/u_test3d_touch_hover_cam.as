@@ -13,6 +13,7 @@
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
+	import com.gestureworks.interfaces.ITouchObject;
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.*;
@@ -24,7 +25,7 @@
 	{
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var ts:TouchSprite;
+		private var ts:ITouchObject;
 		private var view:View3D;
 		private var lightPicker:StaticLightPicker;
 		private var cameraController:HoverController;
@@ -113,6 +114,7 @@
 				//ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
 				//ts.gestureList = { "n-drag-inertia":true };
 				ts.nativeTransform = false;
+				ts.affineTransform = false;
 				//ts.disableAffineTransform = true;
 				ts.gestureReleaseInertia = true;
 				ts.gestureEvents = true;
@@ -122,9 +124,9 @@
 				ts.visualizer.pointDisplay = true;
 				ts.visualizer.clusterDisplay = true;
 				ts.visualizer.gestureDisplay = true;
+				//ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 				
-				ts.addEventListener(GWGestureEvent.DRAG, onDrag);
-				//ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
+				ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 				//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
 			
 			var touchCamera:TouchSprite = new TouchSprite(view);
@@ -138,13 +140,13 @@
 			trace(view.x, view.y);			
 			//trace("camera drag values:", e.value.drag_dx, e.value.drag_dy);
 			cameraController.panAngle += e.value.drag_dx * .25;
-			cameraController.tiltAngle += e.value.drag_dy * .25;
+			//cameraController.tiltAngle += e.value.drag_dy * .25;
 		}
 		
 				
 		private function onDrag(e:GWGestureEvent):void
 		{
-			trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
+		//	trace("drag values:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);
 			cube.x += e.value.drag_dx;
 			cube.y += e.value.drag_dy;
 			cube.z += e.value.drag_dz;
@@ -156,6 +158,66 @@
 			//cube.rotationX += e.value.rotate_dthetaX;
 			//cube.rotationY += e.value.rotate_dthetaY;
 			//cube.rotationZ += e.value.rotate_dthetaZ;	
+			//trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
+			
+			// normalizes from rotated parent containers -> TODO: integrate this into framework
+			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; 
+			var n:Number = v.x + v.y + v.z;			
+			
+			var vm:Vector3D = view.camera.forwardVector;
+			var m:Matrix3D = cube.inverseSceneTransform; 						
+			var vm2:Vector3D = m.deltaTransformVector(vm); 	
+			
+			var xo:Number = vm2.x;
+			var yo:Number = vm2.y;
+			var zo:Number = vm2.z;
+			//
+				//if (view.camera.rotationY > 180 && view.camera.rotationY < 270  ) {
+					//zo *= -1;
+				//}else if (view.camera.rotationY > -90 && view.camera.rotationY < 0  ) {
+					//xo *= -1;
+				//}
+			
+			if (xo < -20) {
+				xo = 0;
+			}
+			if (xo < -20) {
+				yo = 0;
+			}
+			if (xo < -20) {
+				zo = 0;
+			}				
+			
+			var rr:Vector3D = new Vector3D(Number(Math.abs(xo)), Number(Math.abs(yo)), Number(Math.abs(zo)));
+			///var rr:Vector3D = view.camera.upVector.crossProduct(view.camera.rightVector);
+			
+			trace("\n",view.camera.forwardVector)
+			trace(rr);
+			trace(n);
+
+			//var axis:Vector3D = new Vector3D();
+			//cube.transform.copyColumnTo(1, axis);
+			//cube.transform.appendRotation(n, axis); 			
+			//cube.transform = cube.transform;			
+						
+			
+			
+			cube.rotate(rr,n);
+			
+			
+			//if (v.x > -20) {
+				//cube.rotationX += n;
+			//}
+			//if (v.y > -20) {
+				//cube.rotationY += n;
+			//}
+			//if (v.z > -20) {
+				//cube.rotationZ += n;
+			//}			
+
+			//cube.rotationY += v.y;
+			//cube.rotationZ += v.z;
+
 		}
 		
 		private function onScale(e:GWGestureEvent):void

@@ -92,8 +92,8 @@
 
 			addChild(new AwayStats(view));
 			
-			var axis:Trident = new Trident(180);
-			view.scene.addChild(axis);	
+			//var axis:Trident = new Trident(180);
+			//view.scene.addChild(axis);	
 		}
 		
 		private function onSetup():void 
@@ -121,7 +121,8 @@
 			//ts.gestureList = { "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true,"n-3d-transform-finger":true, "n-3d-transform-pinch":true,"n-3d-transform-trigger":true,"n-3d-transform-frame":true,"n-3d-transform-thumb":true,"n-3d-transform-hook":true };
 			
 			//ts.gestureList = { "3dmotion-1-finger-tap":true};
-			ts.gestureList = { "3dmotion-1-finger-tap":true,"3dmotion-1-finger-hold":false, "3dmotion-1-pinch-3dtranslate":true, "3dmotion-1-finger-3dtranslate":true };
+			ts.gestureList = { "3dmotion-1-finger-tap":true, "3dmotion-1-finger-hold":true, "3dmotion-1-pinch-3dtranslate":true, "3dmotion-1-trigger-3dtranslate":true, "3dmotion-1-finger-3dtranslate":false };
+			//ts.gestureList = {"3dmotion-1-finger-3dtranslate":true, "3dmotion-1-pinch-3dtranslate":true };
 			//ts.gestureList = {"3dmotion-1-pinch-3dtranslate":true,"3dmotion-1-finger-3dtranslate":true};
 			
 			//"3dmotion-1-pinch-hold":true
@@ -141,8 +142,10 @@
 			"3dmotion-1-finger-hold":false,
 			"3dmotion-n-finger-hold":false,
 			*/
-			
-	
+			ts.motionClusterMode = "local_strong";
+			//ts.motionClusterMode = "local_weak";
+			//ts.motionClusterMode = "global";
+			ts.view = view;
 			ts.nativeTransform = true;
 			ts.releaseInertia = false;
 			ts.gestureEvents = true;
@@ -157,7 +160,7 @@
 			ts.visualizer.clusterDisplay = true;
 			ts.visualizer.gestureDisplay = true;
 			
-		//	ts.addEventListener(GWGestureEvent.MOTION_DRAG, gestureMotionDragHandler);
+			//ts.addEventListener(GWGestureEvent.MOTION_DRAG, gestureMotionDragHandler);
 		//	ts.addEventListener(GWGestureEvent.MOTION_ROTATE, gestureMotionRotateHandler);
 		//	ts.addEventListener(GWGestureEvent.MOTION_SCALE, gestureMotionScaleHandler);
 			ts.addEventListener(GWGestureEvent.MOTION_XTAP, gestureMotionTapHandler);
@@ -184,6 +187,8 @@
 			vis3d.init();
 			vis3d.cO = ts.cO;
 			vis3d.trO = ts.trO;
+			vis3d.tiO = ts.tiO;
+			//vis3d.x = 200;
 			view.scene.addChild(vis3d);	
 			
 			
@@ -192,7 +197,8 @@
 				ts2 = new TouchSprite();
 				//ts2.gestureList = { "3dmotion-1-finger-tap":true, "3dmotion-1-finger-3dtranslate":true };
 				//ts2.gestureList = { "n-drag":true,"3dmotion-1-finger-tap":false}
-				ts2.gestureList = { "3dmotion-1-finger-3dtranslate":true, "n-drag":true, "n-rotate":true, "n-scale":true };
+				//ts2.gestureList = { "3dmotion-1-finger-hold":false , "3dmotion-1-finger-3dtranslate":false, "3dmotion-1-trigger-3dtranslate":true, "n-drag":true, "n-rotate":true, "n-scale":true };
+				ts2.gestureList = {"3dmotion-1-finger-3dtranslate":true, "3dmotion-1-trigger-3dtranslate":true, "n-drag":true, "n-rotate":true, "n-scale":true };
 				//ts2.gestureList = {"3dmotion-1-finger-3dtranslate":true}
 				//ts2.gestureList = {"n-drag":true,"n-rotate":true,"n-scale":true,"3dmotion-1-finger-tap":false,"3dmotion-1-finger-3dtranslate":true};//"3dmotion-1-finger-3dtranslate":true
 				//ts2.gestureList = { "n-drag":true };
@@ -202,6 +208,9 @@
 				ts2.releaseInertia = true;
 				ts2.gestureEvents = true;
 				
+				//ts2.motionClusterMode = "global"
+				//ts2.motionClusterMode = "local_weak"
+				ts2.motionClusterMode = "local_strong"
 				ts2.mouseChildren = false
 				ts2.graphics.lineStyle(4, 0x333333, 1);
 				ts2.graphics.beginFill(0x000000,0.3);
@@ -221,13 +230,15 @@
 				ts2.visualizer.gestureDisplay = true;
 				
 				//ts2.addEventListener(GWGestureEvent.MOTION_DRAG, gestureMotionDragHandler);
+				ts2.addEventListener(GWGestureEvent.MOTION_HOLD, gestureMotionHoldHandler);
 				
 				vis3d2 = new MotionVisualizer3D();
 				vis3d2.lightPicker = lightPicker;
 				vis3d2.init();
 				vis3d2.cO = ts2.cO;
 				vis3d2.trO = ts2.trO;
-				vis3d2.x = 150;
+				vis3d2.tiO = ts2.tiO;
+				vis3d2.x = 155;
 				vis3d2.drawHands = false;
 				
 				

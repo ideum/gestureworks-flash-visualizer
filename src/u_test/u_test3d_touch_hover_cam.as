@@ -124,7 +124,7 @@
 				ts.visualizer.pointDisplay = true;
 				ts.visualizer.clusterDisplay = true;
 				ts.visualizer.gestureDisplay = true;
-				//ts.addEventListener(GWGestureEvent.DRAG, onDrag);
+				ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 				
 				ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
 				//ts.addEventListener(GWGestureEvent.SCALE, onScale);	

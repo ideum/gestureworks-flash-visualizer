@@ -1,5 +1,5 @@
 package vis {			 
-	import com.gestureworks.cml.element.TouchContainer;
+	import com.gestureworks.cml.elements.TouchContainer;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.GestureGlobals;
 	import com.gestureworks.core.GestureWorks;
@@ -46,12 +46,12 @@ package vis {
 			GestureGlobals.clusterHistoryCaptureLength = Settings.captureLength;
 			GestureGlobals.timelineHistoryCaptureLength = Settings.captureLength;			
 			
-			interactive2D = document.getElementsByTagName("Interactive2D")[0];
-			gestureObject2D = document.getElementsByTagName("GestureObject2D")[0];
+			interactive2D = document.getElementsByTagName(Interactive2D)[0];
+			gestureObject2D = document.getElementsByTagName(GestureObject2D)[0];
 			
 			
-			framePanel = document.getElementsByTagName("FramePanel")[0];
-			configPanel = document.getElementsByTagName("ConfigPanel")[0];
+			framePanel = document.getElementsByTagName(FramePanel)[0];
+			configPanel = document.getElementsByTagName(ConfigPanel)[0];
 			
 			interactive2D.setup();			
 			gestureObject2D.setup();

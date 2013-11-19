@@ -1,9 +1,9 @@
 package vis.panels.config.sub {
-	import com.gestureworks.cml.element.Container;
-	import com.gestureworks.cml.element.Graphic;
-	import com.gestureworks.cml.element.Tab;
-	import com.gestureworks.cml.element.TabbedContainer;
-	import com.gestureworks.cml.element.Text;
+	import com.gestureworks.cml.elements.Container;
+	import com.gestureworks.cml.elements.Graphic;
+	import com.gestureworks.cml.elements.Tab;
+	import com.gestureworks.cml.elements.TabbedContainer;
+	import com.gestureworks.cml.elements.Text;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;

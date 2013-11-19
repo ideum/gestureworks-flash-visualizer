@@ -1,8 +1,8 @@
 package vis.panels.config.sub {
-	import com.gestureworks.cml.element.Button;
-	import com.gestureworks.cml.element.Container;
-	import com.gestureworks.cml.element.Graphic;
-	import com.gestureworks.cml.element.PopupMenu;
+	import com.gestureworks.cml.elements.Button;
+	import com.gestureworks.cml.elements.Container;
+	import com.gestureworks.cml.elements.Graphic;
+	import com.gestureworks.cml.elements.PopupMenu;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;

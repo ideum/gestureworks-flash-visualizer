@@ -1,5 +1,5 @@
 package vis.panels {
-	import com.gestureworks.cml.element.Container;
+	import com.gestureworks.cml.elements.Container;
 	
 	/**
 	 * ...

@@ -13,7 +13,6 @@
 	import com.gestureworks.away3d.utils.*;
 	import com.gestureworks.core.*;
 	import com.gestureworks.events.*;
-	import com.gestureworks.interfaces.ITouchObject;
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.*;
@@ -25,7 +24,7 @@
 	{
 		private const WIDTH:Number = 1920;
 		private const HEIGHT:Number = 1080;
-		private var ts:ITouchObject;
+		private var ts:TouchSprite;
 		private var view:View3D;
 		private var lightPicker:StaticLightPicker;
 		private var cameraController:HoverController;
@@ -49,7 +48,7 @@
 		{
 			super();
 			fullscreen = true;
-			gml = "library/gml/touch_gestures.gml";
+			gml = "library/gml/gestures.gml";
 		}
 		
 		override protected function gestureworksInit():void 
@@ -104,15 +103,14 @@
 			
 			TouchManager3D.initialize();			
 			ts = TouchManager3D.registerTouchObject(cube);
-			ts.gestureList = { "n-drag-3d":true, "n-scale-3d":true, "n-rotate-3d":true };
+			ts.gestureList = { "n-drag-3d":true, "n-scale3D":true, "n-rotate3D":true };
 			//ts.gestureList = { "n-drag-inertia":true, "n-rotate-inertia":true, "n-scale-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-drag-inertia":true, "n-3d-transform-finger":true  };
 			//ts.gestureList = { "n-3d-transform-finger":true };
 			//ts.gestureList = { "n-3d-transform-finger":true, "n-drag3D":true, "n-scale3D":true, "n-rotate3D":true  };
 			//ts.gestureList = { "n-drag-inertia":true };
 			ts.nativeTransform = false;
-			ts.affineTransform = false;
-			ts.releaseInertia = true;
+			ts.releaseInertia = false;
 			ts.gestureEvents = true;
 			ts.visualizer.pointDisplay = true;
 			ts.visualizer.clusterDisplay = true;
@@ -121,25 +119,25 @@
 			c = new ObjectContainer3D;
 			c.addChild(cube);
 			c.rotationX = 0;
-			c.rotationY = 0;
+			c.rotationY = 90;
 			c.rotationZ = 0;
 			c.x = 0;
 			
 			view.scene.addChild(c);
 			ts.addEventListener(GWGestureEvent.DRAG, onDrag);
 			ts.addEventListener(GWGestureEvent.ROTATE, onRotate);			
-			//ts.addEventListener(GWGestureEvent.SCALE, onScale);	
+			ts.addEventListener(GWGestureEvent.SCALE, onScale);	
 		}
 		
 		private function onDrag(e:GWGestureEvent):void
 		{
-			//trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
+			trace("\ndrag:", e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);			
 			
 			// normalizes from rotated parent containers -> TODO: integrate this into framework
-			//var m:Matrix3D = cube.parent.inverseSceneTransform; 							
+			var m:Matrix3D = cube.parent.inverseSceneTransform; 							
 			var v:Vector3D = new Vector3D( e.value.drag_dx, e.value.drag_dy, e.value.drag_dz);  
-			//v = m.deltaTransformVector(v); 
-			//trace(v);
+			v = m.deltaTransformVector(v); 
+			trace(v);
 				
 			cube.x += v.x;
 			cube.y += v.y;
@@ -148,27 +146,16 @@
 		
 		private function onRotate(e:GWGestureEvent):void
 		{
-			//trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
+			trace("rotate values:", e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ);	
 			
 			// normalizes from rotated parent containers -> TODO: integrate this into framework
-			//var m:Matrix3D = cube.parent.inverseSceneTransform; 
+			var m:Matrix3D = cube.parent.inverseSceneTransform; 
 			var v:Vector3D = new Vector3D( e.value.rotate_dthetaX, e.value.rotate_dthetaY, e.value.rotate_dthetaZ) ; 
-			//v = m.deltaTransformVector(v); 			
-					
-			var n:Number = v.x + v.y + v.z;
+			v = m.deltaTransformVector(v); 			
 			
-			trace(n);
-			//if (v.x > -20) {
-				//cube.rotationX += v.x;
-			//}
-			//if (v.y > -20) {
-				//cube.rotationY += v.y;
-			//}
-			if (v.z > -20) {
-				cube.rotationZ += n;
-			}			
-			//cube.rotationY += v.y;
-			//cube.rotationZ += v.z;	
+			cube.rotationX += v.x;
+			cube.rotationY += v.y;
+			cube.rotationZ += v.z;	
 		}
 		
 		private function onScale(e:GWGestureEvent):void

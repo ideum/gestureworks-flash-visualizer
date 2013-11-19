@@ -1,6 +1,6 @@
 package vis.panels {
-	import com.gestureworks.cml.element.Container;
-	import com.gestureworks.cml.element.Text;
+	import com.gestureworks.cml.elements.Container;
+	import com.gestureworks.cml.elements.Text;
 	import com.gestureworks.core.GestureWorks;
 	import com.gestureworks.utils.FrameRate;
 	import vis.GWVisualizer;

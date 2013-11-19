@@ -17,7 +17,7 @@
 		{
 			super();
 			fullscreen = true;
-			gml = "library/gml/touch_gestures.gml";
+			gml = "library/gml/gestures.gml";
 		}
 			
 		override protected function gestureworksInit():void 
@@ -31,7 +31,6 @@
 			ts.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true };
 			ts.graphics.beginFill(0xFFFFFF, 1);
 			ts.graphics.drawRect(0, 0, 200, 200);
-			ts.x = 150
 			ts.graphics.endFill();
 			
 			ts.nativeTransform = true;

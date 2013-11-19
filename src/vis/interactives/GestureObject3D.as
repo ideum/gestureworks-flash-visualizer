@@ -1,5 +1,5 @@
 package vis.interactives {
-	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.cml.elements.Graphic;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
 	import vis.Settings;

@@ -1,8 +1,8 @@
 package vis.panels.config.main {
-	import com.gestureworks.cml.element.Container;
-	import com.gestureworks.cml.element.Graphic;
-	import com.gestureworks.cml.element.Tab;
-	import com.gestureworks.cml.element.Toggle;
+	import com.gestureworks.cml.elements.Container;
+	import com.gestureworks.cml.elements.Graphic;
+	import com.gestureworks.cml.elements.Tab;
+	import com.gestureworks.cml.elements.Toggle;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.TouchSprite;
 	import vis.GWVisualizer;

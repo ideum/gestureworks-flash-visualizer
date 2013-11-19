@@ -1,5 +1,5 @@
 package vis.panels.config.sub {
-	import com.gestureworks.cml.element.Text;
+	import com.gestureworks.cml.elements.Text;
 	import com.gestureworks.events.GWGestureEvent;
 	/**
 	 * ...

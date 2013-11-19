@@ -1,7 +1,7 @@
 package vis.panels.config.main {
 	import com.gestureworks.cml.core.CMLParser;
-	import com.gestureworks.cml.element.Tab;
-	import com.gestureworks.cml.element.Toggle;
+	import com.gestureworks.cml.elements.Tab;
+	import com.gestureworks.cml.elements.Toggle;
 	import com.gestureworks.cml.events.StateEvent;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.GestureWorks;

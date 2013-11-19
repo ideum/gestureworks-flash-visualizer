@@ -1,5 +1,5 @@
 package vis.interactives {
-	import com.gestureworks.cml.element.Graphic;
+	import com.gestureworks.cml.elements.Graphic;
 	import vis.Settings;
 	
 	/**

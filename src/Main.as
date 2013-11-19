@@ -23,12 +23,12 @@ package {
 			leap3D = false;//false
 			
 			// register custom cml packages
-			CMLCore.PACKAGES.push("vis");
-			CMLCore.PACKAGES.push("vis.interactives");
-			CMLCore.PACKAGES.push("vis.scenes");
-			CMLCore.PACKAGES.push("vis.panels");
-			CMLCore.PACKAGES.push("vis.panels.config.main");
-			CMLCore.PACKAGES.push("vis.panels.config.sub");
+			CMLCore.packages.push("vis");
+			CMLCore.packages.push("vis.interactives");
+			CMLCore.packages.push("vis.scenes");
+			CMLCore.packages.push("vis.panels");
+			CMLCore.packages.push("vis.panels.config.main");
+			CMLCore.packages.push("vis.panels.config.sub");
 			
 			// add cml parser complete event handler
 			CMLParser.addEventListener(CMLParser.COMPLETE, cmlInit);
@@ -42,7 +42,7 @@ package {
 			trace("cmlInit()");
 			
 			// setup through custom visualizer objects
-			document.getElementsByTagName("GWVisualizer")[0].setup(this);		
+			document.getElementsByTagName(GWVisualizer)[0].setup(this);		
 		}
 	}
 }

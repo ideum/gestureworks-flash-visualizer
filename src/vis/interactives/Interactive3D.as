@@ -1,8 +1,11 @@
 package vis.interactives {
 	import com.gestureworks.away3d.TouchManager3D;
+	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
+	import com.gestureworks.cml.away3d.elements.TouchContainer3D;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
+	import com.gestureworks.interfaces.ITouchObject;
 	import vis.GWVisualizer;
 	import vis.scenes.Display3D;
 	
@@ -15,7 +18,7 @@ package vis.interactives {
 		private var touchCamera:TouchSprite;
 		private var gwVisualizer:GWVisualizer;
 		
-		public var gestureObject3D:TouchSprite;
+		public var gestureObject3D:TouchContainer3D;
 		private var _visible:Boolean = true;
 		
 		//private var goviz:TouchSprite;
@@ -31,7 +34,7 @@ package vis.interactives {
 			TouchManager3D.initialize(); 			
 			//TouchManager2D.initialize(); 
 			//goviz = TouchManager2D.registerTouchObject(cube);
-			gestureObject3D = TouchManager3D.registerTouchObject(cube);
+			gestureObject3D = TouchManager3D.registerTouchObject(cube) as TouchContainer3D;
 			gestureObject3D.touch3d = true;			
 			//gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
 			gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true };
@@ -42,7 +45,6 @@ package vis.interactives {
 			gestureObject3D.nativeTransform = true;
 			gestureObject3D.releaseInertia = true;
 			gestureObject3D.gestureEvents = true;
-			gestureObject3D.motion3d = true; 		
 			gestureObject3D.transform3d = true; 
 			//goviz.debugDisplay = true;
 			//Settings.setupVisualizer(goviz);

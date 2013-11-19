@@ -16,12 +16,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\cml_core" />
-    <class path="..\..\gml_core" />
-    <class path="..\..\lib" />
-    <class path="..\..\lib\away3d\pb" />
-    <class path="..\..\lib\away3d\src" />
-    <class path="..\..\away3d" />
+    <class path="..\lib" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -60,6 +55,10 @@
   <libraryPaths>
     <element path="..\..\cml_core\lib\cml_ext.swc" />
     <element path="..\..\gml_core\lib\gml_ext.swc" />
+    <element path="..\lib\away3d-core-fp11_4_1_4.swc" />
+    <element path="..\lib\GestureWorksAway3D_4.0.0.swc" />
+    <element path="..\lib\GestureWorksCML_4.0.0.swc" />
+    <element path="..\lib\GestureWorksGML_4.0.0.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -79,7 +78,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\u_test\u_test3d_touch_hover_cam.as" />
+    <compile path="src\Main.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

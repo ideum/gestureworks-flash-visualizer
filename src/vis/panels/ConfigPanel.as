@@ -102,8 +102,9 @@ package vis.panels {
 				item.addEventListener(StateEvent.CHANGE, onViewBtns);
 			}
 			
-			for each (var t:Toggle in toggle)
+			for each (var t:Toggle in toggle) {
 				t.addEventListener(StateEvent.CHANGE, onToggle);
+			}
 		}		
 		
 		

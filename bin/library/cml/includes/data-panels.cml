@@ -5,7 +5,7 @@
 	<Container id="labels" class="label-c">
 		
 		<Graphic class="data-txt-bg-a">
-			<Text class="data-txt" stateId="point-touch" text="ID">
+			<Text id="tmp" class="data-txt" stateId="point-touch" text="ID">
 				<State stateId="point-motion" text="ID"/>					
 				<State stateId="cluster-touch" text="ID"/>	
 				<State stateId="cluster-motion" text="ID"/>	

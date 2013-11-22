@@ -82,7 +82,6 @@ package vis.panels.config.sub {
 		
 		// update
 		
-		
 		public function loadPoint():void {
 			currentTab = "point";
 			StateUtils.loadState(data, 0); 
@@ -94,6 +93,7 @@ package vis.panels.config.sub {
 			
 			var i:int;
 			var j:int;
+			
 			for (i = 1; i < dataNumCols.length; i++) {
 				StateUtils.loadState(dataNumCols[i], 0);	
 			}	
@@ -101,6 +101,7 @@ package vis.panels.config.sub {
 			for (i = 0; i < dataNumbers.length; i++) {
 				dataNumbers[i].visible = true;	
 			}
+			
 			for (i = 1; i < dataNumCols.length; i+=2) {
 				for (j = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
@@ -210,8 +211,7 @@ package vis.panels.config.sub {
 			
 		}	
 				
-		private function onDataTabContainer(e:StateEvent):void
-		{
+		private function onDataTabContainer(e:StateEvent):void {
 			if (e.target != dataTabs)
 				return;
 			switch (e.value) {
@@ -227,8 +227,7 @@ package vis.panels.config.sub {
 			}
 		}
 		
-		private function showDataTab(tabName:String):void
-		{
+		private function showDataTab(tabName:String):void {
 			switch (tabName) {			
 				case "touch": 
 					dataTabTouch.addChild(dataTabContainer); break;

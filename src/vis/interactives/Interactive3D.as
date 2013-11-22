@@ -1,11 +1,9 @@
 package vis.interactives {
 	import com.gestureworks.away3d.TouchManager3D;
-	import com.gestureworks.away3d.TouchObject3D;
 	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.cml.away3d.elements.TouchContainer3D;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
-	import com.gestureworks.interfaces.ITouchObject;
 	import vis.GWVisualizer;
 	import vis.scenes.Display3D;
 	
@@ -32,20 +30,21 @@ package vis.interactives {
 			
 			gwVisualizer = _gwVisualizer;
 			TouchManager3D.initialize(); 			
-			//TouchManager2D.initialize(); 
-			//goviz = TouchManager2D.registerTouchObject(cube);
-			gestureObject3D = TouchManager3D.registerTouchObject(cube) as TouchContainer3D;
-			gestureObject3D.touch3d = true;			
-			//gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
-			gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true };
 			
-			//goviz.touch3d = false;
-			//goviz.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true };
-						
+			gestureObject3D = new GestureObject3D();
+			gestureObject3D.vto = cube;
+			
+			TouchManager3D.registerTouchObject(gestureObject3D);
+			
+			gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
+			//gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true };
+			gestureObject3D.motionEnabled = true;						
 			gestureObject3D.nativeTransform = true;
 			gestureObject3D.releaseInertia = true;
 			gestureObject3D.gestureEvents = true;
 			gestureObject3D.transform3d = true; 
+			gestureObject3D.visible = false;
+			
 			//goviz.debugDisplay = true;
 			//Settings.setupVisualizer(goviz);
 			

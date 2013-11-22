@@ -6,7 +6,6 @@ package vis {
 	import com.gestureworks.core.TouchSprite;
 	import flash.events.Event;
 	import vis.interactives.GestureObject2D;
-	import vis.interactives.GestureObject3D;
 	import vis.interactives.Interactive2D;
 	import vis.interactives.Interactive3D;
 	import vis.panels.ConfigPanel;
@@ -49,7 +48,6 @@ package vis {
 			interactive2D = document.getElementsByTagName(Interactive2D)[0];
 			gestureObject2D = document.getElementsByTagName(GestureObject2D)[0];
 			
-			
 			framePanel = document.getElementsByTagName(FramePanel)[0];
 			configPanel = document.getElementsByTagName(ConfigPanel)[0];
 			
@@ -64,6 +62,7 @@ package vis {
 			configPanel.setup(interactive3D);			
 			
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+
 		}
 	
 		

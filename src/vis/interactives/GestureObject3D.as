@@ -1,4 +1,5 @@
 package vis.interactives {
+	import com.gestureworks.cml.away3d.elements.TouchContainer3D;
 	import com.gestureworks.cml.elements.Graphic;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
@@ -8,29 +9,27 @@ package vis.interactives {
 	 * ...
 	 * @author 
 	 */
-	public class GestureObject3D extends TouchSprite {
+	public class GestureObject3D extends TouchContainer3D {
 
 		public var gestureTextArray:Array = [];
 		public var gestureDataArray:Array = [];
 		private var frameArray:Array = [];
-		
-		private var gestureObject:TouchSprite;
-		
-		public function GestureObject3D(_gestureObject:TouchSprite):void {
-			gestureObject = _gestureObject;
+				
+		public function GestureObject3D():void {
 		}
 		
 		// setup
 		public function setup():void {
-			gestureObject.nativeTransform = false;					
-			gestureObject.debugDisplay = true;
-			gestureObject.gestureEvents = false;
-			gestureObject.visualizer.point.maxTrails = 30;
-			gestureObject.visualizer.point.init();
-			gestureObject.visualizer.pointDisplay = true;
-			gestureObject.visualizer.clusterDisplay = false;			
-			gestureObject.visualizer.gestureDisplay = false;
-			Settings.setupVisualizer(gestureObject);			
+			nativeTransform = true;					
+			visible = false;				
+			debugDisplay = true;
+			gestureEvents = false;
+			visualizer.point.maxTrails = 30;
+			visualizer.point.init();
+			visualizer.pointDisplay = true;
+			visualizer.clusterDisplay = false;			
+			visualizer.gestureDisplay = false;
+			Settings.setupVisualizer(this);
 		}
 		
 		// load 
@@ -42,6 +41,7 @@ package vis.interactives {
 			removeListeners();
 		}		
 		
+		// listners
 		public function addListeners():void {
 			addEventListener(GWGestureEvent.DRAG, onGesture);
 			addEventListener(GWGestureEvent.SCALE, onGesture);
@@ -84,9 +84,15 @@ package vis.interactives {
 		private function onGesture(e:GWGestureEvent):void {
 			frameArray.unshift(e);
 			gestureTextArray.unshift(e);			
-			if (gestureTextArray.length == 15)
+			if (gestureTextArray.length == 15) {
 				gestureTextArray.pop();
-		}			
+			}
+		}	
+		
+		override public function set visible(value:Boolean):void {
+			super.visible = value;
+			vto.visible = value;
+		}
 		
 	}
 }

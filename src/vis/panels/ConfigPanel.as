@@ -91,10 +91,6 @@ package vis.panels {
 			selectTabByIndex(defaultTabIndex);
 			currentTabObj = modeTab;
 			loadTab("mode");
-			
-			interactive2D.visible = true;
-			gestureObject2D.visible = true;			
-			interactive3D.view3D.visible = true;
 						
 			// listen for tab change
 			addEventListener(StateEvent.CHANGE, onTabSelection);			
@@ -113,7 +109,7 @@ package vis.panels {
 		
 		// load
 		
-		private function loadTab(tabSelection:String):void {
+		public function loadTab(tabSelection:String):void {
 			
 			if (tabSelection == currentTab) {
 				return;

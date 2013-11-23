@@ -31,7 +31,6 @@ package vis.panels {
 		
 		private var currentTab:String;		
 		private var currentTabObj:*;		
-		private var defaultTabIndex:int = 0;
 		
 		private var toggle:Array;
 		private var viewg:Graphic;
@@ -40,15 +39,14 @@ package vis.panels {
 		
 		private var dataPanel:DataPanel;
 		private var graphPanel:GraphPanel;
-		
-		private var interactive3DIndex:int = 0;
-				
+						
 		public function ConfigPanel () {		
 			super();
 		}
 		
 		public function setup(_interactive3D:Interactive3D):void {
 			interactive2D = GWVisualizer.interactive2D;
+			interactive3D = GWVisualizer.interactive3D;
 			gestureObject2D = GWVisualizer.gestureObject2D;
 			gestureObject3D = GWVisualizer.gestureObject3D;
 			
@@ -88,7 +86,7 @@ package vis.panels {
 			gestureTab.setup(dataPanel, graphPanel);
 			
 			// default tab
-			selectTabByIndex(defaultTabIndex);
+			selectTabByIndex(0);
 			currentTabObj = modeTab;
 			loadTab("mode");
 						

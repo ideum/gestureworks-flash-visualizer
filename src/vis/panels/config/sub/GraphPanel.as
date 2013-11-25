@@ -135,7 +135,7 @@ package vis.panels.config.sub {
 				graphPaths.childList[i].visible = true;	
 			}
 			// clear unused points
-			for (ptArrayLength; i < 10; i++) {
+			for (i = ptArrayLength; i < 10; i++) {
 				graphPaths.childList[i].visible = false;
 			}				
 		}
@@ -144,34 +144,33 @@ package vis.panels.config.sub {
 		public function updatePointMotion():void {
 			
 			var i:int;
-			var j:int;	
-			var ptArrayLength:int;
+			var j:int;
+			var motionArray:Vector.<MotionPointObject> =  gestureObject3D.cO.motionArray;
+			var ptArrayLength:int = (motionArray.length <= 10) ? motionArray.length : 10;
 			var historyLength:int;	
 			
 			for (i = 0; i < ptArrayLength; i++) {	
 			
-				iPointGraphHistory = gestureObject3D.cO.motionArray[i].history;				
-				historyLength = gestureObject3D.cO.motionArray[i].history.length;
+				iPointGraphHistory = motionArray[i].history;				
+				historyLength = motionArray[i].history.length;
 				
 				graphCoords.length = 0;
 				
 				for (j = 0; j < historyLength; j++) {
-					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );		
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );
 				}
 				for (j = historyLength; j < captureLength; j++) {
 					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
 				}			
-				
+								
 				graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
 				graphPaths.childList[i].updateGraphic();
-			
-				graphPaths.childList[i].visible = true;
-				// clear unused points
-				for (ptArrayLength; i < 10; i++) {
-					graphPaths.childList[i].visible = false;
-				}
-				
+				graphPaths.childList[i].visible = true;	
 			}
+			// clear unused points
+			for (i = ptArrayLength; i < 10; i++) {
+				graphPaths.childList[i].visible = false;
+			}			
 		}
 		
 
@@ -195,13 +194,13 @@ package vis.panels.config.sub {
 		}
 		
 		public function updateClusterMotion():void {
-			var j:int;			
+			var j:int;
 			var historyLength:int = gestureObject3D.cO.history.length;
-			
+
 			graphCoords.length = 0;
 			
 			for (j = 0; j < historyLength; j++) {
-				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject3D.cO.history[j][currentDim] * .25 );		
+				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), gestureObject3D.cO.history[j].position.x * .25 );		
 			}
 			for (j = historyLength; j < captureLength; j++) {
 				graphCoords.push( j * graphPaths.childList[0].width / (captureLength - 1), 0 );

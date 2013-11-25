@@ -57,6 +57,9 @@ package vis.panels.config.main {
 				if (gw.leap3D)
 					gw.leap2D = false;
 				break;	
+			case "native":
+				nativeTouch = value;
+				break;
 			default :
 				gw[label] = value;
 			}

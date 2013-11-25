@@ -106,13 +106,6 @@ package vis.panels.config.sub {
 				for (j = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
 			}
-			
-			if (GWVisualizer.currentDataTab == "touch") {
-				dataNumbers[11].visible = false;
-			}
-			else {
-				dataNumbers[11].visible = true;
-			}			
 		}
 		
 		public function loadCluster():void {

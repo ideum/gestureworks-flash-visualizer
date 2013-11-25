@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cml gml="library/gml/gestures.gml,library/gml/my_motion_gestures.gml" css="library/css/styles.css">
+<cml gml="library/gml/gestures.gml" css="library/css/styles.css">
 
 <Stage fullscreen="true" color="0x000000" frameRate="30" scaleMode="showAll" />
 

@@ -61,6 +61,7 @@
     <element path="..\..\gml_core\lib\gml_ext.swc" />
     <element path="..\gestureworks-flash-gml\lib\gml_ext.swc" />
     <element path="..\gestureworks-flash-cml\lib\cml_ext.swc" />
+    <element path="..\gestureworks-flash-cml\lib\gui.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

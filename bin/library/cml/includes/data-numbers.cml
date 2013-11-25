@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
-<Text class="data-num" text="0.0" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
+<Text class="data-num" str="" />
 	
 </cml>

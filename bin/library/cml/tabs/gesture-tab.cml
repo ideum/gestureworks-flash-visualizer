@@ -10,6 +10,34 @@
 		<Graphic id="gesture-panel" class="panel-graphic-gesture" height="180">
 			<Text class="input-category-text" text="GESTURES" />				
 			
+			<Container>
+				
+				<Button id="dx" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
+					<Text class="btn-inactive" text="dx" stateId="drag" >
+						<State stateId="rotate" text="dtheta" />
+						<State stateId="scale" text="dsx" />
+					</Text>
+					<Text class="btn-active" text="dx" stateId="drag">
+						<State stateId="rotate" text="dtheta" />
+						<State stateId="scale" text="dsx" />						
+					</Text>
+				</Button>
+				
+				<Button id="dy" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
+					<Text class="btn-inactive" text="dy" stateId="drag" visible="true">
+						<State stateId="rotate" visible="false" />
+						<State stateId="scale" text="dsy" visible="true"/>												
+					</Text>
+					<Text class="btn-active" text="dy" stateId="drag" visible="true">
+						<State stateId="rotate" visible="false" />
+						<State stateId="scale" text="dsy" visible="true"/>						
+					</Text>	
+				</Button>		
+				
+				<Layout ref="List" useMargins="true" marginX="30" type="horizontals" />				
+				
+			</Container>
+			
 			<Container x="22" y="50">
 				
 				<Button id="n-drag" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">

@@ -1,7 +1,11 @@
 package vis.panels.config.main {
+	import com.gestureworks.cml.elements.Button;
 	import com.gestureworks.cml.elements.Graphic;
+	import com.gestureworks.cml.elements.RadioButtons;
 	import com.gestureworks.cml.elements.Tab;
 	import com.gestureworks.cml.elements.Text;
+	import com.gestureworks.cml.events.StateEvent;
+	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.cml.utils.StateUtils;
 	import vis.GWVisualizer;
@@ -31,6 +35,7 @@ package vis.panels.config.main {
 		private var gmlPanel:GMLPanel;
 		private var dataPanel:DataPanel;
 		private var graphPanel:GraphPanel;
+		private var gestureTypeButtons:RadioButtons;
 		
 		public function GestureTab() {
 			super();		
@@ -57,8 +62,16 @@ package vis.panels.config.main {
 			gmlPanel.setup();
 			
 			graphPanel.gestureDataArray = gestureDataArray;
+			
+			gestureTypeButtons = document.getElementById("gesture-type-buttons");
+			gestureTypeButtons.addEventListener(StateEvent.CHANGE, onGestureType);	
+			
 		}
 		
+		
+		private function onGestureType(e:StateEvent):void {
+			trace(StateManager.loadState(e.target.id));
+		}
 		
 		// load
 		public function load():void {

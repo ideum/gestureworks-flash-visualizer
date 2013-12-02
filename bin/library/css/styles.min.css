@@ -66,4 +66,6 @@
 #gesture-event-text{autoSize:left;fontSize:12;color:0xFFFFFF;selectable:false;font:OpenSansBold;wordWrap:true;multiline:true;}
 .gesture-tabs{backgroundColor:0x0f0f0f;backgroundAlpha:0;width:600;spacing:0;tabLeftRadius:8;tabRightRadius:8;}
 .gesture-tab{tabFont:OpenSansBold;displayColor:0x0f0f0f;tabHeight:35;tabWidth:0;spacing:0;tabFontSize:18;tabLeftRadius:8;tabRightRadius:8;}
-
+.gesture-type-header{font-size:18;font:OpenSansBold;color:0xFFFFFF;}
+.gesture-type-text{font-size:18;font:OpenSansBold;color:0xFFFFFF;alpha:1;}
+.gesture-type-text-inactive{font-size:18;font:OpenSansBold;color:0xFFFFFF;alpha:.5;}

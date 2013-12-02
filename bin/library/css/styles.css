@@ -642,3 +642,22 @@
 	tabLeftRadius:8;
 	tabRightRadius:8;	
 }
+.gesture-type-header {
+	font-size:18;
+	font:OpenSansBold;
+	color:0xFFFFFF;
+}
+
+.gesture-type-text {
+	font-size:18;
+	font:OpenSansBold;
+	color:0xFFFFFF;
+	alpha: 1;
+}
+
+.gesture-type-text-inactive {
+	font-size:18;
+	font:OpenSansBold;
+	color:0xFFFFFF;
+	alpha: .5;
+}

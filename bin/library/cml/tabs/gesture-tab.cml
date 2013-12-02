@@ -10,173 +10,352 @@
 		<Graphic id="gesture-panel" class="panel-graphic-gesture" height="180">
 			<Text class="input-category-text" text="GESTURES" />				
 			
-			<Container>
+			<RadioButtons id="gesture-type-buttons" toggle="down" x="135" y="10" nestedButtons="true">
 				
-				<Button id="dx" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
-					<Text class="btn-inactive" text="dx" stateId="drag" >
-						<State stateId="rotate" text="dtheta" />
-						<State stateId="scale" text="dsx" />
-					</Text>
-					<Text class="btn-active" text="dx" stateId="drag">
-						<State stateId="rotate" text="dtheta" />
-						<State stateId="scale" text="dsx" />						
-					</Text>
+				<Text class="gesture-type-header" text="TOUCH" stateId="touch-2d,touch-3d" alpha="1">
+					<State stateId="ip,motion-2d,motion-3d" alpha=".5" />
+				</Text>
+					
+							
+				<Button id="touch-2d" class="gesture-type" toggle="up"  dispatch="toggle:{currentIndex}" initial="init" x="88">
+					<Text class="gesture-type-text-inactive" text="2D" />	
+					<Text id="init" class="gesture-type-text" text="2D" />
 				</Button>
 				
-				<Button id="dy" class="graph-btns" toggle="up" initial="btn-active" dispatch="toggle:{currentIndex}">
-					<Text class="btn-inactive" text="dy" stateId="drag" visible="true">
-						<State stateId="rotate" visible="false" />
-						<State stateId="scale" text="dsy" visible="true"/>												
-					</Text>
-					<Text class="btn-active" text="dy" stateId="drag" visible="true">
-						<State stateId="rotate" visible="false" />
-						<State stateId="scale" text="dsy" visible="true"/>						
-					</Text>	
+				<Button id="touch-3d" class="gesture-type" toggle="up"  dispatch="toggle:{currentIndex}" x="121">
+					<Text class="gesture-type-text-inactive" text="3D" />
+					<Text class="gesture-type-text" text="3D" />																
+				</Button>
+				
+				<Text class="gesture-type-header" text="MOTION" x="225" stateId="ip,motion-2d,motion3d" alpha="1">
+					<State stateId="touch-2d,touch-3d" alpha=".5" />
+				</Text>
+
+							
+				<Button id="ip" class="gesture-type" toggle="up" dispatch="toggle:{currentIndex}" x="333">
+					<Text class="gesture-type-text-inactive" text="IP" />
+					<Text class="gesture-type-text" text="IP" />											
+				</Button>	
+				
+				<Button id="motion-2d" class="gesture-type" toggle="up"  dispatch="toggle:{currentIndex}" x="368">
+					<Text class="gesture-type-text-inactive" text="2D" />
+					<Text class="gesture-type-text" text="2D" />																
 				</Button>		
 				
-				<Layout ref="List" useMargins="true" marginX="30" type="horizontals" />				
-				
-			</Container>
+				<Button id="motion-3d" class="gesture-type" toggle="up"  dispatch="toggle:{currentIndex}" x="405">
+					<Text class="gesture-type-text-inactive" text="3D" />
+					<Text class="gesture-type-text" text="3D" />																
+				</Button>				
+								
+			</RadioButtons>
+			
+			
+			
+			
 			
 			<Container x="22" y="50">
+			
 				
-				<Button id="n-drag" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				<Button id="n-drag" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="DRAG" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="DRAG" >
+							<State stateId="ip" text="FINGER" />
+						</Text>
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="DRAG" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="DRAG" >
+							<State stateId="ip" text="FINGER" />
+						</Text>
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>
 	
-				<Button id="n-rotate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-rotate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="ROTATE" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="ROTATE" >
+							<State stateId="ip" text="PALM" />
+						</Text>
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="ROTATE" />
-					</Graphic>	
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="ROTATE">
+							<State stateId="ip" text="PALM" />
+						</Text>
+					</Graphic>
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>
 				
-				<Button id="n-scale" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-scale" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="SCALE" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-3d,motion-3d" text="SCALE">
+							<State stateId="ip" text="PINCH" />
+						</Text>
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="SCALE" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="SCALE">
+							<State stateId="ip" text="PINCH" />
+						</Text>
+					
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>		
 				
-				<Button id="n-hold" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-hold" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="HOLD" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="HOLD">
+							<State stateId="ip" text="HOOK" />
+						</Text>					
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="HOLD" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="HOLD">
+							<State stateId="ip" text="HOOK" />
+						</Text>					
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>	
 				
-				<Button id="n-manipulate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+			
+				
+				<Button id="n-manipulate" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="MANIP" />
+					<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="MANIP">
+							<State stateId="ip" text="TRIGR" />
+						</Text>						
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="MANIP" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="MANIP">
+							<State stateId="ip" text="TRIGR" />
+						</Text>		
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>		
 				
-				<Button id="n-tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				
+				<!-- row -->
+				
+				<Button id="n-tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
-						<Text class="gesture-text" text="TAP" />
-					</Graphic>
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="TAP">
+							<State stateId="ip" text="FAV" />
+						</Text>						</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
-						<Text class="gesture-text" text="TAP" />
+						<Text class="gesture-text" stateId="touch-2d,touch-3d,motion-2d,motion-3d" text="TAP">
+							<State stateId="ip" text="FAV" />
+						</Text>						
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="true" />
+					
 				</Button>	
 				
-				<Button id="n-double_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-double_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+				
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="DTAP" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="DTAP" />
-					</Graphic>	
+					</Graphic>
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="n-triple_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-triple_tap" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+				
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="TTAP" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="TTAP" />
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>						
 				
-				<Button id="n-flick" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-flick" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="FLICK" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="FLICK" />
 					</Graphic>	
+				
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="n-swipe" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-swipe" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="SWIPE" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="SWIPE" />
-					</Graphic>	
+					</Graphic>
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="n-scroll" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="n-scroll" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="SCROLL" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="SCROLL" />
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>							
 				
-				<Button id="1-finger-pivot" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="1-finger-pivot" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="PIVOT" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="PIVOT" />
 					</Graphic>	
+				
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="3-finger-tilt" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="3-finger-tilt" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="TILT" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="TILT" />
 					</Graphic>	
+					
+					<State stateId="touch-3d" visible="true" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="5-finger-orient" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="5-finger-orient" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+					
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="ORIENT" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="ORIENT" />
-					</Graphic>	
+					</Graphic>
+						
+					<State stateId="touch-3d" visible="false" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>	
 				
-				<Button id="stroke" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}">
+				
+				
+				<Button id="stroke" class="gesture-btn" toggle="up" initial="gesture-btn-active" dispatch="toggle:{currentIndex}" stateId="touch-2d" visible="true">
+				
 					<Graphic id="gesture-btn-inactive" class="gesture-btn-inactive">
 						<Text class="gesture-text" text="STROKE" />
 					</Graphic>
 					<Graphic id="gesture-btn-active" class="gesture-btn-active">
 						<Text class="gesture-text" text="STROKE" />
-					</Graphic>	
+					</Graphic>
+					
+					<State stateId="touch-3d" visible="false" />
+					<State stateId="motion-2d" visible="true" />
+					<State stateId="motion-3d" visible="true" />
+					<State stateId="ip" visible="false" />
+					
 				</Button>					
 				
+				
+				
 				<Layout ref="Grid" useMargins="true" rows="3" columns="5" marginX="5" marginY="5" />
-					
+				
+				
+				
 			</Container>	
 			
 		</Graphic>	

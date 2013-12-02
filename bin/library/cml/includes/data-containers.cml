@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml>
 
-<Container id="data-c" stateId="point" class="data-c" x="55" y="20">
+<Container id="data-c" stateId="point,sub" class="data-c" x="55" y="20">
 	<Container id="data1" class="data-num-c" visible="false">
 		<Include src="library/cml/includes/data-numbers.cml" />
 		<Layout ref="List" useMargins="true" marginY="0" type="vertical" />

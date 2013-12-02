@@ -109,7 +109,7 @@ package vis.panels {
 		// load
 		
 		public function loadTab(tabSelection:String):void {
-			
+						
 			if (tabSelection == currentTab) {
 				return;
 			}

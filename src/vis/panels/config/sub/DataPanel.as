@@ -84,13 +84,15 @@ package vis.panels.config.sub {
 		
 		public function loadPoint():void {
 			currentTab = "point";
+
 			StateUtils.loadState(data, 0); 
 			StateUtils.loadState(dataGraph, 0);	
 			StateUtils.loadState(dataContainer, 0);	
+			
 			dataTabSubCluster.loadState("point");			
 			dataTabContainer.addChild(dataGraph);
 			loadDataColumns(currentTab);
-			
+						
 			var i:int;
 			var j:int;
 			
@@ -106,6 +108,7 @@ package vis.panels.config.sub {
 				for (j = 0; j < dataNumCols[i].childList.length; j++)
 					dataNumCols[i].childList[j].font = "OpenSansRegular";			
 			}
+
 		}
 		
 		public function loadCluster():void {
@@ -123,19 +126,14 @@ package vis.panels.config.sub {
 		
 		
 		private function loadDataColumns(tabName:String):void {
-			if (tabName != "cluster") {
-				return;
-			}
 			
+			if (tabName != "cluster") return;
 			var i:int;
 			var j:int;
 			
 			if (GWVisualizer.currentDataTab == "touch" || GWVisualizer.currentDataTab == "motion") {
-				StateUtils.loadState(data, 1);
 				StateUtils.loadState(dataGraph, 0); 
-				StateUtils.loadState(dataContainer, 1);
-				
-				dataTabSubCluster.loadState(tabName);
+				StateUtils.loadState(dataContainer, "cluster");
 				
 				for (i = 0; i < dataNumCols.length; i++) {
 					dataNumCols[i].visible = true;
@@ -179,9 +177,8 @@ package vis.panels.config.sub {
 				dataNumCols[3].childList[7].visible = true;				
 			}
 			else { // SUB data tab
-				StateUtils.loadState(data, 1);
 				StateUtils.loadState(dataGraph, 0);
-				StateUtils.loadState(dataContainer, 0);
+				StateUtils.loadState(dataContainer, "sub");
 				
 				dataTabSubCluster.loadState(tabName);
 
@@ -206,7 +203,7 @@ package vis.panels.config.sub {
 				
 		private function onDataTabContainer(e:StateEvent):void {
 			if (e.target != dataTabs)
-				return;
+				return;						
 			switch (e.value) {
 				case 0: 
 					if (GWVisualizer.currentDataTab != "touch") 
@@ -220,7 +217,7 @@ package vis.panels.config.sub {
 			}
 		}
 		
-		private function showDataTab(tabName:String):void {
+		public function showDataTab(tabName:String):void {
 			switch (tabName) {			
 				case "touch": 
 					dataTabTouch.addChild(dataTabContainer); break;
@@ -229,9 +226,11 @@ package vis.panels.config.sub {
 				case "sub":
 					dataTabSubCluster.addChild(dataTabContainer); break;
 			}
-			loadDataColumns(currentTab);			
+					
+			GWVisualizer.currentDataTab = tabName;		
+			loadDataColumns(currentTab);	
 			StateManager.loadState(currentTab + "-" + tabName);
-			GWVisualizer.currentDataTab = tabName;				
+
 		}
 		
 		

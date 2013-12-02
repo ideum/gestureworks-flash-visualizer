@@ -50,7 +50,7 @@
 #gesture-view{x:15;y:67;}
 .panel-text{x:38;y:0;autoSize:left;fontSize:16;color:0xFFFFFF;selectable:false;}
 .panel-text-container{x:22;y:40;}
-.check-box{width:25;height:25;backgroundLineStoke:5;backgroundLineColor:0x555555;backgroundColor:0x555555;toggleColor:0xAADDFF;toggleLineStoke:1.5;toggleLineStoke:1.5;alpha:.75;}
+.check-box{width:25;height:25;backgroundLineStoke:5;backgroundLineColor:0x555555;backgroundColor:0x555555;toggleColor:0xAADDFF;toggleLineStoke:1.5;alpha:1;}
 .label-c{y:20;}
 #status{x:27;y:1035;}
 #rate-text{x:0;font:OpenSansBold;color:0xFFFFFF;}
@@ -66,6 +66,6 @@
 #gesture-event-text{autoSize:left;fontSize:12;color:0xFFFFFF;selectable:false;font:OpenSansBold;wordWrap:true;multiline:true;}
 .gesture-tabs{backgroundColor:0x0f0f0f;backgroundAlpha:0;width:600;spacing:0;tabLeftRadius:8;tabRightRadius:8;}
 .gesture-tab{tabFont:OpenSansBold;displayColor:0x0f0f0f;tabHeight:35;tabWidth:0;spacing:0;tabFontSize:18;tabLeftRadius:8;tabRightRadius:8;}
-.gesture-type-header{font-size:18;font:OpenSansBold;color:0xFFFFFF;}
+.gesture-type-header{font-size:18;font:OpenSansBold;color:0xFFFFFF;height:20;}
 .gesture-type-text{font-size:18;font:OpenSansBold;color:0xFFFFFF;alpha:1;}
 .gesture-type-text-inactive{font-size:18;font:OpenSansBold;color:0xFFFFFF;alpha:.5;}

@@ -20,7 +20,7 @@ package {
 			// default input settings
 			fullscreen = true;
 			simulator = true;
-			leap3D = false;//false
+			leap3D = true;//false
 			
 			// register custom cml packages
 			CMLCore.packages.push("vis");

@@ -36,14 +36,16 @@ package vis.interactives {
 			
 			TouchManager3D.registerTouchObject(gestureObject3D);
 			
-			gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
-			//gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true };
+			//gestureObject3D.gestureList = { "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
+			gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true, "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
 			gestureObject3D.motionEnabled = true;						
 			gestureObject3D.nativeTransform = true;
 			gestureObject3D.releaseInertia = true;
 			gestureObject3D.gestureEvents = true;
 			gestureObject3D.transform3d = true; 
 			gestureObject3D.visible = false;
+			gestureObject3D.touch3d = true;
+			gestureObject3D.touchEnabled = true;
 			
 			//goviz.debugDisplay = true;
 			//Settings.setupVisualizer(goviz);
@@ -61,10 +63,7 @@ package vis.interactives {
 			motionVizualizer.trO = gestureObject3D.trO;
 			scene.addChild(motionVizualizer);					
 			
-			//gwVisualizer.addChildAt(goviz, gwVisualizer.numChildren-3);			
-			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);
-			
-			
+			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);			
 		}		
 		
 		//public function addView():void {			

@@ -7,6 +7,8 @@ package vis.panels.config.sub {
 	import com.gestureworks.cml.managers.StateManager;
 	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.TouchSprite;
+	import com.gestureworks.objects.ClusterObject;
+	import com.gestureworks.objects.ipClusterObject;
 	import com.gestureworks.objects.MotionPointObject;
 	import com.gestureworks.objects.PointObject;
 	import vis.GWVisualizer;
@@ -210,26 +212,37 @@ package vis.panels.config.sub {
 		}
 
 		public function updateSubClusterMotion():void {
-			//iPointGraphHistory = GWVisualizer.gestureObject.cO.motionArray[i].history;				
-			//historyLength = GWVisualizer.gestureObject.cO.motionArray[i].history.length;
+			var i:int;
+			var j:int;
+			var motionArray:Vector.<ipClusterObject> =  gestureObject3D.cO.subClusterArray;
+			var ptArrayLength:int = (motionArray.length <= 10) ? motionArray.length : 10;
+			var historyLength:int;	
 			
-			//graphCoords.length = 0;
-			//
-			//for (j = 0; j < historyLength; j++) {
-				//graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x / 2 );		
-			//}
-			//for (j = historyLength; j < captureLength; j++) {
-				//graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
-			//}			
-			//
-			//graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
-			//graphPaths.childList[i].updateGraphic();
-		//
-			//graphPaths.childList[i].visible = true;
+			var pointGraphHistory:Vector.<PointObject>;
+			var iPointGraphHistory:Vector.<ClusterObject>;
 			
-			//for (subClusterArrayLength; i < 10; i++) {
-				//graphPaths.childList[i].visible = false;
-			//}			
+			for (i = 0; i < ptArrayLength; i++) {	
+			
+				iPointGraphHistory = motionArray[i].history;				
+				historyLength = motionArray[i].history.length;
+				
+				graphCoords.length = 0;
+				
+				for (j = 0; j < historyLength; j++) {
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), iPointGraphHistory[j].position.x * .25 );
+				}
+				for (j = historyLength; j < captureLength; j++) {
+					graphCoords.push( j * graphPaths.childList[i].width / (captureLength - 1), 0 );
+				}			
+								
+				graphPaths.childList[i].pathCoordinatesVector = graphCoords;					
+				graphPaths.childList[i].updateGraphic();
+				graphPaths.childList[i].visible = true;	
+			}
+			// clear unused points
+			for (i = ptArrayLength; i < 10; i++) {
+				graphPaths.childList[i].visible = false;
+			}			
 		}	
 		
 		

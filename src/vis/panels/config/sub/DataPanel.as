@@ -360,7 +360,6 @@ package vis.panels.config.sub {
 			var subClusterArrayLength:int = (gestureObject.cO.subClusterArray.length <= 10) ? gestureObject.cO.subClusterArray.length : 10;
 			var ipCluster:ipClusterObject;
 			var i:int;
-								
 			for (i = 0; i < subClusterArrayLength; i++) {	
 				ipCluster = gestureObject.cO.subClusterArray[i];
 				

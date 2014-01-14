@@ -21,36 +21,34 @@ package vis.interactives {
 		// setup
 		public function setup():void {
 			nativeTransform = false;
-			traceDebugMode = true;
 			gestureEvents = true;
 			visualizer.ts = this;
-			//visualizer.clusterDisplay = true;			
-			//visualizer.gestureDisplay = true;
-			//visualizer.pointDisplay = true;
-			this.debugDisplay = true;
-			
-			this.name = "tmp";
-			this.width = 500;
-			this.height = 500;
+			visualizer.pointDisplay = true;
+			visualizer.clusterDisplay = true;			
+			visualizer.gestureDisplay = true;
+			debugDisplay = true;
+			gestureEvents = true;
+			tiO.timelineOn = true;
+			width = 500;
+			height = 500;
 						
 			//visualizer.initDebug();
 			//visualizer.initDebugDisplay()
-			//visualizer.point.init();
-			//visualizer.point.maxTrails = 30;			
+			visualizer.point.init();
+			visualizer.point.maxTrails = 30;			
 
 			Settings.setupVisualizer(this);
 		}
 		
-		// load 
+		// loader
 		public function load():void {
 			addListeners();
 		}
-		
 		public function unload():void {
 			removeListeners();
 		}		
 		
-		// listners
+		// listener
 		public function addListeners():void {
 			addEventListener(GWGestureEvent.DRAG, onGesture);
 			addEventListener(GWGestureEvent.SCALE, onGesture);
@@ -65,20 +63,19 @@ package vis.interactives {
 			addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
 			addEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}
-		
 		public function removeListeners():void {
-			addEventListener(GWGestureEvent.DRAG, onGesture);
-			addEventListener(GWGestureEvent.SCALE, onGesture);
-			addEventListener(GWGestureEvent.ROTATE, onGesture);			
-			addEventListener(GWGestureEvent.HOLD, onGesture);			
-			addEventListener(GWGestureEvent.TAP, onGesture);			
-			addEventListener(GWGestureEvent.FLICK, onGesture);			
-			addEventListener(GWGestureEvent.SCROLL, onGesture);			
-			addEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
-			addEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
-			addEventListener(GWGestureEvent.STROKE, onGesture);			
-			addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
-			addEventListener(GWGestureEvent.SWIPE, onGesture);			
+			removeEventListener(GWGestureEvent.DRAG, onGesture);
+			removeEventListener(GWGestureEvent.SCALE, onGesture);
+			removeEventListener(GWGestureEvent.ROTATE, onGesture);			
+			removeEventListener(GWGestureEvent.HOLD, onGesture);			
+			removeEventListener(GWGestureEvent.TAP, onGesture);			
+			removeEventListener(GWGestureEvent.FLICK, onGesture);			
+			removeEventListener(GWGestureEvent.SCROLL, onGesture);			
+			removeEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
+			removeEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
+			removeEventListener(GWGestureEvent.STROKE, onGesture);			
+			removeEventListener(GWGestureEvent.MANIPULATE, onGesture);			
+			removeEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}	
 		
 		// update

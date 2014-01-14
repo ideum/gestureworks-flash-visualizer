@@ -1,17 +1,14 @@
 package vis.interactives {
 	import com.gestureworks.away3d.TouchManager3D;
-	import com.gestureworks.away3d.utils.MotionVisualizer3D;
 	import com.gestureworks.away3d.utils.TransformUtils;
-	import com.gestureworks.cml.away3d.elements.TouchContainer3D;
-	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.TouchSprite;
-	import com.gestureworks.core.TouchVisualizer;
 	import com.gestureworks.events.GWGestureEvent;
+	import com.gestureworks.objects.ClusterObject;
 	import flash.geom.Matrix3D;
+	import flash.geom.Point;
 	import flash.geom.Vector3D;
 	import vis.GWVisualizer;
 	import vis.scenes.Display3D;
-	import vis.Settings;
 	
 	/**
 	 * ...
@@ -27,6 +24,12 @@ package vis.interactives {
 		
 		private var goviz:TouchSprite;
 		
+		private var newV:Vector3D;
+		private var first:Boolean = true;
+		private var num:int = 0;
+		private var ax:Vector3D;
+
+				
 		public function Interactive3D() {
 			super();
 		}
@@ -58,11 +61,12 @@ package vis.interactives {
 			gestureObject3D.touchEnabled = true;
 			
 			// add gesture event listeners	
-			gestureObject3D.addEventListener(GWGestureEvent.DRAG, onDrag); 		
+			//gestureObject3D.addEventListener(GWGestureEvent.DRAG, onDrag); 		
 			gestureObject3D.addEventListener(GWGestureEvent.ROTATE, onRotate);
 			gestureObject3D.addEventListener(GWGestureEvent.SCALE, onScale); 	
 			gestureObject3D.addEventListener(GWGestureEvent.TILT, onTilt);
 			gestureObject3D.addEventListener(GWGestureEvent.START, onStart); 
+			gestureObject3D.addEventListener(GWGestureEvent.COMPLETE, onComplete); 
 			
 			gestureObject3D.setup();
 
@@ -80,10 +84,12 @@ package vis.interactives {
 			
 			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);			
 		}		
-		private var ax:Vector3D;
 		
-		private function onStart(e:GWGestureEvent):void 
-		{
+		private function onComplete(e:GWGestureEvent):void {
+			first = true;
+		}
+		
+		private function onStart(e:GWGestureEvent):void {
 			//choose one
 			ax = TransformUtils.alignRotateToCamera(cube, view3D.camera);
 			//axis = TransformUtils.snapRotateToCamera(cube, view.camera);
@@ -94,16 +100,10 @@ package vis.interactives {
 			
 			if (newV && gestureObject3D) {
 				ax = TransformUtils.snapRotateToCamera(cube, view3D.camera);
-				var v:Vector3D = view3D.unproject(newV.x, newV.y, gestureObject3D['distance']);
-				var cubeParentMtxInv:Matrix3D = cube.parent.inverseSceneTransform;
-				v = cubeParentMtxInv.transformVector(v);				
-				
-				var v2:Vector3D = view3D.unproject(newV.x, newV.y, gestureObject3D['distance']);
-				
-				cube.position = v;
+				cube.x += newV.x;
+				cube.y += newV.y;
+				cube.z += newV.z;
 				newV = null;
-				gestureObject3D.visualizer.updateDebugDisplay();
-
 			}
 			
 		}		
@@ -135,23 +135,47 @@ package vis.interactives {
 		private function onRotate(e:GWGestureEvent):void {	
 			TransformUtils.updateAxisRotation(e, ax);	
 		}
-		
-		private var newV:Vector3D;
-		private var clusterV:Vector3D;
+
 	
 		/**
 		 * Drag event handler
 		 */
 		private function onDrag(e:GWGestureEvent):void {			
-			trace( gestureObject3D.cO.x, gestureObject3D.cO.y  );
-
 			
-			var v:Vector3D = view3D.unproject(gestureObject3D.cO.x, gestureObject3D.cO.y , e.target.distance);
-			//var cubeParentMtxInv:Matrix3D = cube.parent.inverseSceneTransform;
-			//v = cubeParentMtxInv.transformVector(v);
-			//cube.position = v;
-			clusterV = new Vector3D(gestureObject3D.cO.x, gestureObject3D.cO.y, e.target.distance);
-			newV = new Vector3D(e.value.stageX, e.value.stageY, e.target.distance);
+			if (e.value.n != num) {
+				first = true;
+				num = e.value.n;
+			}
+			
+			var clusterObject:ClusterObject = e.target.cO;			
+			
+			var pt1:Point = new Point(clusterObject.x, clusterObject.y);
+			var pt2:Point;
+			
+			if (!first)
+				pt2 = new Point(clusterObject.history[0].x, clusterObject.history[0].y);
+			else {
+				pt2 = new Point(clusterObject.x, clusterObject.y);
+				first = false;
+			}
+			
+			var v1:Vector3D = view3D.unproject(pt1.x, pt1.y, e.target.distance);
+			var v2:Vector3D = view3D.unproject(pt2.x, pt2.y, e.target.distance);
+					
+/*			var cubeParentMtxInv:Matrix3D = cube.parent.inverseSceneTransform;
+			v1 = cubeParentMtxInv.transformVector(v1);
+			v2 = cubeParentMtxInv.transformVector(v2);*/
+			
+			var dx:Number = v1.x - v2.x;
+			var dy:Number = v1.y - v2.y;
+			var dz:Number = v1.z - v2.z;
+			
+			if (!newV)
+				newV = new Vector3D(0, 0, 0);
+			
+			newV.x += dx;
+			newV.y += dy;
+			newV.z += dz;
 		}		
 		
 		/**
@@ -171,9 +195,13 @@ package vis.interactives {
 		 * Tilt event handler
 		 */
 		private function onTilt(e:GWGestureEvent):void {	
-			trace("tilt values:", e.value.tilt_dx, e.value.tilt_dy);				
-			cube.rotationY += e.value.tilt_dx * 250;
-			cube.rotationX += e.value.tilt_dy * 250;
+			trace("tilt values:", e.value.tilt_dx, e.value.tilt_dy);	
+			
+			var cubeParentMtxInv:Matrix3D = cube.parent.inverseSceneTransform;
+			var v:Vector3D = cubeParentMtxInv.transformVector(new Vector3D(e.value.tilt_dx, e.value.tilt_dy, gestureObject3D['distance']));
+			
+			cube.rotationX += v.x * 250;
+			cube.rotationY += v.y * 250;
 		}	
 		
 		

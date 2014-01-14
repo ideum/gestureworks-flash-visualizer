@@ -1,6 +1,7 @@
 package vis.interactives {
 	import com.gestureworks.away3d.TouchManager3D;
 	import com.gestureworks.away3d.utils.TransformUtils;
+	import com.gestureworks.cml.utils.document;
 	import com.gestureworks.core.TouchSprite;
 	import com.gestureworks.events.GWGestureEvent;
 	import com.gestureworks.objects.ClusterObject;
@@ -39,21 +40,19 @@ package vis.interactives {
 			
 			gwVisualizer = _gwVisualizer;
 			TouchManager3D.initialize(); 			
-			
+			TouchManager3D.onlyTouchEnabled = true;
+
 			gestureObject3D = new GestureObject3D();
 			gestureObject3D.vto = cube;
 
 			TouchManager3D.registerTouchObject(gestureObject3D, false);
-			TouchManager3D.onlyTouchEnabled = true;
-			
-			gestureObject3D.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "3-finger-tilt":true };
-			_gwVisualizer.addChild(gestureObject3D);
+			gestureObject3D.gestureList = { "n-drag":true, "n-rotate":true, "n-scale":true, "3-finger-tilt":true };			
 			
 			//gestureObject3D.gestureList = { "3dmotion-n-pinch-3dtransform":true, "3dmotion-1-pinch-hold":true, "n-drag-3d":true, "n-rotate-3d":true, "n-scale-3d":true };
 			gestureObject3D.motionEnabled = false;		
 			gestureObject3D.affineTransform = false;
 			gestureObject3D.nativeTransform = false;
-			gestureObject3D.releaseInertia = false;
+			gestureObject3D.releaseInertia = true;
 			gestureObject3D.gestureEvents = true;
 			//gestureObject3D.transform3d = false; 
 			gestureObject3D.visible = true;
@@ -61,7 +60,7 @@ package vis.interactives {
 			gestureObject3D.touchEnabled = true;
 			
 			// add gesture event listeners	
-			//gestureObject3D.addEventListener(GWGestureEvent.DRAG, onDrag); 		
+			gestureObject3D.addEventListener(GWGestureEvent.DRAG, onDrag); 		
 			gestureObject3D.addEventListener(GWGestureEvent.ROTATE, onRotate);
 			gestureObject3D.addEventListener(GWGestureEvent.SCALE, onScale); 	
 			gestureObject3D.addEventListener(GWGestureEvent.TILT, onTilt);
@@ -80,9 +79,9 @@ package vis.interactives {
 			//motionVizualizer.init();
 			//motionVizualizer.cO = gestureObject3D.cO;
 			//motionVizualizer.trO = gestureObject3D.trO;
-			//scene.addChild(motionVizualizer);					
-			
-			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);			
+			//scene.addChild(motionVizualizer);	
+			gwVisualizer.addChildAt(view3D, gwVisualizer.numChildren - 3);
+			cube.visible = false;
 		}		
 		
 		private function onComplete(e:GWGestureEvent):void {
@@ -92,7 +91,7 @@ package vis.interactives {
 		private function onStart(e:GWGestureEvent):void {
 			//choose one
 			ax = TransformUtils.alignRotateToCamera(cube, view3D.camera);
-			//axis = TransformUtils.snapRotateToCamera(cube, view.camera);
+			//ax = TransformUtils.snapRotateToCamera(cube, view3D.camera);
 		}
 		
 		override public function update():void {			
@@ -125,8 +124,12 @@ package vis.interactives {
 		public function set visible(value:Boolean):void {
 			_visible = value;
 			view3D.visible = _visible;
+			if (value) {
+				var i2D:Interactive2D = Interactive2D(document.getElementById("touch-object-2d"));
+				var index:int = i2D.parent.getChildIndex(i2D);				
+				gwVisualizer.addChildAt(gestureObject3D, index-1);
+			}
 		}			
-		
 		
 		
 		/**

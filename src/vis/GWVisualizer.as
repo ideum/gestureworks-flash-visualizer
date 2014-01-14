@@ -62,7 +62,6 @@ package vis {
 			configPanel.setup(interactive3D);			
 			
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-
 		}
 	
 		

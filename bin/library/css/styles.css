@@ -15,6 +15,14 @@
 	alpha:0.5;
 }
 
+#gesture-viz-3d {
+	shape:square;
+	color:0xFF0000;
+	width:400;
+	height:400;
+	lineStroke:0;
+	alpha:0.5;
+}
 
 /** left side **/
 

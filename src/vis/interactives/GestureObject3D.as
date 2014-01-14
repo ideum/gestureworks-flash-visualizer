@@ -20,15 +20,24 @@ package vis.interactives {
 		
 		// setup
 		public function setup():void {
-			nativeTransform = true;					
-			visible = false;				
-			debugDisplay = true;
-			gestureEvents = false;
-			visualizer.point.maxTrails = 30;
-			visualizer.point.init();
-			visualizer.pointDisplay = true;
-			visualizer.clusterDisplay = false;			
-			visualizer.gestureDisplay = false;
+			nativeTransform = false;
+			traceDebugMode = true;
+			gestureEvents = true;
+			visualizer.ts = this;
+			//visualizer.clusterDisplay = true;			
+			//visualizer.gestureDisplay = true;
+			//visualizer.pointDisplay = true;
+			this.debugDisplay = true;
+			
+			this.name = "tmp";
+			this.width = 500;
+			this.height = 500;
+						
+			//visualizer.initDebug();
+			//visualizer.initDebugDisplay()
+			//visualizer.point.init();
+			//visualizer.point.maxTrails = 30;			
+
 			Settings.setupVisualizer(this);
 		}
 		

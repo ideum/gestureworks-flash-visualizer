@@ -72,7 +72,7 @@ package vis.scenes {
 		
 		// update
 		public function update():void {		
-			motionVizualizer.updateDisplay();
+			//motionVizualizer.updateDisplay();
 			light.position = view3D.camera.position;
 			view3D.render();					
 		}	

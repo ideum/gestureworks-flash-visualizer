@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cml gml="library/gml/gestures.gml" css="library/css/styles.css">
+<cml gml="library/gml/touch_gestures.gml" css="library/css/styles.css">
 
 <Stage fullscreen="true" color="0x000000" frameRate="30" scaleMode="showAll" />
 
@@ -60,9 +60,8 @@
 		<Gesture ref="3-finger-tilt" gestureOn="false" />
 		<Gesture ref="5-finger-orient" gestureOn="false" />
 	</GestureObject2D>
-	
 
-	
+		
 	
 </GWVisualizer>
 

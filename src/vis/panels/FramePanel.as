@@ -21,6 +21,8 @@ package vis.panels {
 			super();
 		}
 
+		
+		// setup
 		public function setup():void {			
 			rateText = getElementById("rate-text"); 
 			tpntsText = getElementById("tpnts-text");
@@ -35,7 +37,6 @@ package vis.panels {
 			rateText.text = String(frameRate.tick());
 			tpntsText.text = String(GWVisualizer.gestureObject2D.pointArray.length + GWVisualizer.interactive2D.pointArray.length);						
 		}
-		
 		private function updatePointCnt():void {
 			tpntsText.text = String(GWVisualizer.gestureObject2D.pointArray.length + GWVisualizer.interactive2D.pointArray.length);			
 		}		

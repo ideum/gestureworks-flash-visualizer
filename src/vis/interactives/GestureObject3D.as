@@ -15,8 +15,7 @@ package vis.interactives {
 		public var gestureDataArray:Array = [];
 		private var frameArray:Array = [];
 				
-		public function GestureObject3D():void {
-		}
+		public function GestureObject3D():void {}
 		
 		// setup
 		public function setup():void {

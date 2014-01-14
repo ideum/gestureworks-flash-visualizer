@@ -23,10 +23,8 @@ package vis.interactives {
 			debugDisplay = true;
 			gestureEvents = true;
 			tiO.timelineOn = true;
-
 			state[0]['x'] = stage.stageWidth / 2 - width / 2;
-			state[0]['y'] = stage.stageHeight / 2 - height / 2;
-		
+			state[0]['y'] = stage.stageHeight / 2 - height / 2;		
 			Settings.setupVisualizer(this);	
 		}
 		
@@ -34,11 +32,11 @@ package vis.interactives {
 		public function load():void {
 			addListeners();
 		}
-		
 		public function unload():void {
 			removeListeners();
 		}		
 		
+		//listeners
 		public function addListeners():void {
 			addEventListener(GWGestureEvent.DRAG, onGesture);
 			addEventListener(GWGestureEvent.SCALE, onGesture);
@@ -53,20 +51,19 @@ package vis.interactives {
 			addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
 			addEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}
-		
 		public function removeListeners():void {
-			addEventListener(GWGestureEvent.DRAG, onGesture);
-			addEventListener(GWGestureEvent.SCALE, onGesture);
-			addEventListener(GWGestureEvent.ROTATE, onGesture);			
-			addEventListener(GWGestureEvent.HOLD, onGesture);			
-			addEventListener(GWGestureEvent.TAP, onGesture);			
-			addEventListener(GWGestureEvent.FLICK, onGesture);			
-			addEventListener(GWGestureEvent.SCROLL, onGesture);			
-			addEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
-			addEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
-			addEventListener(GWGestureEvent.STROKE, onGesture);			
-			addEventListener(GWGestureEvent.MANIPULATE, onGesture);			
-			addEventListener(GWGestureEvent.SWIPE, onGesture);			
+			removeEventListener(GWGestureEvent.DRAG, onGesture);
+			removeEventListener(GWGestureEvent.SCALE, onGesture);
+			removeEventListener(GWGestureEvent.ROTATE, onGesture);			
+			removeEventListener(GWGestureEvent.HOLD, onGesture);			
+			removeEventListener(GWGestureEvent.TAP, onGesture);			
+			removeEventListener(GWGestureEvent.FLICK, onGesture);			
+			removeEventListener(GWGestureEvent.SCROLL, onGesture);			
+			removeEventListener(GWGestureEvent.DOUBLE_TAP, onGesture);			
+			removeEventListener(GWGestureEvent.TRIPLE_TAP, onGesture);			
+			removeEventListener(GWGestureEvent.STROKE, onGesture);			
+			removeEventListener(GWGestureEvent.MANIPULATE, onGesture);			
+			removeEventListener(GWGestureEvent.SWIPE, onGesture);			
 		}	
 		
 		// update
